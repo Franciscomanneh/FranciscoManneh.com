@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Case Studies | F. Manneh</title>
+    <meta name="description"
+        content="A curated archive of web, app, and AI chat projects by F. Manneh — engineered for performance, design, and real results.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* ── PAGE-LEVEL TOKENS ── */
+        :root {
+            --accent: #00d2ff;
+            --accent2: #3a7bd5;
+        }
+
+        /* ── HERO ── */
+        .proj-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10rem 2rem 5rem;
+            position: relative;
+        }
+
+        .proj-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 210, 255, 0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .proj-hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .proj-hero h1 {
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .proj-hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .h-stat {
+            text-align: center;
+        }
+
+        .h-stat strong {
+            font-family: 'Outfit';
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .h-stat span {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            font-family: 'Outfit';
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(0, 210, 255, 0.3);
+        }
+
+        /* ── PROJECTS GRID ── */
+        .proj-section {
+            padding: 0 0 6rem;
+        }
+
+        .proj-section-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .proj-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+
+        /* ── PROJECT CARD ── */
+        .proj-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s ease;
+            cursor: default;
+        }
+
+        .proj-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 210, 255, 0.35);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 210, 255, 0.05);
+        }
+
+        .proj-card[data-hidden="true"] {
+            display: none;
+        }
+
+        .proj-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: var(--surface-light);
+            position: relative;
+        }
+
+        .proj-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.55s ease;
+        }
+
+        .proj-card:hover .proj-thumb img {
+            transform: scale(1.08);
+        }
+
+        .proj-cat-badge {
+            position: absolute;
+            top: 0.9rem;
+            left: 0.9rem;
+            background: rgba(9, 14, 20, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        .proj-live-chip {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            background: rgba(0, 210, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            color: var(--accent);
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .proj-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tech-pills {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.65rem;
+            border-radius: 50px;
+            background: rgba(0, 210, 255, 0.08);
+            border: 1px solid rgba(0, 210, 255, 0.18);
+            color: var(--accent);
+        }
+
+        .proj-body h3 {
+            font-size: 1.1rem;
+            line-height: 1.35;
+        }
+
+        .proj-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .proj-metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .proj-metric i {
+            font-size: 1rem;
+        }
+
+        .proj-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .proj-actions .btn {
+            font-size: 0.82rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 8px;
+        }
+
+        /* ── MODAL ── */
+        .pmo-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: rgba(5, 9, 15, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .pmo-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .pmo-panel {
+            background: #0d1824;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            width: 100%;
+            max-width: 760px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(.22, 1, .36, 1);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
+        }
+
+        .pmo-overlay.active .pmo-panel {
+            transform: translateY(0) scale(1);
+        }
+
+        .pmo-close {
+            position: sticky;
+            top: 1rem;
+            left: 100%;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            margin: 1rem 1rem 0 auto;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .pmo-close:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .pmo-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 0 1.75rem;
+        }
+
+        .pmo-tab {
+            padding: 0.85rem 1.25rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .pmo-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .pmo-content {
+            padding: 1.75rem;
+        }
+
+        .pmo-pane {
+            display: none;
+        }
+
+        .pmo-pane.active {
+            display: block;
+        }
+
+        .pmo-hero-img {
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            aspect-ratio: 16/9;
+        }
+
+        .pmo-hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pmo-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pmo-cat {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .pmo-sec-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .pmo-sec-label i {
+            font-size: 1rem;
+        }
+
+        .pmo-section p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .pmo-results {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .pmo-results li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.93rem;
+            color: var(--text-muted);
+        }
+
+        .pmo-results li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .pmo-metric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            color: var(--accent);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .pmo-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .design-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .design-notes-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* ── OVERVIEW CARDS ── */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .ov-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ov-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .ov-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(0, 210, 255, 0.08);
+            border: 1px solid rgba(0, 210, 255, 0.18);
+            font-size: 1.7rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.1rem;
+        }
+
+        .ov-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ov-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testi-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .testi-card:hover {
+            border-color: rgba(0, 210, 255, 0.3);
+        }
+
+        .testi-stars {
+            color: #fbbf24;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .testi-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+
+        .testi-user {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .testi-user img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testi-user h5 {
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .testi-user span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ── CTA BANNER ── */
+        .proj-cta {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.09), rgba(58, 123, 213, 0.07));
+            border: 1px solid rgba(0, 210, 255, 0.18);
+            border-radius: 26px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .proj-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .proj-cta p {
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 2.2rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .proj-cta-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.65s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.12s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.24s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.36s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width:900px) {
+            .overview-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .design-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:600px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .pmo-panel {
+                border-radius: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── NAVBAR ─── -->
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">F. MANNEH</a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="html-css.html">Courses</a></li>
+                <li><a href="index.html">← Home</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://wa.me/2207773064" class="btn btn-primary btn-sm"><i class='bx bxl-whatsapp'></i>
+                    WhatsApp Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ─── HERO ─── -->
+        <section style="padding:0; max-width:100%; margin:0;">
+            <div class="proj-hero">
+                <div class="proj-hero-inner fade-in">
+                    <span class="eyebrow" style="justify-content:center; display:flex;"><i class='bx bx-folder-open'
+                            style="margin-right:0.4rem;"></i> THE ARCHIVE</span>
+                    <h1>Engineered <span class="text-gradient">Case Studies</span></h1>
+                    <p>A deep dive into the architectures, logic, and design systems behind my most impactful digital
+                        products. I build tools that don't just work they excel.</p>
+                    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                        <a href="#projects" class="btn btn-primary"><i class='bx bx-chevron-down'></i> Discover My
+                            Work</a>
+                        <a href="index.html" class="btn btn-outline"><i class='bx bx-home-alt'></i> Back to Home</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="h-stat"><strong>9+</strong><span>PROJECTS SHIPPED</span></div>
+                        <div class="h-stat"><strong>3</strong><span>DISCIPLINES</span></div>
+                        <div class="h-stat"><strong>100%</strong><span>DELIVERED ON TIME</span></div>
+                        <div class="h-stat"><strong>Live</strong><span>ALL DEMOS ACTIVE</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PROJECTS ─── -->
+        <section id="projects" style="padding-top:2rem;">
+
+            <!-- Overview -->
+            <div class="section-header text-center fade-in" style="margin-bottom:2.5rem;">
+                <span class="eyebrow">WHAT I BUILD</span>
+                <h2>Services & Disciplines</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="overview-grid fade-in">
+                <div class="ov-card">
+                    <div class="ov-icon"><i class='bx bx-layout'></i></div>
+                    <h4>Web Development</h4>
+                    <p>High-performance, responsive websites and web apps built from scratch with modern stacks.</p>
+                </div>
+                <div class="ov-card">
+                    <div class="ov-icon"><i class='bx bx-mobile-alt'></i></div>
+                    <h4>App Development</h4>
+                    <p>Interactive browser experiences and simulations with native-like performance and fluid UIs.</p>
+                </div>
+                <div class="ov-card">
+                    <div class="ov-icon"><i class='bx bx-bot'></i></div>
+                    <h4>AI Chat Systems</h4>
+                    <p>Intelligent conversational interfaces and advisory bots replacing manual workflows 24/7.</p>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar fade-in">
+                <button class="filter-btn active" data-filter="all"><i class='bx bx-grid-alt'></i> All Work</button>
+                <button class="filter-btn" data-filter="web"><i class='bx bx-layout'></i> Web</button>
+                <button class="filter-btn" data-filter="app"><i class='bx bx-mobile-alt'></i> App</button>
+                <button class="filter-btn" data-filter="ai"><i class='bx bx-bot'></i> AI Chat</button>
+            </div>
+
+            <!-- ── WEB DEVELOPMENT ── -->
+            <div class="proj-section" data-category-section="web">
+                <div class="proj-section-label"><i class='bx bx-layout'></i> WEB DEVELOPMENT</div>
+                <div class="proj-grid">
+
+                    <div class="proj-card fade-in" data-category="web">
+                        <div class="proj-thumb">
+                            <img src="./Images/14.png" alt="E-Commerce Engine">
+                            <span class="proj-cat-badge">WEB</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">GitHub</span>
+                            </div>
+                            <h3>High-Performance E-Commerce Engine</h3>
+                            <p>A modular retail platform with dynamic sub-second filtering and a zero-friction checkout
+                                flow optimized for conversion rates.</p>
+                            <div class="proj-metric"><i class='bx bx-rocket'></i> SCALABLE · PRODUCTION ARCHITECTURE
+                            </div>
+                            <div class="proj-actions">
+                                <a href="https://franciscomanneh.github.io/multipurpose/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="multishop"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="multishop"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-1" data-category="web">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/13.png" alt="Heritage Portal">
+                            <span class="proj-cat-badge">WEB</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">GitHub</span>
+                            </div>
+                            <h3>National Heritage & Cultural Portal</h3>
+                            <p>An immersive web experience for preserving Gambian heritage semantic storytelling with
+                                responsive multimedia components.</p>
+                            <div class="proj-metric"><i class='bx bx-globe'></i> 90% CONTENT FIDELITY</div>
+                            <div class="proj-actions">
+                                <a href="https://franciscomanneh.github.io/the-Gambia-our-homeland/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="gambia"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="gambia"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-2" data-category="web">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/17.png" alt="Restaurant Platform">
+                            <span class="proj-cat-badge">WEB</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">GitHub</span>
+                            </div>
+                            <h3>Culinary Brand & Experience Platform</h3>
+                            <p>A bespoke digital storefront for luxury dining fluid UI/UX bridging menu presentation
+                                with customer intent.</p>
+                            <div class="proj-metric"><i class='bx bx-dish'></i> 92% UX OPTIMIZATION</div>
+                            <div class="proj-actions">
+                                <a href="https://franciscomanneh.github.io/Fra-Amie-s-Resto/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="resto"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="resto"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── APP DEVELOPMENT ── -->
+            <div class="proj-section" data-category-section="app">
+                <div class="proj-section-label"><i class='bx bx-mobile-alt'></i> APP DEVELOPMENT</div>
+                <div class="proj-grid">
+
+                    <div class="proj-card fade-in" data-category="app">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/3.png" alt="Music Streaming App">
+                            <span class="proj-cat-badge">APP</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">React</span><span
+                                    class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>High Fidelity Audio Casting Ecosystem</h3>
+                            <p>A state-driven audio streaming platform with custom playback controllers, artist
+                                discovery, and real-time progress tracking.</p>
+                            <div class="proj-metric"><i class='bx bx-headphone'></i> 98% PLAYBACK STABILITY</div>
+                            <div class="proj-actions">
+                                <a href="https://music-beta-rosy.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="music"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="music"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-1" data-category="app">
+                        <div class="proj-thumb">
+                            <img src="./Images/1.png" alt="Snake Game Engine">
+                            <span class="proj-cat-badge">APP</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML5 Canvas</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>Logic Driven Simulation Engine</h3>
+                            <p>A Canvas-based interactive environment showcasing advanced state management, collision
+                                detection, and 60FPS render loops.</p>
+                            <div class="proj-metric"><i class='bx bx-joystick'></i> 60FPS · SUB-15MS LATENCY</div>
+                            <div class="proj-actions">
+                                <a href="https://snake-game-six-ruby.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="snake"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="snake"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-2" data-category="app">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/image (1).png" alt="Calculator App">
+                            <span class="proj-cat-badge">APP</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>Computational Precision Utility</h3>
+                            <p>A reactive grid-layout calculator with strict input sanitization, operator-precedence
+                                logic, and full cross-device responsiveness.</p>
+                            <div class="proj-metric"><i class='bx bx-calculator'></i> 99.9% UPTIME</div>
+                            <div class="proj-actions">
+                                <a href="https://calculator-sooty-three-10.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="calc"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="calc"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── AI CHAT DEVELOPMENT ── -->
+            <div class="proj-section" data-category-section="ai">
+                <div class="proj-section-label"><i class='bx bx-bot'></i> AI CHAT DEVELOPMENT</div>
+                <div class="proj-grid">
+
+                    <div class="proj-card fade-in" data-category="ai">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/7 (1).png" alt="Consultation AI">
+                            <span class="proj-cat-badge">AI</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">React</span><span
+                                    class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>Predictive Advisory Interface</h3>
+                            <p>A custom conversational pipeline with state driven response logic and dynamic intent
+                                detection for expert-level advisory outcomes.</p>
+                            <div class="proj-metric"><i class='bx bx-brain'></i> 98% INTENT RESOLUTION</div>
+                            <div class="proj-actions">
+                                <a href="https://consultation-chat.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="consultai"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="consultai"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-1" data-category="ai">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/12 (1).png" alt="Style Bot">
+                            <span class="proj-cat-badge">AI</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">React</span><span
+                                    class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>Generative Fashion Consultant</h3>
+                            <p>A neural driven style assistant with decision-tree recommendation logic delivering
+                                trend-aware outfit suggestions in real-time.</p>
+                            <div class="proj-metric"><i class='bx bx-closet'></i> 60FPS UI DYNAMICS</div>
+                            <div class="proj-actions">
+                                <a href="https://style-bot-seven.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="stylebot"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="stylebot"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-card fade-in delay-2" data-category="ai">
+                        <div class="proj-thumb">
+                            <img src="./casedesigns/9.png" alt="Enterprise Bot">
+                            <span class="proj-cat-badge">AI</span>
+                            <span class="proj-live-chip"><span class="live-dot"></span> LIVE</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span
+                                    class="tech-pill">JavaScript</span><span class="tech-pill">React</span><span
+                                    class="tech-pill">Vercel</span>
+                            </div>
+                            <h3>Enterprise Knowledge Automator</h3>
+                            <p>An industrial grade NLP agent with custom webhook pipelines and a multi-turn conversation
+                                engine for 24/7 advisory automation.</p>
+                            <div class="proj-metric"><i class='bx bx-bot'></i> 92% AUTOMATION RATE</div>
+                            <div class="proj-actions">
+                                <a href="https://medical-chat-eight.vercel.app/" target="_blank"
+                                    class="btn btn-primary btn-sm"><i class='bx bx-link-external'></i> Live Demo</a>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="medbot"
+                                    data-tab="case"><i class='bx bx-file-find'></i> Case Study</button>
+                                <button class="btn btn-outline btn-sm proj-modal-btn" data-project="medbot"
+                                    data-tab="design"><i class='bx bx-palette'></i> Design</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── TESTIMONIALS ─── -->
+        <section id="testimonials">
+            <style>
+                /* ── Testimonial Carousel (projects.html) ── */
+                .testi-carousel-wrap {
+                    position: relative;
+                    max-width: 780px;
+                    margin: 3rem auto 0;
+                }
+
+                .testi-track {
+                    overflow: hidden;
+                    border-radius: 20px;
+                }
+
+                .testi-slides {
+                    display: flex;
+                    transition: transform 0.45s cubic-bezier(.4, 0, .2, 1);
+                }
+
+                .testi-slide {
+                    min-width: 100%;
+                    background: rgba(255, 255, 255, 0.03);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 20px;
+                    padding: 2.25rem 2.5rem;
+                    box-sizing: border-box;
+                }
+
+                .testi-stars {
+                    color: #fbbf24;
+                    font-size: 0.9rem;
+                    letter-spacing: 2px;
+                    margin-bottom: 1.1rem;
+                }
+
+                .testi-quote-icon {
+                    font-size: 2rem;
+                    color: var(--primary);
+                    opacity: 0.5;
+                    margin-bottom: 0.75rem;
+                    display: block;
+                }
+
+                .testi-text {
+                    font-size: 1rem;
+                    color: var(--text-muted);
+                    line-height: 1.8;
+                    margin-bottom: 1.5rem;
+                    font-style: italic;
+                }
+
+                .testi-text.clamped {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4;
+                    line-clamp: 4;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+
+                .read-more-btn {
+                    background: none;
+                    border: none;
+                    color: var(--primary);
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0;
+                    margin-top: -0.75rem;
+                    margin-bottom: 1.25rem;
+                    font-family: 'Outfit', sans-serif;
+                    transition: opacity 0.2s;
+                }
+
+                .read-more-btn:hover {
+                    opacity: 0.75;
+                }
+
+                .testi-user {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .testi-user img {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2px solid rgba(0, 210, 255, 0.25);
+                }
+
+                .testi-user-info h5 {
+                    font-size: 1rem;
+                    margin-bottom: 0.15rem;
+                }
+
+                .testi-user-info span {
+                    font-size: 0.8rem;
+                    color: var(--text-muted);
+                }
+
+                .testi-controls {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-top: 1.75rem;
+                }
+
+                .testi-arrow {
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    color: var(--text);
+                    font-size: 1.3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.25s ease;
+                }
+
+                .testi-arrow:hover {
+                    background: rgba(0, 210, 255, 0.12);
+                    border-color: var(--primary);
+                    color: var(--primary);
+                }
+
+                .testi-dots {
+                    display: flex;
+                    gap: 0.5rem;
+                }
+
+                .testi-dot {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.15);
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    padding: 0;
+                }
+
+                .testi-dot.active {
+                    background: var(--primary);
+                    width: 24px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+                }
+
+                .testi-badge-row {
+                    display: flex;
+                    justify-content: center;
+                    gap: 2.5rem;
+                    flex-wrap: wrap;
+                    margin-top: 2.5rem;
+                    padding-top: 2.5rem;
+                    border-top: 1px solid rgba(255, 255, 255, 0.06);
+                }
+
+                .testi-badge {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.3rem;
+                    text-align: center;
+                }
+
+                .testi-badge strong {
+                    font-size: 1.6rem;
+                    font-weight: 800;
+                    font-family: 'Outfit';
+                    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+                .testi-badge span {
+                    font-size: 0.72rem;
+                    letter-spacing: 1.5px;
+                    color: var(--text-muted);
+                }
+            </style>
+
+            <div class="section-header text-center fade-in">
+                <span class="eyebrow"><i class='bx bxl-google'></i> GOOGLE REVIEWS</span>
+                <h2>What People Say</h2>
+                <div class="underline"></div>
+                <p style="margin-top:0.75rem; color:var(--text-muted); font-size:0.95rem;">Real words from real students
+                    and clients.</p>
+            </div>
+
+            <div class="testi-carousel-wrap fade-in">
+                <div class="testi-track">
+                    <div class="testi-slides" id="testiSlides">
+
+                        <!-- Slide 1 -->
+                        <div class="testi-slide">
+                            <div class="testi-stars">★★★★★</div>
+                            <i class='bx bxs-quote-left testi-quote-icon'></i>
+                            <p class="testi-text clamped" id="ttext-0">"I had the privilege of attending Francisco's
+                                voluntary web development classes at MDI. His knowledge and teaching style are truly
+                                impressive 🌟 — he explains complex concepts in a simple, relatable way. His passion for
+                                web development is clear, and his willingness to give his time to help others grow is
+                                truly inspiring. I've learned so much in a short period. Highly recommend to anyone
+                                serious about web development!"</p>
+                            <button class="read-more-btn" data-target="ttext-0"><i class='bx bx-chevron-down'></i> Read
+                                full review</button>
+                            <div class="testi-user">
+                                <img src="./persionalpictures/alagi.png" alt="Alagi Saho">
+                                <div class="testi-user-info">
+                                    <h5>Alagi Saho</h5><span>Student, MDI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="testi-slide">
+                            <div class="testi-stars">★★★★★</div>
+                            <i class='bx bxs-quote-left testi-quote-icon'></i>
+                            <p class="testi-text clamped" id="ttext-1">"Attending Francisco's web development classes
+                                had a profound impact on both my personal growth and academic journey. His unique
+                                teaching style, passion for technology, and deep understanding of the field opened my
+                                eyes to new possibilities. I now feel motivated and determined to pursue a career in
+                                tech. His influence has been a turning point in my educational path."</p>
+                            <button class="read-more-btn" data-target="ttext-1"><i class='bx bx-chevron-down'></i> Read
+                                full review</button>
+                            <div class="testi-user">
+                                <img src="./persionalpictures/nata.png" alt="Nathaniel Boima">
+                                <div class="testi-user-info">
+                                    <h5>Nathaniel Boima</h5><span>Student, MDI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="testi-slide">
+                            <div class="testi-stars">★★★★★</div>
+                            <i class='bx bxs-quote-left testi-quote-icon'></i>
+                            <p class="testi-text clamped" id="ttext-2">"Francisco's team delivered a digital solution
+                                that perfectly captured our brand's essence. Their strategic approach to design and
+                                development was exceptional — resulting in a seamless user experience that significantly
+                                boosted our client engagement. Their professionalism and commitment to quality are
+                                second to none. Highly recommended for any business looking to elevate their online
+                                presence."</p>
+                            <button class="read-more-btn" data-target="ttext-2"><i class='bx bx-chevron-down'></i> Read
+                                full review</button>
+                            <div class="testi-user">
+                                <img src="./persionalpictures/konko.png" alt="Modoulamin Fatajo">
+                                <div class="testi-user-info">
+                                    <h5>Modoulamin Fatajo</h5><span>CEO, Konko Group Consultation Agencies</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="testi-controls">
+                    <button class="testi-arrow" id="testiPrev" aria-label="Previous"><i
+                            class='bx bx-chevron-left'></i></button>
+                    <div class="testi-dots" id="testiDots">
+                        <button class="testi-dot active" data-i="0"></button>
+                        <button class="testi-dot" data-i="1"></button>
+                        <button class="testi-dot" data-i="2"></button>
+                    </div>
+                    <button class="testi-arrow" id="testiNext" aria-label="Next"><i
+                            class='bx bx-chevron-right'></i></button>
+                </div>
+
+                <!-- Summary badges -->
+                <div class="testi-badge-row">
+                    <div class="testi-badge"><strong>5.0</strong><span>GOOGLE RATING</span></div>
+                    <div class="testi-badge"><strong>3+</strong><span>VERIFIED REVIEWS</span></div>
+                    <div class="testi-badge"><strong>100%</strong><span>RECOMMENDED</span></div>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="https://share.google/o8vn1YFCwkExvMG5u" target="_blank" class="btn btn-outline">
+                    See All Google Reviews <i class='bx bx-right-arrow-alt'></i>
+                </a>
+            </div>
+
+            <script>
+                (function () {
+                    const slides = document.getElementById('testiSlides');
+                    const dots = document.querySelectorAll('.testi-dot');
+                    let cur = 0, total = 3;
+                    function goTo(n) {
+                        cur = (n + total) % total;
+                        slides.style.transform = `translateX(-${cur * 100}%)`;
+                        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+                    }
+                    document.getElementById('testiPrev').addEventListener('click', () => goTo(cur - 1));
+                    document.getElementById('testiNext').addEventListener('click', () => goTo(cur + 1));
+                    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+                    let timer = setInterval(() => goTo(cur + 1), 6000);
+                    document.querySelector('.testi-carousel-wrap').addEventListener('mouseenter', () => clearInterval(timer));
+                    document.querySelector('.testi-carousel-wrap').addEventListener('mouseleave', () => { timer = setInterval(() => goTo(cur + 1), 6000); });
+                    document.querySelectorAll('.read-more-btn').forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            const p = document.getElementById(this.dataset.target);
+                            const expanded = !p.classList.contains('clamped');
+                            p.classList.toggle('clamped', expanded);
+                            this.innerHTML = expanded
+                                ? "<i class='bx bx-chevron-down'></i> Read full review"
+                                : "<i class='bx bx-chevron-up'></i> Show less";
+                        });
+                    });
+                })();
+            </script>
+        </section>
+
+        <!-- ─── CTA ─── -->
+        <section id="cta">
+            <div class="proj-cta fade-in">
+                <span class="eyebrow" style="justify-content:center; display:flex; margin-bottom:1rem;"><i
+                        class='bx bx-rocket' style="margin-right:0.4rem;"></i> READY TO BUILD?</span>
+                <h2>Let's Build Something That Works</h2>
+                <p>From concept to deployment, I help you create systems that solve real problems and drive measurable
+                    growth.</p>
+                <div class="proj-cta-row">
+                    <a href="https://wa.me/2207773064" class="btn btn-primary"><i class='bx bxl-whatsapp'></i> WhatsApp
+                        Me</a>
+                    <a href="index.html#contact" class="btn btn-outline">Get In Touch <i
+                            class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><a href="index.html" class="logo">F. MANNEH</a></div>
+            <div class="footer-links">
+                <a href="html-css.html">HTML & CSS Course</a>
+                <a href="pld.html">PLD Course</a>
+                <a href="https://github.com/franciscomanneh" target="_blank">GitHub</a>
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 F. Manneh Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ─── MODAL ─── -->
+    <div class="pmo-overlay" id="pmoOverlay">
+        <div class="pmo-panel" id="pmoPanel">
+            <button class="pmo-close" id="pmoClose"><i class='bx bx-x'></i></button>
+            <div class="pmo-tabs" id="pmoTabs">
+                <button class="pmo-tab active" data-pmo-tab="case"><i class='bx bx-file-find'></i> CASE STUDY</button>
+                <button class="pmo-tab" data-pmo-tab="design"><i class='bx bx-palette'></i> DESIGN BOARD</button>
+            </div>
+            <div class="pmo-content">
+                <div class="pmo-pane active" id="pmoCasePane"></div>
+                <div class="pmo-pane" id="pmoDesignPane"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        (function () {
+
+            /* ── Project Data ── */
+            const DB = {
+                multishop: {
+                    title: 'High-Performance E-Commerce Engine', cat: 'Web Development',
+                    img: './Images/14.png', metric: '99% Uptime',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+                    url: 'https://franciscomanneh.github.io/multipurpose/',
+                    problem: 'Businesses needed a scalable online store that could handle multiple product categories without sacrificing load speed or user experience.',
+                    solution: 'Engineered a modular e-commerce architecture featuring a dynamic product grid, sub-second client-side filtering, and a zero-friction multi-step checkout flow optimized for conversion.',
+                    results: ['Sub-second page filtering', 'Multi-category inventory system', 'Mobile-first responsive layout', 'Zero-dependency vanilla JS engine'],
+                    notes: 'Dark glassmorphic theme with cyan accent colors. Sticky, collapsible navigation. Cards use depth shadows for product hierarchy.'
+                },
+                gambia: {
+                    title: 'National Heritage & Cultural Portal', cat: 'Web Development',
+                    img: './casedesigns/13.png', metric: '90% Content Fidelity',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+                    url: 'https://franciscomanneh.github.io/the-Gambia-our-homeland/',
+                    problem: "A need existed for a dignified, immersive digital platform to preserve and present Gambia's national history and culture to a global audience.",
+                    solution: 'Created a semantically-rich, multimedia-driven portal that blends storytelling typography with responsive layout components for a seamless educational journey.',
+                    results: ['Full semantic HTML5 structure', 'Immersive multimedia sections', 'Accessible across all devices', 'Optimized image delivery'],
+                    notes: 'Warm earthy tones and rich photography. Full-bleed hero with parallax scroll. Section depth via layered backgrounds.'
+                },
+                resto: {
+                    title: 'Culinary Brand & Experience Platform', cat: 'Web Development',
+                    img: './casedesigns/17.png', metric: '92% UX Optimization',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+                    url: 'https://franciscomanneh.github.io/Fra-Amie-s-Resto/',
+                    problem: 'A restaurant required a digital storefront that could communicate brand luxury while simplifying menu discovery and driving foot traffic.',
+                    solution: 'Designed a bespoke culinary interface with fluid animations, a visual-first menu grid, and strong CTA architecture to bridge menu presentation with customer intent.',
+                    results: ['Visual-first menu architecture', 'Sub-second interaction feedback', 'Strong brand identity system', 'Mobile-optimized tap targets'],
+                    notes: 'Warm gold and deep charcoal palette. Full-bleed hero video section. Menu cards designed with thumbnail-first hierarchy.'
+                },
+                music: {
+                    title: 'High-Fidelity Audio Casting Ecosystem', cat: 'App Development',
+                    img: './casedesigns/3.png', metric: '98% Playback Stability',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
+                    url: 'https://music-beta-rosy.vercel.app/',
+                    problem: 'Users needed a modern streaming interface for music discovery and playlist management with near-native performance in the browser.',
+                    solution: 'Built a state-driven audio ecosystem using React with custom playback controllers, artist discovery modules, and a real-time progress tracker.',
+                    results: ['Custom audio state controller', 'Real-time playback tracker', 'Artist discovery module', 'Fluid CSS transition engine'],
+                    notes: 'Deep dark background with vibrant album art. Sidebar navigation with active-state indicators. Waveform animation on play state.'
+                },
+                snake: {
+                    title: 'Logic-Driven Simulation Engine', cat: 'App Development',
+                    img: './Images/1.png', metric: '60 FPS State Logic',
+                    stack: ['HTML5 Canvas', 'JavaScript', 'Vercel'],
+                    url: 'https://snake-game-six-ruby.vercel.app/',
+                    problem: 'Needed a browser-based interactive environment demonstrating advanced state management, coordinate systems, and real-time input synchronization.',
+                    solution: 'Engineered a pure-JS Canvas simulation with a custom entity manager, collision detection system, and sub-15ms input response loop for fluid gameplay.',
+                    results: ['Stable 60FPS render loop', 'Sub-15ms input latency', 'Custom collision engine', 'Dynamic entity scaling'],
+                    notes: 'High-contrast minimal UI. Neon green entity on dark canvas. Score overlaid with clean monospace font. Zero visual noise.'
+                },
+                calc: {
+                    title: 'Computational Precision Utility', cat: 'App Development',
+                    img: './casedesigns/image (1).png', metric: '99.9% Uptime',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'Vercel'],
+                    url: 'https://calculator-sooty-three-10.vercel.app/',
+                    problem: 'Required a reliable, responsive arithmetic interface that worked consistently across all device sizes with zero calculation errors.',
+                    solution: 'Built a reactive grid-layout calculator with strict input sanitization, operator-precedence logic, and a CSS-driven responsive button system.',
+                    results: ['Input sanitization layer', 'Operator precedence logic', 'Fully responsive grid', 'Cross-browser tested'],
+                    notes: 'Dark glass surface with high-contrast number keys. Operator buttons in primary cyan. Display uses monospace font for precision.'
+                },
+                consultai: {
+                    title: 'Predictive Advisory Interface', cat: 'AI Chat Development',
+                    img: './casedesigns/7 (1).png', metric: '98% Intent Resolution',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
+                    url: 'https://consultation-chat.vercel.app/',
+                    problem: 'Businesses needed a front-line AI consultation layer that could handle structured advisory queries without requiring human intervention.',
+                    solution: 'Deployed a custom conversational pipeline with state-driven response logic, dynamic intent detection, and a smooth reactive chat UI built in React.',
+                    results: ['State-driven response engine', 'Structured advisory workflows', 'Real-time intent detection', '24/7 autonomous operation'],
+                    notes: 'Clean chat-bubble interface with user/AI messages visually separated. Typing indicator micro-animation. Mobile-first layout.'
+                },
+                stylebot: {
+                    title: 'Generative Fashion Consultant', cat: 'AI Chat Development',
+                    img: './casedesigns/12 (1).png', metric: '60FPS UI Dynamics',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
+                    url: 'https://style-bot-seven.vercel.app/',
+                    problem: 'Fashion consumers lacked a personalized, accessible digital assistant for styling decisions without high consultancy costs.',
+                    solution: 'Created a neural-driven style assistant using decision-tree recommendation logic and an interactive preference capture UI to deliver trend-aware suggestions.',
+                    results: ['Decision-tree logic engine', 'Preference memory system', 'Trend-aware suggestions', 'Real-time visual feedback'],
+                    notes: 'Elegant light-mode chat UI with fashion-forward color swatches. Suggestion cards use product-style thumbnails. Smooth slide-in animations.'
+                },
+                medbot: {
+                    title: 'Enterprise Knowledge Automator', cat: 'AI Chat Development',
+                    img: './casedesigns/9.png', metric: '92% Automation Rate',
+                    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
+                    url: 'https://medical-chat-eight.vercel.app/',
+                    problem: 'High-volume advisory businesses needed a scalable AI agent to automate front-line knowledge queries without compromising response accuracy.',
+                    solution: 'Engineered an industrial-grade NLP interface with custom webhook pipelines, a multi-turn conversation engine, and reactive frontend components for 24/7 operation.',
+                    results: ['Multi-turn conversation engine', 'Custom NLP pipeline', 'Webhook integration', '24/7 automated advisory'],
+                    notes: 'Professional cool-blue UI with trust-signaling iconography. Message history with timestamps. Compact mobile view. Clinical and precise aesthetic.'
+                }
+            };
+
+            /* ── Modal DOM ── */
+            const overlay = document.getElementById('pmoOverlay');
+            const panel = document.getElementById('pmoPanel');
+            const closeBtn = document.getElementById('pmoClose');
+            const tabs = document.querySelectorAll('[data-pmo-tab]');
+            const casePane = document.getElementById('pmoCasePane');
+            const designPane = document.getElementById('pmoDesignPane');
+
+            let activeKey = null;
+
+            function pills(stack) {
+                return stack.map(s => `<span class="tech-pill">${s}</span>`).join('');
+            }
+
+            function renderCase(p) {
+                casePane.innerHTML = `
+                <div class="pmo-hero-img"><img src="${p.img}" alt="${p.title}"></div>
+                <span class="pmo-cat">${p.cat}</span>
+                <h2 class="pmo-title">${p.title}</h2>
+                <div class="pmo-metric-badge"><i class='bx bx-bar-chart-alt-2'></i> ${p.metric}</div>
+                <div class="tech-pills" style="margin-bottom:0.5rem;">${pills(p.stack)}</div>
+                <div class="pmo-sec-label"><i class='bx bx-error-circle'></i> The Problem</div>
+                <div class="pmo-section"><p>${p.problem}</p></div>
+                <div class="pmo-sec-label"><i class='bx bx-bulb'></i> The Solution</div>
+                <div class="pmo-section"><p>${p.solution}</p></div>
+                <div class="pmo-sec-label"><i class='bx bx-check-shield'></i> Outcomes & Results</div>
+                <ul class="pmo-results">${p.results.map(r => `<li><i class='bx bx-check-double'></i>${r}</li>`).join('')}</ul>
+                <div class="pmo-actions">
+                    <a href="${p.url}" target="_blank" class="btn btn-primary"><i class='bx bx-link-external'></i> View Live Project</a>
+                </div>`;
+            }
+
+            function renderDesign(p) {
+                designPane.innerHTML = `
+                <span class="pmo-cat">${p.cat}</span>
+                <h2 class="pmo-title">${p.title}</h2>
+                <div class="design-split">
+                    <div class="pmo-hero-img" style="margin-bottom:0;"><img src="${p.img}" alt="${p.title}"></div>
+                    <div>
+                        <div class="pmo-sec-label" style="margin-top:0;"><i class='bx bx-comment-detail'></i> Design Notes</div>
+                        <div class="design-notes-box">${p.notes}</div>
+                        <div class="pmo-sec-label"><i class='bx bx-code-alt'></i> Tech Stack</div>
+                        <div class="tech-pills">${pills(p.stack)}</div>
+                    </div>
+                </div>
+                <div class="pmo-actions">
+                    <a href="${p.url}" target="_blank" class="btn btn-primary"><i class='bx bx-link-external'></i> View Live Project</a>
+                </div>`;
+            }
+
+            function switchTab(tabName) {
+                tabs.forEach(t => t.classList.toggle('active', t.dataset.pmoTab === tabName));
+                casePane.classList.toggle('active', tabName === 'case');
+                designPane.classList.toggle('active', tabName === 'design');
+            }
+
+            function openModal(key, startTab) {
+                activeKey = key;
+                const p = DB[key]; if (!p) return;
+                renderCase(p);
+                renderDesign(p);
+                switchTab(startTab || 'case');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            /* Tab clicks inside modal */
+            tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.pmoTab)));
+
+            /* Card buttons */
+            document.querySelectorAll('.proj-modal-btn').forEach(btn => {
+                btn.addEventListener('click', () => openModal(btn.dataset.project, btn.dataset.tab));
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+            /* ── Filter Bar ── */
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.proj-card');
+            const sections = document.querySelectorAll('[data-category-section]');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const f = btn.dataset.filter;
+
+                    cards.forEach(c => {
+                        const match = f === 'all' || c.dataset.category === f;
+                        c.style.display = match ? '' : 'none';
+                    });
+
+                    sections.forEach(s => {
+                        const anyVisible = [...s.querySelectorAll('.proj-card')].some(c => c.style.display !== 'none');
+                        s.style.display = anyVisible ? '' : 'none';
+                    });
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

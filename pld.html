@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLD Course — Programming Logic & Design | F. Manneh Academy</title>
+    <meta name="description" content="Master algorithms, flowcharts, and pseudocode through a structured Q&A approach. PLD for beginners and exam students.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        :root { --accent: #a855f7; --accent2: #9333ea; }
+
+        .course-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+        }
+        .course-hero-text { flex: 1; }
+        .course-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+        .course-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .pld-gradient { background: linear-gradient(135deg, #a855f7, #6366f1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .course-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+        .course-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .btn-purple {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #fff;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(168,85,247,0.35);
+        }
+        .btn-purple:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(168,85,247,0.45); }
+        .course-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .c-stat { display: flex; flex-direction: column; }
+        .c-stat strong { font-family: 'Outfit'; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .c-stat span { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* PLD Hero Card — Pseudocode Viewer */
+        .course-hero-visual { flex: 1; display: flex; justify-content: center; }
+        .pld-hero-card {
+            background: rgba(17, 26, 38, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 460px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 60px rgba(168,85,247,0.06);
+        }
+        .pld-card-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pseudo-block {
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.9;
+            background: rgba(168,85,247,0.05);
+            border: 1px solid rgba(168,85,247,0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .ps-kw { color: #c084fc; font-weight: 700; }
+        .ps-var { color: #86efac; }
+        .ps-num { color: #fbbf24; }
+        .ps-str { color: #f9a8d4; }
+        .ps-comment { color: #6272a4; }
+        .ps-line { display: block; }
+        .code-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: var(--accent);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Concepts Grid */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+        }
+        .concept-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 1.75rem;
+            transition: all 0.35s ease;
+        }
+        .concept-card:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(168,85,247,0.04); }
+        .concept-icon {
+            width: 52px; height: 52px;
+            background: rgba(168,85,247,0.1);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+        .concept-card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+        .concept-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* Interactive Q&A */
+        .pld-qa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+        }
+        .pld-qa-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+        .pld-qa-card:hover { border-color: rgba(168,85,247,0.4); }
+        .qa-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.75rem; }
+        .qa-question { font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.5; }
+        .qa-code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            background: rgba(168,85,247,0.06);
+            border: 1px dashed rgba(168,85,247,0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            white-space: pre-wrap;
+        }
+        .qa-answer {
+            display: none;
+            padding: 1rem;
+            background: rgba(134, 239, 172, 0.06);
+            border: 1px solid rgba(134, 239, 172, 0.2);
+            border-radius: 10px;
+            font-size: 0.93rem;
+            color: #86efac;
+            line-height: 1.7;
+            animation: fadeIn 0.3s ease;
+        }
+        .qa-answer.show { display: block; }
+        @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+        .show-ans-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: 1px solid rgba(168,85,247,0.3);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Outfit', sans-serif;
+        }
+        .show-ans-btn:hover { background: rgba(168,85,247,0.1); }
+
+        /* Roadmap Steps */
+        .pld-roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 700px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+        }
+        .pld-roadmap::before {
+            content: '';
+            position: absolute;
+            left: 23px;
+            top: 28px;
+            bottom: 28px;
+            width: 2px;
+            background: linear-gradient(180deg, #a855f7, transparent);
+        }
+        .roadmap-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding-bottom: 2.5rem;
+        }
+        .step-dot {
+            width: 48px; height: 48px;
+            background: rgba(168,85,247,0.1);
+            border: 2px solid rgba(168,85,247,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .step-body h4 { font-size: 1.05rem; margin-bottom: 0.4rem; padding-top: 0.6rem; }
+        .step-body p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .faq-item.open { border-color: var(--accent); }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            gap: 1rem;
+        }
+        .faq-q i { font-size: 1.25rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-q i { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            padding: 0 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+        .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+
+        /* CTA */
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(99,102,241,0.08));
+            border: 1px solid rgba(168,85,247,0.2);
+            border-radius: 28px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-banner p { color: var(--text-muted); font-size: 1.1rem; max-width: 560px; margin: 0 auto 2.5rem; }
+        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 900px) {
+            .course-hero { flex-direction: column; padding-top: 8rem; text-align: center; }
+            .course-subtitle { margin: 0 auto 2.5rem; }
+            .course-ctas { justify-content: center; }
+            .course-stats { justify-content: center; }
+            .pld-roadmap::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">F. MANNEH</a>
+            <ul class="nav-links">
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#qa">Practice</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="index.html">← Home</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn btn-sm" style="background: linear-gradient(135deg,#a855f7,#6366f1); color:#fff; border:none; padding:0.5rem 1.25rem; border-radius:50px; font-weight:700;">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section id="home" style="background: radial-gradient(ellipse at 70% 0%, rgba(168,85,247,0.07) 0%, transparent 60%);">
+            <div class="course-hero">
+                <div class="course-hero-text fade-in">
+                    <div class="course-badge"><i class='bx bx-brain'></i> PLD · QUESTION & ANSWER SYSTEM</div>
+                    <h1 class="course-title">Learn to Think<br><span class="pld-gradient">Like a Programmer</span></h1>
+                    <p class="course-subtitle">PLD is about logic, not syntax. Through a structured Q&A approach, you'll master algorithms, flowcharts, and pseudocode — the foundation of every programming language on earth.</p>
+                    <div class="course-ctas">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn-purple"><i class='bx bx-rocket'></i> Enroll Now — Free</a>
+                        <a href="#qa" class="btn btn-outline">Try a Sample Question</a>
+                    </div>
+                    <div class="course-stats">
+                        <div class="c-stat"><strong>4</strong><span>Core Modules</span></div>
+                        <div class="c-stat"><strong>Q&A</strong><span>Exam Method</span></div>
+                        <div class="c-stat"><strong>0</strong><span>Experience Needed</span></div>
+                    </div>
+                </div>
+                <div class="course-hero-visual fade-in delay-1">
+                    <div class="pld-hero-card">
+                        <div class="pld-card-title"><i class='bx bx-code-curly'></i> PSEUDOCODE EXAMPLE</div>
+                        <div class="pseudo-block">
+                            <span class="ps-line"><span class="ps-kw">BEGIN</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;<span class="ps-kw">INPUT</span> <span class="ps-var">num</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;<span class="ps-kw">IF</span> <span class="ps-var">num</span> > <span class="ps-num">0</span> <span class="ps-kw">THEN</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-kw">OUTPUT</span> <span class="ps-str">"Positive"</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;<span class="ps-kw">ELSE IF</span> <span class="ps-var">num</span> = <span class="ps-num">0</span> <span class="ps-kw">THEN</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-kw">OUTPUT</span> <span class="ps-str">"Zero"</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;<span class="ps-kw">ELSE</span></span>
+                            <span class="ps-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-kw">OUTPUT</span> <span class="ps-str">"Negative"</span><span class="code-cursor"></span></span>
+                            <span class="ps-line">&nbsp;&nbsp;<span class="ps-kw">END IF</span></span>
+                            <span class="ps-line"><span class="ps-kw">END</span></span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">
+                            <i class='bx bx-info-circle' style="color: #a855f7; vertical-align: middle;"></i>
+                            This is what you'll be able to write confidently after Module 2.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Concepts -->
+        <section class="expertise" id="concepts">
+            <div class="section-header text-center fade-in">
+                <span class="eyebrow">WHAT YOU LEARN</span>
+                <h2>Core PLD Concepts</h2>
+                <div class="underline"></div>
+                <p style="margin-top:1rem;">Every topic is delivered through guided Q&A to build real understanding.</p>
+            </div>
+            <div class="concepts-grid">
+                <div class="concept-card fade-in">
+                    <div class="concept-icon"><i class='bx bx-sitemap'></i></div>
+                    <h3>Algorithm Design</h3>
+                    <p>Break down any complex problem into clear, atomic steps that a computer can execute without ambiguity.</p>
+                </div>
+                <div class="concept-card fade-in delay-1">
+                    <div class="concept-icon"><i class='bx bx-git-branch'></i></div>
+                    <h3>Flowcharts</h3>
+                    <p>Map logic workflows visually using standard symbols — the universal language of programming design.</p>
+                </div>
+                <div class="concept-card fade-in delay-2">
+                    <div class="concept-icon"><i class='bx bx-code-curly'></i></div>
+                    <h3>Pseudocode</h3>
+                    <p>Write language-agnostic logic that bridges human thinking and machine instructions — clean and precise.</p>
+                </div>
+                <div class="concept-card fade-in">
+                    <div class="concept-icon"><i class='bx bx-refresh'></i></div>
+                    <h3>Loops & Iteration</h3>
+                    <p>Master FOR loops, WHILE loops, and DO-WHILE structures to automate repeated logical tasks.</p>
+                </div>
+                <div class="concept-card fade-in delay-1">
+                    <div class="concept-icon"><i class='bx bx-transfer-alt'></i></div>
+                    <h3>Conditionals</h3>
+                    <p>Write IF, ELSE IF, and ELSE logic to make programs respond intelligently to different inputs.</p>
+                </div>
+                <div class="concept-card fade-in delay-2">
+                    <div class="concept-icon"><i class='bx bx-brain'></i></div>
+                    <h3>Problem Solving</h3>
+                    <p>Develop the computational mindset to analyze, decompose, and systematically solve any technical problem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Q&A -->
+        <section id="qa" style="padding: 6rem 2rem;">
+            <div class="section-header text-center fade-in">
+                <span class="eyebrow">EXAM PRACTICE</span>
+                <h2>Try These PLD Questions</h2>
+                <div class="underline"></div>
+                <p style="margin-top: 1rem;">Read the question, attempt it, then reveal the model answer.</p>
+            </div>
+            <div class="pld-qa-grid">
+                <div class="pld-qa-card fade-in">
+                    <div class="qa-num">QUESTION 01 · ALGORITHM</div>
+                    <div class="qa-question">Write an algorithm to find the sum of the first 10 natural numbers.</div>
+                    <div class="qa-code"><span style="color:#a855f7">BEGIN</span>
+  SET <span style="color:#86efac">sum</span> = 0
+  SET <span style="color:#86efac">i</span> = 1
+  ...write your logic here...</div>
+                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Reveal Answer</button>
+                    <div class="qa-answer"><strong>Model Algorithm:</strong><br><br>
+BEGIN<br>
+&nbsp;&nbsp;SET sum = 0, i = 1<br>
+&nbsp;&nbsp;WHILE i ≤ 10 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sum = sum + i<br>
+&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1<br>
+&nbsp;&nbsp;END WHILE<br>
+&nbsp;&nbsp;OUTPUT sum<br>
+END<br><br>
+<strong>Result:</strong> sum = 55</div>
+                </div>
+
+                <div class="pld-qa-card fade-in delay-1">
+                    <div class="qa-num">QUESTION 02 · PSEUDOCODE</div>
+                    <div class="qa-question">Write pseudocode that checks if a number is Odd or Even.</div>
+                    <div class="qa-code"><span style="color:#a855f7">BEGIN</span>
+  <span style="color:#a855f7">INPUT</span> <span style="color:#86efac">num</span>
+  <span style="color:#6272a4">// Your logic here...</span></div>
+                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Reveal Answer</button>
+                    <div class="qa-answer"><strong>Model Pseudocode:</strong><br><br>
+BEGIN<br>
+&nbsp;&nbsp;INPUT num<br>
+&nbsp;&nbsp;IF num MOD 2 = 0 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OUTPUT "Even"<br>
+&nbsp;&nbsp;ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OUTPUT "Odd"<br>
+&nbsp;&nbsp;END IF<br>
+END</div>
+                </div>
+
+                <div class="pld-qa-card fade-in delay-2">
+                    <div class="qa-num">QUESTION 03 · FLOWCHART</div>
+                    <div class="qa-question">What flowchart symbol is used for a DECISION and what shape does it have?</div>
+                    <div class="qa-code"><span style="color:#6272a4">// Recall your flowchart symbols...</span>
+START → ? → ? → END</div>
+                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Reveal Answer</button>
+                    <div class="qa-answer"><strong>Answer: Diamond (◇)</strong><br><br>
+A DECISION is represented by a <strong>diamond shape</strong>.<br>
+It always has <strong>two exits</strong>: YES and NO (or TRUE and FALSE).<br><br>
+Other key symbols:<br>
+• Oval = START / END<br>
+• Rectangle = Process / Action<br>
+• Parallelogram = Input / Output<br>
+• Arrow = Flow direction</div>
+                </div>
+
+                <div class="pld-qa-card fade-in">
+                    <div class="qa-num">QUESTION 04 · LOOPS</div>
+                    <div class="qa-question">Write pseudocode to print numbers from 1 to 5 using a FOR loop.</div>
+                    <div class="qa-code"><span style="color:#a855f7">FOR</span> <span style="color:#86efac">i</span> = ? <span style="color:#a855f7">TO</span> ? <span style="color:#a855f7">DO</span>
+  ...
+<span style="color:#a855f7">END FOR</span></div>
+                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Reveal Answer</button>
+                    <div class="qa-answer"><strong>Model Pseudocode:</strong><br><br>
+FOR i = 1 TO 5 DO<br>
+&nbsp;&nbsp;OUTPUT i<br>
+END FOR<br><br>
+<strong>Output:</strong> 1, 2, 3, 4, 5</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section id="roadmap" style="padding: 6rem 2rem;">
+            <div class="section-header text-center fade-in">
+                <span class="eyebrow">YOUR JOURNEY</span>
+                <h2>Course Roadmap</h2>
+                <div class="underline"></div>
+                <p style="margin-top: 1rem;">4 structured modules, each building on the last.</p>
+            </div>
+            <div class="pld-roadmap">
+                <div class="roadmap-step fade-in">
+                    <div class="step-dot">1</div>
+                    <div class="step-body">
+                        <h4>Introduction to PLD</h4>
+                        <p>Understand what programming is, how computers process information, and the basics of binary representation and memory storage.</p>
+                    </div>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-dot">2</div>
+                    <div class="step-body">
+                        <h4>Logic Building & Variables</h4>
+                        <p>Construct logical sequences. Learn boolean logic, data types, variables, and how decisions are made inside a program.</p>
+                    </div>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-dot">3</div>
+                    <div class="step-body">
+                        <h4>Control Structures</h4>
+                        <p>Master conditional statements (IF/ELSE) and iteration (FOR, WHILE, DO-WHILE) to build programs that respond and repeat correctly.</p>
+                    </div>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-dot">4</div>
+                    <div class="step-body">
+                        <h4>Exam Preparation & Past Papers</h4>
+                        <p>Review past papers, practice pseudocode writing under timed conditions, and take full mock exams to cement your readiness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" style="padding: 6rem 2rem;">
+            <div class="section-header text-center fade-in">
+                <span class="eyebrow">FAQ</span>
+                <h2>Common Questions</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">Do I need to know how to code first? <i class='bx bx-plus'></i></div>
+                    <div class="faq-a">No. PLD is taught before coding. You learn to think like a programmer through logic and problem-solving — no syntax required. This is the perfect foundation before you write a single line of code.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">What makes this Q&A method effective? <i class='bx bx-plus'></i></div>
+                    <div class="faq-a">Instead of passively receiving information, you actively engage by attempting each question first. This method forces recall and builds genuine understanding rather than surface-level memorization.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Will this help me pass my exams? <i class='bx bx-plus'></i></div>
+                    <div class="faq-a">Yes. The course is structured around exactly the type of questions that appear in PLD exams — algorithm writing, pseudocode interpretation, flowchart design, and trace tables.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">How do I join? <i class='bx bx-plus'></i></div>
+                    <div class="faq-a">Click the "Enroll Now" button and complete the Google Form. You'll be contacted via WhatsApp with session details and resource access within 24 hours.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="cta" style="padding: 6rem 2rem;">
+            <div class="cta-banner fade-in">
+                <span class="eyebrow" style="display:block; text-align:center; margin-bottom:1rem; color:#a855f7;"><i class='bx bx-brain'></i> START THINKING LIKE A PROGRAMMER</span>
+                <h2>Enroll in PLD Today</h2>
+                <p>Unlock the logical thinking foundation required for all modern tech careers. Take the first step now — for free.</p>
+                <div class="cta-row">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn-purple"><i class='bx bx-rocket'></i> Enroll Now — Free</a>
+                    <a href="https://wa.me/2206753822" class="btn btn-outline"><i class='bxl-whatsapp bx'></i> WhatsApp Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><a href="index.html" class="logo">F. MANNEH</a></div>
+            <div class="footer-links">
+                <a href="html-css.html">HTML & CSS</a>
+                <a href="math.html">Maths Course</a>
+                <a href="projects.html">Portfolio</a>
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 F. Manneh Academy. All rights reserved.</p></div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Practice Q&A Toggle
+        document.querySelectorAll('.show-ans-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const ans = btn.nextElementSibling;
+                const isShowing = ans.classList.contains('show');
+                ans.classList.toggle('show', !isShowing);
+                btn.innerHTML = isShowing
+                    ? "<i class='bx bx-bulb'></i> Reveal Answer"
+                    : "<i class='bx bx-hide'></i> Hide Answer";
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+</html>
