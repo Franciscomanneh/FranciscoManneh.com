@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://franciscomanneh.com/sitemap.xml

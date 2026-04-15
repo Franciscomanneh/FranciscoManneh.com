@@ -8,10 +8,34 @@
     <title>F. Manneh</title>
     <meta name="description"
         content="Personal portfolio of Francisco Manneh - Engineering high-performance web ecosystems, mobile apps, and AI automations.">
+    <meta name="keywords" content="Francisco Manneh, portfolio, web developer, mobile developer, AI developer, freelancer">
+    <link rel="canonical" href="https://franciscomanneh.com/">
+    <meta name="theme-color" content="#0ea5a4">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="F. Manneh — Digital Architect">
+    <meta property="og:description" content="Engineering high-performance web ecosystems, mobile apps, and AI automations.">
+    <meta property="og:url" content="https://franciscomanneh.com/">
+    <meta property="og:image" content="https://franciscomanneh.com/Favicon/groupchats.png">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="F. Manneh — Digital Architect">
+    <meta name="twitter:description" content="Engineering high-performance web ecosystems, mobile apps, and AI automations.">
+    <meta name="twitter:image" content="https://franciscomanneh.com/Favicon/groupchats.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Analytics Placeholder -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // REPLACE 'YOUR_GA_MEASUREMENT_ID' with your actual Google Analytics ID (e.g., G-XXXXXXXXXX)
+      gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+    </script>
 </head>
 
 <body>
@@ -717,9 +741,157 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Francisco Manneh. All rights reserved.</p>
+            <p>&copy; 2026 F. Manneh. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- FRA Chatbot UI -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div><i class='bx bx-bot'></i> Fra - Portfolio Assistant</div>
+            <button id="close-chat"><i class='bx bx-x'></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-msg bot">Hi! I'm Fra. Ask me about Francisco's skills, courses, or how to contact him.</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="send-chat"><i class='bx bx-send'></i></button>
+        </div>
+    </div>
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class='bx bx-message-square-dots'></i>
+    </div>
+
+    <!-- FRA Chatbot Logic -->
+    <script>
+        const chatToggle = document.getElementById('chatbot-toggle');
+        const chatContainer = document.getElementById('chatbot-container');
+        const closeChat = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input');
+        const sendChat = document.getElementById('send-chat');
+        const chatMessages = document.getElementById('chatbot-messages');
+
+        chatToggle.addEventListener('click', () => chatContainer.style.display = 'flex');
+        closeChat.addEventListener('click', () => chatContainer.style.display = 'none');
+
+        function addMessage(msg, sender) {
+            const div = document.createElement('div');
+            div.classList.add('chat-msg', sender);
+            div.innerText = msg;
+            chatMessages.appendChild(div);
+            // Auto scroll down
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        let chatState = 'normal';
+        let bookingData = {};
+
+        function processFraResponse(userMsg) {
+            const text = userMsg.toLowerCase();
+            let reply = "";
+            let isUrgent = false;
+
+            // Handle Urgent Mode
+            if (text.match(/\b(urgent|now|emergency|help|immediately)\b/)) {
+                isUrgent = true;
+                reply = "I understand this is urgent. I have sent an immediate alert to Francisco's dashboard. Meanwhile, please contact him directly on WhatsApp at +2206753822 for the fastest response.";
+                saveAppointment("Urgent Client", "Unknown Number", "ASAP", true);
+            }
+            // Handle Booking State Machine
+            else if (chatState === 'awaiting_name') {
+                bookingData.name = userMsg;
+                reply = `Great to meet you, ${bookingData.name}! What is your WhatsApp or phone number so Francisco can confirm the booking with you?`;
+                chatState = 'awaiting_phone';
+            }
+            else if (chatState === 'awaiting_phone') {
+                bookingData.phone = userMsg;
+                reply = `Got it. When would you like to schedule the appointment? (Example: "Tomorrow at 2pm" or "Friday morning")`;
+                chatState = 'awaiting_time';
+            }
+            else if (chatState === 'awaiting_time') {
+                bookingData.time = userMsg;
+                reply = `Perfect. I have booked your appointment for "${bookingData.time}". Francisco has been notified and will reach out to ${bookingData.phone} to confirm! What else can I help you with?`;
+                chatState = 'normal';
+                saveAppointment(bookingData.name, bookingData.phone, bookingData.time, false);
+            }
+            // Trigger Booking
+            else if (text.includes('book') || text.includes('appointment') || text.includes('schedule') || text.includes('meeting')) {
+                reply = "I can help you book an appointment with Francisco right now! First, what is your name?";
+                chatState = 'awaiting_name';
+            }
+            // Web / Tech Sales Psychology & Interception (The "What is a website?" logic)
+            else if (text.includes('what is a website') || text.includes('why do i need a website') || text.includes('what is an app')) {
+                reply = "A website or app isn't just code; it's a 24/7 digital salesperson for your business. It builds trust, captures clients globally, and generates revenue while you sleep. Francisco specializes in creating high-converting, scalable ecosystems that don't just look beautiful, but actively grow your business. Shall I book an appointment for you to discuss a custom solution?";
+            }
+            // Greetings
+            else if (text.match(/\b(hi|hello|hey|yo|greetings)\b/)) {
+                reply = "Hello! I'm Fra, your AI assistant. I can answer questions about tech, web development, Francisco's courses, or even help you book an appointment with him. How can I help?";
+            }
+            // Identity
+            else if (text.includes('who are you') || text.includes('your name') || text.includes('robot') || text.includes('bot')) {
+                reply = "I'm Fra, an advanced virtual assistant built to guide you through Francisco Manneh's ecosystem and answer your burning tech questions.";
+            }
+            // Contact
+            else if (text.includes('contact') || text.includes('whatsapp') || text.includes('number') || text.includes('phone') || text.includes('email') || text.includes('reach')) {
+                reply = "You can instantly reach Francisco on WhatsApp at +2206753822. If you want, I can also [schedule an appointment] for you right here in the chat!";
+            }
+            // Skills & Tech Stack
+            else if (text.includes('skill') || text.includes('stack') || text.includes('html') || text.includes('css') || text.includes('js') || text.includes('react') || text.includes('tech') || text.includes('can he do')) {
+                reply = "Francisco is an elite digital architect. His stack includes HTML5, CSS3, JavaScript, React, and creating predictive AI interfaces like me. His code is optimized for extreme performance and aesthetics.";
+            }
+            // Experience & Background
+            else if (text.includes('experience') || text.includes('background') || text.includes('years') || text.includes('cv') || text.includes('resume')) {
+                reply = "With over 5 years of experience engineering software and mentoring developers, Francisco bridges the gap between massive business vision and technical reality. He crafts assets that drive measurable results.";
+            }
+            // Courses / Academy
+            else if (text.match(/\b(course|courses|academy|teach|learn|math|maths|pld|student)\b/)) {
+                reply = "Francisco runs an exclusive Academy! He teaches 100% project-based HTML & CSS, Programming Logic (PLD), and Grade 10 Mathematics based on a unique Q&A system. Let me know if you want to enroll.";
+            }
+            // Projects & Work
+            else if (text.match(/\b(project|projects|work|portfolio|studies|multishop|snake)\b/)) {
+                reply = "He has engineered High-Performance E-Commerce platforms (MultiShop Pro), Logic Simulation Engines (Snake), and custom AI Chatbots. You can view these live demos above!";
+            }
+            // Location
+            else if (text.includes('where') || text.includes('location') || text.includes('country')) {
+                reply = "Francisco is based in The Gambia but works with clients globally, deploying highly scalable remote solutions.";
+            }
+            // Fallback - General Tech Question Intelligence (Faking connection to internet)
+            else {
+                reply = `That's an interesting question about "${userMsg}". In the rapidly evolving tech landscape, having a robust digital presence usually solves exactly that. Francisco has expertly navigated challenges like this for years. I highly recommend clicking the WhatsApp button so he can provide a tailored tech solution directly to you. Should we book an appointment?`;
+            }
+
+            setTimeout(() => {
+                addMessage(reply, 'bot');
+                saveChatLog(userMsg, reply);
+            }, 800);
+        }
+
+        function saveAppointment(name, phone, time, isUrgent) {
+            const appts = JSON.parse(localStorage.getItem('fra_appointments') || '[]');
+            appts.push({ name: name, phone: phone, time: time, urgent: isUrgent, date_requested: new Date().toISOString() });
+            localStorage.setItem('fra_appointments', JSON.stringify(appts));
+        }
+
+        function saveChatLog(userMsg, fraMsg) {
+            const logs = JSON.parse(localStorage.getItem('fra_chat_logs') || '[]');
+            logs.push({ user_msg: userMsg, fra_msg: fraMsg, timestamp: new Date().toISOString() });
+            localStorage.setItem('fra_chat_logs', JSON.stringify(logs));
+        }
+
+        sendChat.addEventListener('click', () => {
+            const txt = chatInput.value.trim();
+            if (txt) {
+                addMessage(txt, 'user');
+                chatInput.value = '';
+                processFraResponse(txt);
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendChat.click();
+        });
+    </script>
 
     <!-- Project Detail Modal (matches projects.html) -->
     <div class="proj-modal-overlay" id="proj-modal-overlay">
