@@ -71,6 +71,7 @@
             <div class="nav-actions">
                 <a href="https://wa.me/2206753822" class="btn btn-primary btn-sm">WhatsApp Me</a>
             </div>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
         </div>
     </nav>
 
@@ -1041,6 +1042,30 @@
             overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
             document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
         })();
+    </script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if(mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if(navLinks.classList.contains('active')) {
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-x'></i>";
+                } else {
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
+                });
+            });
+        }
     </script>
 
     <svg style="width:0;height:0;position:absolute;" aria-hidden="true">

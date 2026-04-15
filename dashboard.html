@@ -208,6 +208,49 @@
 
         .activity-text strong { color: #fff; }
         .activity-time { margin-left: auto; color: var(--text-muted); font-size: 0.75rem;}
+
+        /* Mobile Responsive */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem 1rem;
+            }
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+            .dash-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .dash-title {
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -237,7 +280,10 @@
     <main class="main-content">
         <div class="dash-header">
             <div>
-                <h1 class="dash-title">Site Analytics & Fra Chatbot</h1>
+                <h1 class="dash-title">
+                    <button class="mobile-menu-btn" id="dash-menu-toggle"><i class='bx bx-menu'></i></button>
+                    Site Analytics & Fra
+                </h1>
                 <p style="color: var(--text-muted);">Welcome back, Francisco. Here's what's happening.</p>
             </div>
             <select class="date-filter">
@@ -322,6 +368,24 @@
     </main>
 
     <script>
+        // Sidebar Toggle for Mobile
+        const dashMenuToggle = document.getElementById('dash-menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        if(dashMenuToggle && sidebar) {
+            dashMenuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+            
+            // Close sidebar when clicking a link on mobile
+            document.querySelectorAll('.nav-items a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+        }
+
         // Tab Switching Logic
         function switchTab(tabId) {
             document.querySelectorAll('.nav-items a').forEach(el => el.classList.remove('active'));

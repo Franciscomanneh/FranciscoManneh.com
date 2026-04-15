@@ -509,6 +509,7 @@
                     style="background: linear-gradient(135deg,#f59e0b,#d97706); color:#000; border:none; padding:0.5rem 1.25rem; border-radius:50px; font-weight:700;">Join
                     Now</a>
             </div>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
         </div>
     </nav>
 
@@ -779,6 +780,28 @@
             });
         }, { threshold: 0.3 });
         bars.forEach(b => observer.observe(b));
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if(mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if(navLinks.classList.contains('active')) {
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-x'></i>";
+                } else {
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
+                }
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
+                });
+            });
+        }
     </script>
 </body>
 
