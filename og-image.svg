@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Francisco Manneh">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00D2FF"/>
+      <stop offset="100%" stop-color="#3A7BD5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#071124" />
+  <rect x="0" y="0" width="1200" height="630" fill="url(#g)" opacity="0.12" />
+  <g transform="translate(80,90)">
+    <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="40" fill="#e6eef6" opacity="0.85">Francisco Manneh</text>
+    <text x="0" y="70" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#cfeff6" opacity="0.9">Digital Architect — Web, Mobile &amp; AI</text>
+    <rect x="0" y="110" width="520" height="4" rx="2" fill="#00D2FF" />
+    <text x="0" y="170" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#a8dfe9">Engineering high-performance web ecosystems, mobile apps, and AI automations.</text>
+    <g transform="translate(0,240)">
+      <rect x="0" y="0" width="420" height="48" rx="6" fill="#0b1220" stroke="#0ea5a4" stroke-width="2" />
+      <text x="24" y="32" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#0ea5a4">franciscomanneh.com</text>
+    </g>
+  </g>
+  <g transform="translate(820,340)">
+    <circle cx="0" cy="0" r="120" fill="#061226" stroke="#00D2FF" stroke-width="6" opacity="0.12" />
+    <text x="-40" y="8" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#e6eef6">F.</text>
+  </g>
+</svg>
