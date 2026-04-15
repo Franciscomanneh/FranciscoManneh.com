@@ -237,10 +237,14 @@ a {
     background: transparent;
     border: none;
     color: var(--text);
-    font-size: 2rem;
+    font-size: 2.2rem;
     cursor: pointer;
     transition: transform 0.3s ease;
-    z-index: 1001;
+    z-index: 2000;
+    position: relative;
+    padding: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .menu-toggle:hover {
@@ -2159,22 +2163,24 @@ footer {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
         height: 100vh;
+        height: -webkit-fill-available;
         width: 250px;
         background: var(--surface);
         flex-direction: column;
         padding-top: 6rem;
         padding-left: 2rem;
         gap: 1.5rem;
-        transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         z-index: 999;
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
         border-left: 1px solid var(--glass-border);
     }
     
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
     }
 
     .nav-actions {
