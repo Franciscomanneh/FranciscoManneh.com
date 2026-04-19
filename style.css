@@ -10,7 +10,7 @@
     --bg-glass: rgba(255, 255, 255, 0.03);
     
     --text-main: #ffffff;
-    --text-muted: #a1a1aa;
+    --text-muted: #cbd5e1; /* Increased contrast for readability */
     
     --primary: #be185d; /* Dark pink / purpleish */
     --primary-glow: rgba(190, 24, 93, 0.5);
@@ -43,21 +43,32 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+html, body {
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg-base);
     color: var(--text-main);
     font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
+    font-size: 15px; /* Elite readability rule */
+    line-height: 1.62;
     position: relative;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    /* Bottom Nav & WhatsApp padding */
+    padding-bottom: calc(120px + env(safe-area-inset-bottom));
+}
+
+a, button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* Custom Scrollbar */
@@ -102,20 +113,21 @@ img {
 ========================================= */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 480px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 16px;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 768px) {
     .container {
-        padding: 0 1.25rem;
+        max-width: 1200px;
+        padding: 0 1.5rem;
     }
 }
 
-@media (min-width: 480px) {
+@media (min-width: 1024px) {
     .container {
-        padding: 0 1.5rem;
+        padding: 0 2rem;
     }
 }
 
@@ -124,7 +136,7 @@ img {
 }
 
 .section {
-    padding: 4rem 0;
+    padding: 40px 0;
     position: relative;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -141,6 +153,9 @@ img {
     margin-bottom: 3rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -190,8 +205,8 @@ img {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-glass);
-    border-radius: 20px;
-    padding: 1.5rem;
+    border-radius: 14px;
+    padding: 16px;
     box-shadow: var(--shadow-glass);
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -321,12 +336,23 @@ img {
     gap: 0.75rem;
 }
 
-/* Touch feedback class (handled in JS) */
-.tap-effect {
+button, a {
+    min-height: 44px;
     transition: transform 0.1s;
 }
-.tap-effect:active {
+
+button:active, a:active {
     transform: scale(0.96);
+}
+
+.hide-mobile {
+    display: none !important;
+}
+
+@media (min-width: 576px) {
+    .hide-mobile {
+        display: inline !important;
+    }
 }
 
 /* =========================================
@@ -377,12 +403,23 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 16px;
     z-index: 1000;
     transition: all 0.3s ease;
     border-bottom: 1px solid transparent;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    gap: 10px;
+}
+
+@media (max-width: 360px) {
+    .top-nav {
+        padding: 0 0.5rem;
+    }
+    .top-nav .compact-btn {
+        display: none; /* Hide enroll button on ultra-small nav to prioritize logo */
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
 }
 
 @media (min-width: 480px) {
@@ -401,7 +438,7 @@ img {
 .logo {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-size: 18px;
     letter-spacing: 1px;
     color: white;
     white-space: nowrap;
@@ -454,7 +491,13 @@ img {
 .desktop-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+}
+
+@media (min-width: 480px) {
+    .desktop-actions {
+        gap: 1rem;
+    }
 }
 
 .hamburger-btn {
@@ -626,11 +669,11 @@ img {
 /* Floating WhatsApp */
 .floating-whatsapp {
     position: fixed;
-    bottom: calc(var(--bottom-nav-height) + 1.5rem);
-    right: 1.5rem;
+    bottom: 90px;
+    right: 16px;
     width: 60px;
     height: 60px;
-    background: #25D366; /* WhatsApp Green */
+    background: #25D366;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -827,20 +870,17 @@ img {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+    justify-content: center;
 }
 
 .tag {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.4rem 0.9rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 8px;
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: 500;
     white-space: nowrap;
     border: 1px solid rgba(255, 255, 255, 0.15);
-}
-    border-radius: 5px;
-    font-size: 0.8rem;
-    color: white;
 }
 
 /* =========================================
@@ -871,6 +911,9 @@ img {
     flex-direction: column;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    text-align: center;
+    border-radius: 14px;
+    margin-bottom: 16px;
 }
 
 .project-image-wrapper {
@@ -908,9 +951,10 @@ img {
 }
 
 .project-content {
-    padding: 1.25rem;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -928,9 +972,9 @@ img {
 
 .project-content p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 14px;
     margin-bottom: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -1446,15 +1490,16 @@ img {
 }
 
 .modal-content {
-    background: rgba(20, 20, 25, 0.9);
+    background: rgba(20, 20, 25, 0.95);
     border-radius: 20px;
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     position: relative;
-    padding: 1.75rem;
+    padding: 1.5rem;
     transform: scale(0.9);
     transition: transform 0.3s ease;
     margin: auto;
+    border: 1px solid var(--border-glass);
 }
 
 @media (min-width: 480px) {
@@ -1700,5 +1745,11 @@ img {
 
 .project-modal .btn {
     flex: 1;
-    min-width: 150px;
+    min-width: 100%; /* Full width on mobile to prevent overflow */
+}
+
+@media (min-width: 480px) {
+    .project-modal .btn {
+        min-width: 150px;
+    }
 }

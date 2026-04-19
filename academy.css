@@ -11,11 +11,11 @@
      grid-template-columns: 1fr;
      gap: 1.5rem;
      padding-top: calc(var(--top-nav-height) + 1.5rem);
-     padding-bottom: calc(var(--bottom-nav-height) + 2rem);
-     padding-left: 1rem;
-     padding-right: 1rem;
+     padding-left: 16px;
+     padding-right: 16px;
      width: 100%;
-     max-width: 100%;
+     max-width: 480px;
+     margin: 0 auto;
      overflow-x: hidden;
  }
  
@@ -24,6 +24,7 @@
          gap: 2rem;
          padding-left: 1.5rem;
          padding-right: 1.5rem;
+         max-width: 1200px;
      }
  }
  
@@ -44,14 +45,18 @@
  ========================================= */
  .breadcrumb {
      display: flex;
+     flex-wrap: wrap;
      align-items: center;
-     gap: 0.5rem;
-     font-size: 0.85rem;
+     gap: 6px;
+     font-size: 12px;
      color: var(--text-muted);
      margin-bottom: 2rem;
-     flex-wrap: wrap;
-     word-wrap: break-word;
-     overflow-wrap: break-word;
+ }
+ 
+ @media (min-width: 1024px) {
+     .breadcrumb {
+         justify-content: flex-start;
+     }
  }
  
  .breadcrumb a {
@@ -71,13 +76,15 @@
     SIDEBAR & PROGRESS
  ========================================= */
  .progress-card {
-     margin-bottom: 2rem;
-     padding: 1.25rem;
+     margin-bottom: 1.5rem;
+     padding: 16px;
      width: 100%;
      max-width: 100%;
-     overflow-x: hidden;
-     word-wrap: break-word;
-     overflow-wrap: break-word;
+     border-radius: 14px;
+     text-align: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
  }
  
  @media (min-width: 768px) {
@@ -88,14 +95,14 @@
  
  .progress-header {
      display: flex;
-     justify-content: space-between;
+     justify-content: center;
+     align-items: center;
      margin-bottom: 1rem;
      font-weight: 600;
-     font-size: clamp(0.85rem, 2vw, 1rem);
+     font-size: clamp(14px, 4vw, 18px);
      flex-wrap: wrap;
-     gap: 0.5rem;
-     word-wrap: break-word;
-     overflow-wrap: break-word;
+     gap: 6px;
+     width: 100%;
  }
  
  .progress-track {
@@ -118,23 +125,29 @@
      display: flex;
      flex-direction: column;
      gap: 0.5rem;
+     align-items: center;
+     text-align: center;
  }
  
  .lesson-item {
      display: flex;
      align-items: center;
-     gap: 1rem;
-     padding: 0.75rem;
+     justify-content: flex-start;
+     gap: 10px;
+     padding: 12px 16px;
      background: rgba(255, 255, 255, 0.02);
      border-radius: 10px;
      transition: background 0.3s;
      cursor: pointer;
      min-height: 44px;
-     word-wrap: break-word;
-     overflow-wrap: break-word;
      width: 100%;
-     max-width: 100%;
      overflow: hidden;
+ }
+ 
+ .lesson-item span {
+     flex: 1;
+     font-size: 14px;
+     text-align: left;
  }
  
  @media (min-width: 768px) {
@@ -166,17 +179,24 @@
  ========================================= */
  .course-header {
      margin-bottom: 3rem;
+     text-align: center;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
  }
  
  .course-title {
-     font-size: clamp(1.75rem, 5vw, 3.5rem);
+     font-size: clamp(24px, 8vw, 42px);
      margin-bottom: 1rem;
      word-wrap: break-word;
      overflow-wrap: break-word;
+     line-height: 1.2;
  }
  
  .module {
-     margin-bottom: 1.5rem;
+     margin-bottom: 16px;
+     border-radius: 14px;
  }
  
  .module-header {
@@ -227,7 +247,16 @@
  }
  
  .module.active .module-content {
-     padding: 0 1.5rem 1.5rem 1.5rem;
+     padding: 0 16px 16px 16px;
+ }
+ 
+ @media (min-width: 768px) {
+     .module-content {
+         padding: 0 1.5rem;
+     }
+     .module.active .module-content {
+         padding: 0 1.5rem 1.5rem 1.5rem;
+     }
  }
  
  /* =========================================
@@ -236,9 +265,15 @@
  .qna-card {
      background: rgba(0, 0, 0, 0.2);
      border-radius: 12px;
-     padding: 1.5rem;
+     padding: 1rem;
      margin-top: 1rem;
      border-left: 4px solid var(--primary);
+ }
+ 
+ @media (min-width: 768px) {
+     .qna-card {
+         padding: 1.5rem;
+     }
  }
  
  .qna-q {
