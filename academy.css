@@ -9,9 +9,22 @@
  .academy-layout {
      display: grid;
      grid-template-columns: 1fr;
-     gap: 2rem;
-     padding-top: calc(var(--top-nav-height) + 2rem);
+     gap: 1.5rem;
+     padding-top: calc(var(--top-nav-height) + 1.5rem);
      padding-bottom: calc(var(--bottom-nav-height) + 2rem);
+     padding-left: 1rem;
+     padding-right: 1rem;
+     width: 100%;
+     max-width: 100%;
+     overflow-x: hidden;
+ }
+ 
+ @media (min-width: 768px) {
+     .academy-layout {
+         gap: 2rem;
+         padding-left: 1.5rem;
+         padding-right: 1.5rem;
+     }
  }
  
  @media (min-width: 1024px) {
@@ -33,9 +46,12 @@
      display: flex;
      align-items: center;
      gap: 0.5rem;
-     font-size: 0.9rem;
+     font-size: 0.85rem;
      color: var(--text-muted);
      margin-bottom: 2rem;
+     flex-wrap: wrap;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
  }
  
  .breadcrumb a {
@@ -56,7 +72,18 @@
  ========================================= */
  .progress-card {
      margin-bottom: 2rem;
-     padding: 1.5rem;
+     padding: 1.25rem;
+     width: 100%;
+     max-width: 100%;
+     overflow-x: hidden;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+ }
+ 
+ @media (min-width: 768px) {
+     .progress-card {
+         padding: 1.5rem;
+     }
  }
  
  .progress-header {
@@ -64,6 +91,11 @@
      justify-content: space-between;
      margin-bottom: 1rem;
      font-weight: 600;
+     font-size: clamp(0.85rem, 2vw, 1rem);
+     flex-wrap: wrap;
+     gap: 0.5rem;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
  }
  
  .progress-track {
@@ -92,11 +124,23 @@
      display: flex;
      align-items: center;
      gap: 1rem;
-     padding: 0.75rem 1rem;
+     padding: 0.75rem;
      background: rgba(255, 255, 255, 0.02);
      border-radius: 10px;
      transition: background 0.3s;
      cursor: pointer;
+     min-height: 44px;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+     width: 100%;
+     max-width: 100%;
+     overflow: hidden;
+ }
+ 
+ @media (min-width: 768px) {
+     .lesson-item {
+         padding: 0.75rem 1rem;
+     }
  }
  
  .lesson-item:hover {
@@ -125,8 +169,10 @@
  }
  
  .course-title {
-     font-size: clamp(2rem, 5vw, 3.5rem);
+     font-size: clamp(1.75rem, 5vw, 3.5rem);
      margin-bottom: 1rem;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
  }
  
  .module {
@@ -137,9 +183,19 @@
      display: flex;
      justify-content: space-between;
      align-items: center;
-     padding: 1.5rem;
+     padding: 1rem;
      cursor: pointer;
      transition: background 0.3s;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+     gap: 1rem;
+     min-height: 48px;
+ }
+ 
+ @media (min-width: 768px) {
+     .module-header {
+         padding: 1.5rem;
+     }
  }
  
  .module-header:hover {
@@ -147,8 +203,11 @@
  }
  
  .module-title {
-     font-size: 1.2rem;
+     font-size: clamp(1rem, 3vw, 1.2rem);
      font-family: var(--font-heading);
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+     overflow: hidden;
  }
  
  .module-icon {
