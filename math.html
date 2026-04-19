@@ -1,808 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="Favicon/3-removebg-preview.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Grade 10 Mathematics | F. Manneh Academy</title>
-    <meta name="description"
-        content="Exam-focused Grade 10 Maths practice with guided answers. Solve, understand, master.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Master Grade 10 Mathematics through direct problem-solving.">
+    <link rel="icon" type="image/png" href="Favicon/3-removebg-preview.png">
+    <meta name="theme-color" content="#0a0a0f">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        :root {
-            --accent: #f59e0b;
-            --accent2: #d97706;
-        }
-
-        /* Page overrides for Math */
-        .course-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 10rem 2rem 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 4rem;
-        }
-
-        .course-hero-text {
-            flex: 1;
-        }
-
-        .course-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .course-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .math-gradient {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .course-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            max-width: 540px;
-        }
-
-        .course-ctas {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .btn-amber {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #000;
-            border: none;
-            padding: 0.85rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
-        }
-
-        .btn-amber:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 35px rgba(245, 158, 11, 0.45);
-        }
-
-        .course-stats {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .c-stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .c-stat strong {
-            font-family: 'Outfit';
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .c-stat span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Math Visual — Formula Card */
-        .course-hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .math-card {
-            background: rgba(17, 26, 38, 0.85);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 440px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 60px rgba(245, 158, 11, 0.06);
-        }
-
-        .math-card-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .q-card {
-            background: rgba(245, 158, 11, 0.06);
-            border: 1px solid rgba(245, 158, 11, 0.15);
-            border-radius: 14px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .q-label {
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 1.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .q-text {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .q-formula {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
-            color: #f59e0b;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .q-ans {
-            font-size: 0.88rem;
-            color: #86efac;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .reveal-btn {
-            background: none;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: var(--accent);
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 0.5rem;
-        }
-
-        .reveal-btn:hover {
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        /* Topics with Progress */
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-        }
-
-        .topic-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 18px;
-            padding: 1.75rem;
-            transition: all 0.35s ease;
-        }
-
-        .topic-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .topic-top {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .topic-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .topic-card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .topic-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .topic-progress {
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 50px;
-            height: 4px;
-            margin-bottom: 0.6rem;
-        }
-
-        .topic-bar {
-            height: 100%;
-            border-radius: 50px;
-            background: linear-gradient(90deg, #f59e0b, #d97706);
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 0;
-        }
-
-        .topic-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
-
-        /* Q&A Practice Section */
-        .practice-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-        }
-
-        .practice-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 18px;
-            padding: 1.75rem;
-            transition: border-color 0.3s;
-        }
-
-        .practice-card:hover {
-            border-color: rgba(245, 158, 11, 0.4);
-        }
-
-        .pc-num {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .pc-question {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .pc-formula {
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            background: rgba(245, 158, 11, 0.07);
-            border: 1px dashed rgba(245, 158, 11, 0.2);
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-            color: #fbbf24;
-        }
-
-        .pc-answer {
-            display: none;
-            padding: 1rem;
-            background: rgba(134, 239, 172, 0.07);
-            border: 1px solid rgba(134, 239, 172, 0.2);
-            border-radius: 10px;
-            font-size: 0.95rem;
-            color: #86efac;
-            line-height: 1.7;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .pc-answer.show {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        .show-ans-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: none;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .show-ans-btn:hover {
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        /* FAQ */
-        .faq-list {
-            max-width: 800px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .faq-item.open {
-            border-color: var(--accent);
-        }
-
-        .faq-q {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 1.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            gap: 1rem;
-        }
-
-        .faq-q i {
-            font-size: 1.25rem;
-            color: var(--accent);
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-
-        .faq-item.open .faq-q i {
-            transform: rotate(45deg);
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s;
-            padding: 0 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            line-height: 1.75;
-        }
-
-        .faq-item.open .faq-a {
-            max-height: 300px;
-            padding: 0 1.5rem 1.25rem;
-        }
-
-        /* CTA */
-        .cta-banner {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.08));
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 28px;
-            padding: 4rem 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .cta-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-banner p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-row {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        @media (max-width: 900px) {
-            .course-hero {
-                flex-direction: column;
-                padding-top: 8rem;
-                text-align: center;
-            }
-
-            .course-subtitle {
-                margin: 0 auto 2.5rem;
-            }
-
-            .course-ctas {
-                justify-content: center;
-            }
-
-            .course-stats {
-                justify-content: center;
-            }
-        }
-    </style>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="academy.css">
 </head>
-
 <body>
-    <nav class="navbar glass" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">F. MANNEH</a>
-            <ul class="nav-links">
-                <li><a href="#topics">Topics</a></li>
-                <li><a href="#practice">Practice</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="index.html">← Home</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="https://chat.whatsapp.com/JfejXRZhyMq1kWBjWuKS9P?mode=gi_t" class="btn btn-sm"
-                    style="background: linear-gradient(135deg,#f59e0b,#d97706); color:#000; border:none; padding:0.5rem 1.25rem; border-radius:50px; font-weight:700;">Join
-                    Now</a>
-            </div>
-            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
+
+    <!-- Top Navigation (Desktop) -->
+    <header class="top-nav glass-nav">
+        <a href="index.html" class="logo">F. MANNEH <span style="font-weight:400; font-size:1rem;">| Academy</span></a>
+        <nav class="desktop-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#academy" class="nav-link active">Courses</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="desktop-actions">
+            <!-- Hamburger Menu Trigger (Mobile/Tablet) -->
+            <button class="hamburger-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
+            <a href="https://docs.google.com/forms/" target="_blank" class="btn btn-primary compact-btn">Enroll Now</a>
         </div>
+    </header>
+
+    <!-- Overlay Navigation (Hamburger Menu) -->
+    <div class="overlay-nav glass-overlay">
+        <div class="overlay-header">
+            <a href="index.html" class="logo">Academy</a>
+            <button class="close-overlay-btn"><i class='bx bx-x'></i></button>
+        </div>
+        <nav class="overlay-links">
+            <a href="index.html" class="overlay-link"><i class='bx bx-home-alt-2'></i> Home</a>
+            <a href="index.html#academy" class="overlay-link"><i class='bx bx-book-open'></i> All Courses</a>
+            <a href="html-css.html" class="overlay-link"><i class='bx bx-code-alt'></i> HTML & CSS</a>
+            <a href="pld.html" class="overlay-link"><i class='bx bx-brain'></i> PLD Logic</a>
+            <a href="#" class="overlay-link active"><i class='bx bx-math'></i> Maths</a>
+            <a href="index.html#contact" class="overlay-link"><i class='bx bx-envelope'></i> Contact</a>
+        </nav>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav glass-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class='bx bx-home-alt-2'></i>
+            <span>Home</span>
+        </a>
+        <a href="index.html#academy" class="bottom-nav-item active">
+            <i class='bx bx-book-open'></i>
+            <span>Courses</span>
+        </a>
+        <a href="#progress" class="bottom-nav-item">
+            <i class='bx bx-chart'></i>
+            <span>Progress</span>
+        </a>
+        <a href="index.html#contact" class="bottom-nav-item">
+            <i class='bx bx-envelope'></i>
+            <span>Contact</span>
+        </a>
     </nav>
 
-    <main>
-        <!-- Hero -->
-        <section id="home"
-            style="background: radial-gradient(ellipse at 70% 0%, rgba(245,158,11,0.07) 0%, transparent 60%);">
-            <div class="course-hero">
-                <div class="course-hero-text fade-in">
-                    <div class="course-badge"><i class='bx bx-calculator'></i> GRADE 10 · EXAM Q&A SYSTEM</div>
-                    <h1 class="course-title">Master Maths Through<br><span class="math-gradient">Questions &
-                            Answers</span></h1>
-                    <p class="course-subtitle">Stop memorizing formulas. Start solving problems. This is a structured
-                        Q&A system where you practice real exam questions and get clear, step-by-step answers until you
-                        master every pattern.</p>
-                    <div class="course-ctas">
-                        <a href="#cta" class="btn-amber"><i class='bx bx-book-open'></i> Start Practicing</a>
-                        <a href="#practice" class="btn btn-outline">Try Sample Questions</a>
-                    </div>
-                    <div class="course-stats">
-                        <div class="c-stat"><strong>4+</strong><span>Core Topics</span></div>
-                        <div class="c-stat"><strong>Q&A</strong><span>Based Learning</span></div>
-                        <div class="c-stat"><strong>Exam</strong><span>Ready Focus</span></div>
-                    </div>
-                </div>
-                <div class="course-hero-visual fade-in delay-1">
-                    <div class="math-card">
-                        <div class="math-card-title"><i class='bx bx-math'></i> PRACTICE QUESTION</div>
-                        <div class="q-card">
-                            <div class="q-label">ALGEBRA · Q1</div>
-                            <div class="q-text">Solve for x:</div>
-                            <div class="q-formula">3x² - 12x = 0</div>
-                            <button class="reveal-btn" id="hero-reveal-btn"><i class='bx bx-show'></i> Reveal
-                                Answer</button>
-                            <div class="q-ans" id="hero-ans" style="display:none;"><i class='bx bx-check-circle'></i> x
-                                = 0 &nbsp;or&nbsp; x = 4</div>
-                        </div>
-                        <div class="q-card">
-                            <div class="q-label">GEOMETRY · Q2</div>
-                            <div class="q-text">Find the area of a circle with r = 7cm:</div>
-                            <div class="q-formula">A = πr²</div>
-                            <button class="reveal-btn" id="hero-reveal-btn2"><i class='bx bx-show'></i> Reveal
-                                Answer</button>
-                            <div class="q-ans" id="hero-ans2" style="display:none;"><i class='bx bx-check-circle'></i> A
-                                ≈ 153.94 cm²</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2206753822" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
 
-        <!-- Topics -->
-        <section class="expertise" id="topics">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">CURRICULUM</span>
-                <h2>Topics You Will Master</h2>
-                <div class="underline"></div>
-                <p style="margin-top:1rem;">All Grade 10 syllabus topics, each covered with guided Q&A sessions.</p>
+    <main class="container academy-layout">
+        
+        <!-- SIDEBAR (Desktop) -->
+        <aside class="course-sidebar reveal">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <i class='bx bx-chevron-right'></i> 
+                <a href="index.html#academy">Academy</a> <i class='bx bx-chevron-right'></i> 
+                <span>Maths</span>
             </div>
-            <div class="topics-grid">
-                <div class="topic-card fade-in">
-                    <div class="topic-top">
-                        <div class="topic-icon"><i class='bx bx-math'></i></div>
-                        <div>
-                            <h3>Algebra & Equations</h3>
-                            <p>Factorize, expand, and solve linear and quadratic equations step by step.</p>
-                        </div>
-                    </div>
-                    <div class="topic-progress">
-                        <div class="topic-bar" data-width="90"></div>
-                    </div>
-                    <div class="topic-meta"><span>Most Exam Questions</span><span>90% Weight</span></div>
-                </div>
-                <div class="topic-card fade-in delay-1">
-                    <div class="topic-top">
-                        <div class="topic-icon"><i class='bx bxs-shapes'></i></div>
-                        <div>
-                            <h3>Geometry & Proofs</h3>
-                            <p>Triangles, circles, and formal proofs — understand every theorem visually.</p>
-                        </div>
-                    </div>
-                    <div class="topic-progress">
-                        <div class="topic-bar" data-width="75"></div>
-                    </div>
-                    <div class="topic-meta"><span>Core Exam Topic</span><span>75% Weight</span></div>
-                </div>
-                <div class="topic-card fade-in delay-2">
-                    <div class="topic-top">
-                        <div class="topic-icon"><i class='bx bx-line-chart'></i></div>
-                        <div>
-                            <h3>Functions & Graphs</h3>
-                            <p>Plot and analyze linear, quadratic, exponential, and hyperbolic functions.</p>
-                        </div>
-                    </div>
-                    <div class="topic-progress">
-                        <div class="topic-bar" data-width="80"></div>
-                    </div>
-                    <div class="topic-meta"><span>High Value Section</span><span>80% Weight</span></div>
-                </div>
-                <div class="topic-card fade-in">
-                    <div class="topic-top">
-                        <div class="topic-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
-                        <div>
-                            <h3>Statistics & Probability</h3>
-                            <p>Interpret data, calculate averages, and determine probability outcomes.</p>
-                        </div>
-                    </div>
-                    <div class="topic-progress">
-                        <div class="topic-bar" data-width="65"></div>
-                    </div>
-                    <div class="topic-meta"><span>Scoring Opportunity</span><span>65% Weight</span></div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Practice Q&A -->
-        <section id="practice" style="padding: 6rem 2rem;">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">LIVE PRACTICE</span>
-                <h2>Try These Sample Questions</h2>
-                <div class="underline"></div>
-                <p style="margin-top: 1rem;">Attempt first. Reveal the answer when you're ready.</p>
+            <div class="progress-card glass-card" id="progress">
+                <div class="progress-header">
+                    <span>Course Progress</span>
+                    <span id="progressText">0% Completed</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width: 0%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Expand modules to mark them as completed.</p>
             </div>
-            <div class="practice-grid">
-                <div class="practice-card fade-in">
-                    <div class="pc-num">ALGEBRA · Q1</div>
-                    <div class="pc-question">Factorize the expression completely:</div>
-                    <div class="pc-formula">2x² + 6x - 20</div>
-                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Show Answer</button>
-                    <div class="pc-answer"><strong>Step 1:</strong> Factor out 2 → 2(x² + 3x − 10)<br><strong>Step
-                            2:</strong> Factorize → 2(x + 5)(x − 2)<br><strong>Answer:</strong> 2(x + 5)(x − 2)</div>
-                </div>
-                <div class="practice-card fade-in delay-1">
-                    <div class="pc-num">LINEAR EQUATIONS · Q2</div>
-                    <div class="pc-question">Solve simultaneously:</div>
-                    <div class="pc-formula">y = 2x + 1 &nbsp;&nbsp; y = x + 4</div>
-                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Show Answer</button>
-                    <div class="pc-answer"><strong>Step 1:</strong> Set equal → 2x + 1 = x + 4<br><strong>Step
-                            2:</strong> Solve → x = 3<br><strong>Step 3:</strong> Substitute → y =
-                        7<br><strong>Answer:</strong> x = 3, y = 7</div>
-                </div>
-                <div class="practice-card fade-in delay-2">
-                    <div class="pc-num">GEOMETRY · Q3</div>
-                    <div class="pc-question">Find the hypotenuse if the two sides are 6cm and 8cm:</div>
-                    <div class="pc-formula">a² + b² = c²</div>
-                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Show Answer</button>
-                    <div class="pc-answer"><strong>Step 1:</strong> 6² + 8² = 36 + 64 = 100<br><strong>Step 2:</strong>
-                        c = √100<br><strong>Answer:</strong> c = 10 cm</div>
-                </div>
-                <div class="practice-card fade-in">
-                    <div class="pc-num">FUNCTIONS · Q4</div>
-                    <div class="pc-question">Find the x-intercepts of the function:</div>
-                    <div class="pc-formula">f(x) = x² − 5x + 6</div>
-                    <button class="show-ans-btn"><i class='bx bx-bulb'></i> Show Answer</button>
-                    <div class="pc-answer"><strong>Step 1:</strong> Factorize → (x − 2)(x − 3) = 0<br><strong>Step
-                            2:</strong> Solve → x = 2 or x = 3<br><strong>Answer:</strong> x-intercepts at (2, 0) and
-                        (3, 0)</div>
-                </div>
-            </div>
-        </section>
 
-        <!-- FAQ -->
-        <section id="faq" style="padding: 6rem 2rem;">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">FAQ</span>
-                <h2>Common Questions</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-q">Do I need to be good at maths to join? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">No. We start from the fundamentals and build up your understanding step by step.
-                        Even if you have struggled before, the Q&A approach will help you understand the logic, not just
-                        memorize answers.</div>
+            <div class="lesson-list glass-card">
+                <h4 style="margin-bottom: 1rem;">Course Modules</h4>
+                <div class="lesson-item active">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>1. Algebraic Expressions</span>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-q">How does the Q&A system work? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">You receive a question. You attempt it first. Then you receive the full
-                        step-by-step solution. This proven method builds memory and real understanding — not just exam
-                        tricks.</div>
+                <div class="lesson-item">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>2. Linear Equations</span>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-q">Which exam board is this for? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">The course covers Grade 10 Mathematics aligned with the standard Gambian
-                        curriculum. Topics include algebra, geometry, graphs, and statistics as required in national
-                        exams.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">How do I access the full question bank? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">Click "Join Now" and fill out the form. You'll be added to the private WhatsApp
-                        group where all resources, worksheets, and past questions are shared.</div>
+                <div class="lesson-item">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>3. Coordinate Geometry</span>
                 </div>
             </div>
-        </section>
+        </aside>
 
-        <!-- CTA -->
-        <section id="cta" style="padding: 6rem 2rem;">
-            <div class="cta-banner fade-in">
-                <span class="eyebrow" style="display:block; text-align:center; margin-bottom:1rem; color:#f59e0b;"><i
-                        class='bx bx-calculator'></i> GRADE 10 MATHEMATICS</span>
-                <h2>Ready to Crack Your Exams?</h2>
-                <p>Join the structured Q&A program and practice your way to a confident exam performance.</p>
-                <div class="cta-row">
-                    <a href="https://chat.whatsapp.com/JfejXRZhyMq1kWBjWuKS9P?mode=gi_t" class="btn-amber"><i
-                            class='bxl-whatsapp bx'></i> Join WhatsApp Group</a>
-                    <a href="index.html" class="btn btn-outline">Back to Home</a>
+        <!-- MAIN CONTENT -->
+        <article class="course-content">
+            
+            <!-- Hero Section -->
+            <section class="course-header reveal">
+                <span class="badge glass-badge" style="border-color: #10b981; color: #10b981;">Exam Preparation</span>
+                <h1 class="course-title">Grade 10 <span class="gradient-text gradient-secondary">Mathematics</span></h1>
+                <p class="section-desc" style="margin: 0; text-align: left; max-width: 800px;">
+                    Simplified mathematics targeting the national curriculum. We break down complex algebraic and geometric theorems into clear, step-by-step logic frameworks ensuring exam readiness and confidence.
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <span class="tag"><i class='bx bx-check-shield'></i> Exam Focused</span>
+                    <span class="tag"><i class='bx bx-conversation'></i> Q&A Format</span>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Module 1 -->
+            <section class="module glass-card reveal delay-1">
+                <div class="module-header tap-effect">
+                    <div>
+                        <span style="color: var(--secondary); font-family: var(--font-heading); font-weight: 700; margin-right: 0.5rem;">01</span>
+                        <span class="module-title">Solving Linear Equations</span>
+                    </div>
+                    <i class='bx bx-chevron-down module-icon'></i>
+                </div>
+                <div class="module-content">
+                    <p style="margin-top: 1rem; color: var(--text-muted); margin-bottom: 1.5rem;">Equations are like balancing scales. Whatever you do to one side, you must do to the other. Our goal is always to isolate the variable (x).</p>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem;">Problem: Solve for x</h4>
+                        <div style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 600; text-align: center; letter-spacing: 2px;">
+                            3x + 5 = 20
+                        </div>
+                    </div>
+
+                    <div class="math-step">
+                        <div class="math-num">1</div>
+                        <div>
+                            <strong>Subtract 5 from both sides</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">To isolate the x term, remove constants attached to it.</p>
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-top: 0.5rem;">3x = 20 - 5<br>3x = 15</p>
+                        </div>
+                    </div>
+
+                    <div class="math-step">
+                        <div class="math-num">2</div>
+                        <div>
+                            <strong>Divide both sides by 3</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">To get x by itself, neutralize the multiplication by dividing.</p>
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-top: 0.5rem;">x = 15 ÷ 3</p>
+                        </div>
+                    </div>
+
+                    <div class="math-step" style="border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
+                        <div class="math-num" style="background: #10b981;"><i class='bx bx-check'></i></div>
+                        <div>
+                            <strong>Final Answer</strong>
+                            <p style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 0.25rem;">
+                                x = <span class="answer-highlight">5</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 2 -->
+            <section class="module glass-card reveal delay-2">
+                <div class="module-header tap-effect">
+                    <div>
+                        <span style="color: var(--secondary); font-family: var(--font-heading); font-weight: 700; margin-right: 0.5rem;">02</span>
+                        <span class="module-title">Factorizing Expressions</span>
+                    </div>
+                    <i class='bx bx-chevron-down module-icon'></i>
+                </div>
+                <div class="module-content">
+                    <p style="margin-top: 1rem; color: var(--text-muted);">Factorization is the reverse of expanding brackets. We look for the Highest Common Factor (HCF) that relates the terms together.</p>
+                    
+                    <div class="qna-card" style="border-left-color: var(--secondary);">
+                        <div class="qna-q">What is the HCF?</div>
+                        <div class="qna-a">The Highest Common Factor is the largest number (or variable) that divides exactly into two or more numbers. E.g., for 12x and 16, the numerical HCF is 4.</div>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Example:</h4>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Factorize: 4x² + 12x</p>
+                        <ol style="padding-left: 1.5rem; color: #cbd5e1; line-height: 1.8;">
+                            <li>Find common number: 4</li>
+                            <li>Find common variable: x</li>
+                            <li>Pull out (4x) and place remainder in brackets</li>
+                            <li><strong style="color: white; font-size: 1.1rem;">Answer: <span class="answer-highlight">4x(x + 3)</span></strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Section -->
+            <section class="practice-box glass-card reveal">
+                <h3>Test Your Logic</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Try to solve the equation before checking the answer below.</p>
+                
+                <h4 style="font-family: 'Outfit'; font-size: 1.4rem; margin-bottom: 1.5rem;">Solve for y: <br><span style="color:white;">2(y - 4) = 10</span></h4>
+                
+                <button class="btn btn-outline tap-effect answer-toggle-btn" data-target="practiceAnswerMaths">Reveal Step-by-Step Answer <i class='bx bx-chevron-down'></i></button>
+                
+                <div class="answer-toggle-content" id="practiceAnswerMaths">
+                    <div class="math-step">
+                        <div class="math-num" style="width:24px; height:24px; font-size: 0.8rem;">1</div>
+                        <div>
+                            <span>Expand the brackets:</span>
+                            <br><code style="background: rgba(0,0,0,0.5); padding: 0.2rem 0.5rem; border-radius: 4px;">2y - 8 = 10</code>
+                        </div>
+                    </div>
+                    <div class="math-step">
+                        <div class="math-num" style="width:24px; height:24px; font-size: 0.8rem;">2</div>
+                        <div>
+                            <span>Add 8 to both sides:</span>
+                            <br><code style="background: rgba(0,0,0,0.5); padding: 0.2rem 0.5rem; border-radius: 4px;">2y = 18</code>
+                        </div>
+                    </div>
+                    <div class="math-step">
+                        <div class="math-num" style="width:24px; height:24px; font-size: 0.8rem;">3</div>
+                        <div>
+                            <span>Divide by 2:</span>
+                            <br><strong style="font-size: 1.2rem;">y = <span class="answer-highlight">9</span></strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="glass-card reveal" style="text-align: center; margin-top: 3rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(15, 23, 42, 0.5)); border-color: rgba(16, 185, 129, 0.2);">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Master Exam Concepts</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Stop struggling with equations in isolation. Join the class where we break every problem down logically.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://docs.google.com/forms/" target="_blank" class="btn btn-primary tap-effect" style="background: linear-gradient(135deg, #10b981, #047857);">Enroll in Maths</a>
+                    <a href="https://chat.whatsapp.com/" target="_blank" class="btn btn-outline tap-effect"><i class='bx bxl-whatsapp'></i> Ask a Question</a>
+                </div>
+            </section>
+
+        </article>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"><a href="index.html" class="logo">F. MANNEH</a></div>
-            <div class="footer-links">
-                <a href="PLD.html">PLD Course</a>
-                <a href="html-css.html">HTML & CSS</a>
-                <a href="projects.html">Portfolio</a>
-                <a href="index.html">Home</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 F. Manneh Academy. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
     <script src="script.js"></script>
-    <script>
-        // Hero Reveal
-        document.getElementById('hero-reveal-btn').addEventListener('click', function () {
-            document.getElementById('hero-ans').style.display = 'flex';
-            this.style.display = 'none';
-        });
-        document.getElementById('hero-reveal-btn2').addEventListener('click', function () {
-            document.getElementById('hero-ans2').style.display = 'flex';
-            this.style.display = 'none';
-        });
-
-        // Practice Q&A Toggle
-        document.querySelectorAll('.show-ans-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const ans = btn.nextElementSibling;
-                const isShowing = ans.classList.contains('show');
-                ans.classList.toggle('show', !isShowing);
-                btn.innerHTML = isShowing
-                    ? "<i class='bx bx-bulb'></i> Show Answer"
-                    : "<i class='bx bx-hide'></i> Hide Answer";
-            });
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-q').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                if (!isOpen) item.classList.add('open');
-            });
-        });
-
-        // Animate progress bars on scroll
-        const bars = document.querySelectorAll('.topic-bar');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.style.width = e.target.dataset.width + '%';
-                }
-            });
-        }, { threshold: 0.3 });
-        bars.forEach(b => observer.observe(b));
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if(mobileMenuBtn && navLinks) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                if(navLinks.classList.contains('active')) {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-x'></i>";
-                } else {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                }
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                });
-            });
-        }
-    </script>
+    <script src="academy.js"></script>
 </body>
-
 </html>

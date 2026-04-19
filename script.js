@@ -1,198 +1,249 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Smooth Scrolling for Navigation Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
 
-    // 2. Navbar Background on Scroll
-    const navbar = document.getElementById('navbar');
+    /* =========================================
+       1. LOADING SCREEN
+    ========================================= */
+    const loader = document.getElementById('loader');
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(() => {
+                loader.remove();
+            }, 500);
+        }, 1500); // 1.5s loading simulation
+    }
+
+    /* =========================================
+       2. NAVIGATION LAYERS
+    ========================================= */
+    const topNav = document.querySelector('.top-nav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const overlayNav = document.querySelector('.overlay-nav');
+    const closeOverlayBtn = document.querySelector('.close-overlay-btn');
+    const overlayLinks = document.querySelectorAll('.overlay-link');
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    const desktopLinks = document.querySelectorAll('.nav-link');
+
+    // Sticky Top Nav
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(10, 15, 23, 0.9)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.5)';
-            navbar.style.backdropFilter = 'blur(16px)';
+            topNav.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(17, 26, 38, 0.6)';
-            navbar.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.2)';
-            navbar.style.backdropFilter = 'blur(16px)';
+            topNav.classList.remove('scrolled');
         }
     });
 
-    // 3. Intersection Observer for Fade-In Animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
+    // Toggle Overlay Nav
+    const toggleOverlay = () => {
+        overlayNav.classList.toggle('active');
+        document.body.style.overflow = overlayNav.classList.contains('active') ? 'hidden' : '';
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleOverlay);
+    if (closeOverlayBtn) closeOverlayBtn.addEventListener('click', toggleOverlay);
+    
+    overlayLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            overlayNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    /* =========================================
+       3. ACTIVE SECTION HIGHLIGHTING
+    ========================================= */
+    const sections = document.querySelectorAll('section[id]');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        // Update Bottom Nav
+        bottomNavItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
+        });
+
+        // Update Desktop Nav
+        desktopLinks.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
+        });
+
+        // Update Overlay Nav
+        overlayLinks.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    /* =========================================
+       4. SCROLL REVEAL ANIMATIONS
+    ========================================= */
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once animated
-                observer.unobserve(entry.target);
-            }
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
         });
-    }, observerOptions);
+    }, revealOptions);
 
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => revealObserver.observe(el));
 
-    // 4. Form Submission Handling (Basic validation & prevent default if needed)
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            const btn = form.querySelector('button[type="submit"]');
-            
-            // If action is placeholder, prevent submission to avoid error page
-            if(form.getAttribute('action') === 'YOUR_FORMSPREE_ENDPOINT') {
-                e.preventDefault();
-                btn.innerHTML = '<i class="bx bx-check"></i> Connected (Demo)';
-                btn.style.background = '#10b981';
-                btn.style.color = '#fff';
-                setTimeout(() => {
-                    btn.innerHTML = 'Send Message';
-                    btn.style.background = '';
-                }, 3000);
-                form.reset();
-                return;
-            }
-
-            // Normal submission visual change for actual endpoints
-            btn.innerHTML = 'Sending...';
-            btn.style.opacity = '0.7';
-        });
-    }
-
-    // 5. Course Item Interactive Selection
-    const courseItems = document.querySelectorAll('.course-item');
-    courseItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            courseItems.forEach(c => c.classList.remove('active'));
-            item.classList.add('active');
-        });
-    });
-    // 6. Project Modal Logic & Content Data
-    const projectData = {
-        'multishop': {
-            title: 'MultiShop Pro',
-            'case-study': {
-                metrics: { 'Status': 'Production Ready', 'Scale': 'Multi-Category' },
-                desc: 'MultiShop Pro is a flagship e-commerce engine designed for high-concurrency environments. It features a custom inventory management system and a sub-second optimized search architecture.',
-                images: ['./Images/14.png']
-            },
-            'design': {
-                metrics: { 'Tool': 'Design Logic', 'Style': 'Glassmorphic' },
-                desc: 'The design focuses on technical clarity and zero-friction navigation, utilizing a dark-mode palette with cyan accents for a professional developer aesthetic.',
-                images: ['./Images/14.png']
-            }
+    /* =========================================
+       5. SERVICES MODAL POPUPS
+    ========================================= */
+    const modalData = {
+        web: {
+            title: "Web Development",
+            content: "Modern, responsive, and scalable web solutions.",
+            features: [
+                "Custom Architecture Design",
+                "SEO & Performance Optimization",
+                "Progressive Web Apps (PWA)",
+                "Secure Backend APIs"
+            ]
         },
-        'snake': {
-            title: 'Snake Logic Engine',
-            'case-study': {
-                metrics: { 'Performance': '60 FPS', 'Logic': 'State-Driven' },
-                desc: 'A pure JavaScript simulation engine demonstrating advanced coordinate systems and real-time state synchronization within the HTML5 Canvas environment.',
-                images: ['./Images/1.png']
-            },
-            'design': {
-                metrics: { 'Logic': 'Pure Script', 'Response': 'Sub-15ms' },
-                desc: 'The visual design emphasizes high-contrast entity identification and reactive feedback loops for player coordination.',
-                images: ['./Images/1.png']
-            }
+        app: {
+            title: "App Development",
+            content: "Native-grade cross-platform applications.",
+            features: [
+                "iOS & Android Compatibility",
+                "Fluid UI/UX Navigation",
+                "Offline Support",
+                "Cloud Database Integration"
+            ]
         },
-        'ai-chatbot': {
-            title: 'Consultation AI',
-            'case-study': {
-                metrics: { 'Accuracy': '98% Intent', 'Automation': 'High' },
-                desc: 'An enterprise-grade AI interface that utilizes custom conversational pipelines and webhooks to automate front-line business inquiry resolution.',
-                images: ['./Images/7.png']
-            },
-            'design': {
-                metrics: { 'UX': 'Chat-First', 'Logic': 'Pipeline-Based' },
-                desc: 'Designed with a focus on conversational flow and rapid intent resolution, featuring a clean, non-obtrusive chat UI.',
-                images: ['./Images/7.png']
-            }
+        ai: {
+            title: "AI Chatbots & Automation",
+            content: "Intelligent systems that think and act like human operators.",
+            features: [
+                "NLP & Custom LLM Integration",
+                "Workflow Automations",
+                "24/7 Customer Support Bots",
+                "CRM Integrations"
+            ]
         }
     };
 
-    const globalModal = document.getElementById('global-modal');
-    const modalContent = document.getElementById('modal-content-root');
-    const modalClose = globalModal ? globalModal.querySelector('.modal-close') : null;
+    const serviceModal = document.getElementById('serviceModal');
+    const modalBody = document.getElementById('modalBody');
+    const closeModals = document.querySelectorAll('.close-modal');
+    const learnMoreBtns = document.querySelectorAll('.learn-more-btn');
 
-    if (globalModal && modalContent) {
-        document.querySelectorAll('.open-project-modal').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const projectKey = btn.getAttribute('data-project');
-                const typeKey = btn.getAttribute('data-type');
-                const data = projectData[projectKey];
-
-                if (data && data[typeKey]) {
-                    const content = data[typeKey];
-                    const typeTitle = typeKey.charAt(0).toUpperCase() + typeKey.slice(1).replace('-', ' ');
-                    
-                    let metricsHtml = '';
-                    for (const [label, val] of Object.entries(content.metrics)) {
-                        metricsHtml += `<div class="m-info-item"><h4>${label}</h4><p>${val}</p></div>`;
-                    }
-
-                    let imagesHtml = '';
-                    content.images.forEach(src => {
-                        imagesHtml += `<img src="${src}" alt="Project View">`;
-                    });
-
-                    modalContent.innerHTML = `
-                        <div class="modal-body">
-                            <div class="modal-title-wrap">
-                                <span class="eyebrow">${typeTitle}</span>
-                                <h2>${data.title}</h2>
-                            </div>
-                            <div class="modal-info-grid">${metricsHtml}</div>
-                            <div class="modal-image-gallery">${imagesHtml}</div>
-                            <p class="modal-desc-text">${content.desc}</p>
-                            <div style="margin-top: 1rem;">
-                                <a href="#" class="btn btn-primary close-modal-trigger">Close Details</a>
-                            </div>
-                        </div>
-                    `;
-
-                    globalModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-
-                    // Close within modal body
-                    const innerClose = modalContent.querySelector('.close-modal-trigger');
-                    if(innerClose) {
-                        innerClose.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            closeGlobalModal();
-                        });
-                    }
-                }
-            });
+    learnMoreBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const service = btn.getAttribute('data-service');
+            const data = modalData[service];
+            
+            if (data) {
+                modalBody.innerHTML = `
+                    <div class="modal-body">
+                        <h3>${data.title}</h3>
+                        <p>${data.content}</p>
+                        <ul>
+                            ${data.features.map(f => `<li><i class='bx bx-check-circle'></i> ${f}</li>`).join('')}
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" onclick="document.getElementById('serviceModal').classList.remove('active');">Start a Project</a>
+                    </div>
+                `;
+                serviceModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         });
+    });
 
-        const closeGlobalModal = () => {
-            globalModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+    closeModals.forEach(btn => {
+        btn.addEventListener('click', () => {
+            serviceModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close on click outside
+    window.addEventListener('click', (e) => {
+        if (e.target === serviceModal) {
+            serviceModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    /* =========================================
+       6. TESTIMONIAL SLIDER WITH SWIPE
+    ========================================= */
+    const track = document.getElementById('testimonialTrack');
+    const dotsContainer = document.querySelector('.slider-dots');
+    
+    if (track && dotsContainer) {
+        const dots = dotsContainer.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+
+        const updateSlide = (index) => {
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
         };
 
-        if (modalClose) modalClose.addEventListener('click', closeGlobalModal);
-        
-        globalModal.addEventListener('click', (e) => {
-            if (e.target === globalModal) closeGlobalModal();
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => updateSlide(index));
         });
-    }
-});
 
+        // Auto Scroll
+        let autoSlide = setInterval(() => {
+            updateSlide((currentSlide + 1) % totalSlides);
+        }, 5000);
+
+        // Swipe Functionality
+        let startX = 0;
+        let diffX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            clearInterval(autoSlide); // Pause auto
+        }, { passive: true });
+
+        track.addEventListener('touchmove', (e) => {
+            diffX = e.touches[0].clientX - startX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0 && currentSlide > 0) {
+                    updateSlide(currentSlide - 1); // Swipe Right
+                } else if (diffX < 0 && currentSlide < totalSlides - 1) {
+                    updateSlide(currentSlide + 1); // Swipe Left
+                }
+            }
+            diffX = 0;
+            autoSlide = setInterval(() => {
+                updateSlide((currentSlide + 1) % totalSlides);
+            }, 5000);
+        }, { passive: true });
+    }
+
+});

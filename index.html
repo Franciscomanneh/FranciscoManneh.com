@@ -1,1083 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="Favicon/3-removebg-preview.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Francisco Manneh — Digital Architect | Web, Mobile & AI</title>
-    <meta name="description"
-        content="Personal portfolio of Francisco Manneh - Engineering high-performance web ecosystems, mobile apps, and AI automations.">
-    <meta name="keywords" content="Francisco Manneh, portfolio, web developer, mobile developer, AI developer, freelancer">
-    <link rel="canonical" href="https://franciscomanneh.com/">
-    <meta name="theme-color" content="#0ea5a4">
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="F. Manneh — Digital Architect">
-    <meta property="og:description" content="Engineering high-performance web ecosystems, mobile apps, and AI automations.">
-    <meta property="og:url" content="https://franciscomanneh.com/">
-    <meta property="og:image" content="https://franciscomanneh.com/og-image.svg">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="F. Manneh — Digital Architect">
-    <meta name="twitter:description" content="Engineering high-performance web ecosystems, mobile apps, and AI automations.">
-        <meta name="twitter:image" content="https://franciscomanneh.com/og-image.svg">
-
-        <!-- Structured data -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Francisco Manneh",
-            "url": "https://franciscomanneh.com/",
-            "image": "https://franciscomanneh.com/persionalpictures/Screenshot%202026-01-26%20074447.png",
-            "jobTitle": "Digital Architect",
-            "sameAs": [
-                "https://github.com/Franciscomanneh",
-                "https://www.facebook.com/profile.php?id=61586861617639",
-                "https://www.youtube.com/@codewithfrancisco-1",
-                "https://www.tiktok.com/@fmannehcode"
-            ],
-            "description": "Engineering high-performance web ecosystems, mobile apps, and AI automations."
-        }
-        </script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <title>Francisco Manneh — Digital Architect</title>
+    <meta name="description" content="Engineering high-performance web ecosystems, mobile apps, and AI automations.">
+    <link rel="icon" type="image/png" href="Favicon/3-removebg-preview.png">
+    <meta name="theme-color" content="#0a0a0f">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' media="print" onload="this.media='all'">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Google Analytics Placeholder -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // REPLACE 'YOUR_GA_MEASUREMENT_ID' with your actual Google Analytics ID (e.g., G-XXXXXXXXXX)
-      gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Francisco Manneh",
+      "jobTitle": "Digital Architect",
+      "url": "https://franciscomanneh.com",
+      "image": "https://franciscomanneh.com/persionalpictures/Screenshot%202026-01-26%20074447.png",
+      "sameAs": [
+        "https://github.com/Franciscomanneh",
+        "https://www.youtube.com/@codewithfrancisco-1",
+        "https://www.tiktok.com/@fmannehcode"
+      ],
+      "knowsAbout": ["Web Development", "Mobile App Development", "AI/ChatbotAutomation", "React", "Node.js", "Python"],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Francisco Manneh - Digital Architect"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "Francisco Manneh — Digital Architect",
+      "url": "https://franciscomanneh.com",
+      "description": "Engineering high-performance web ecosystems, mobile apps, and AI automations",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://franciscomanneh.com/projects"
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://franciscomanneh.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://franciscomanneh.com#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Projects",
+          "item": "https://franciscomanneh.com#projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Academy",
+          "item": "https://franciscomanneh.com#academy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Contact",
+          "item": "https://franciscomanneh.com#contact"
+        }
+      ]
+    }
     </script>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <nav class="navbar glass" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">F. MANNEH</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#learning">Academy</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="https://wa.me/2206753822" class="btn btn-primary btn-sm">WhatsApp Me</a>
-            </div>
-            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-container">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Initializing Ecosystem...</div>
+    </div>
+
+    <!-- Top Navigation (Desktop) -->
+    <header class="top-nav glass-nav">
+        <a href="#home" class="logo">F. MANNEH</a>
+        <nav class="desktop-links">
+            <a href="#home" class="nav-link" aria-label="Navigate to home section">Home</a>
+            <a href="#services" class="nav-link" aria-label="Navigate to services section">Services</a>
+            <a href="#academy" class="nav-link" aria-label="Navigate to academy section">Academy</a>
+            <a href="#projects" class="nav-link" aria-label="Navigate to projects section">Work</a>
+            <a href="#contact" class="nav-link" aria-label="Navigate to contact section">Contact</a>
+        </nav>
+        <div class="desktop-actions">
+            <!-- Hamburger Menu Trigger (Mobile/Tablet) -->
+            <button class="hamburger-btn" aria-label="Toggle Menu">
+                <i class='bx bx-menu'></i>
+            </button>
+            <a href="https://wa.me/2206753822" target="_blank" class="btn btn-primary compact-btn">Let's Talk</a>
         </div>
+    </header>
+
+    <!-- Overlay Navigation (Hamburger Menu) -->
+    <div class="overlay-nav glass-overlay">
+        <div class="overlay-header">
+            <a href="#home" class="logo">F. MANNEH</a>
+            <button class="close-overlay-btn"><i class='bx bx-x'></i></button>
+        </div>
+        <nav class="overlay-links">
+            <a href="#home" class="overlay-link" aria-label="Navigate to home"><i class='bx bx-home-alt-2'></i> Home</a>
+            <a href="#services" class="overlay-link" aria-label="Navigate to services"><i class='bx bx-layer'></i> Services</a>
+            <a href="#academy" class="overlay-link" aria-label="Navigate to academy"><i class='bx bxs-graduation'></i> Academy</a>
+            <a href="#projects" class="overlay-link" aria-label="Navigate to projects"><i class='bx bx-briefcase-alt-2'></i> Work</a>
+            <a href="#about" class="overlay-link" aria-label="Navigate to about"><i class='bx bx-user'></i> About</a>
+            <a href="#contact" class="overlay-link" aria-label="Navigate to contact"><i class='bx bx-envelope'></i> Contact</a>
+        </nav>
+        <div class="overlay-footer">
+            <p>Let's build something amazing.</p>
+            <div class="social-links">
+                <a href="https://github.com/Franciscomanneh"><i class='bx bxl-github'></i></a>
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.youtube.com/@codewithfrancisco-1"><i class='bx bxl-youtube'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav glass-nav" aria-label="Mobile navigation">
+        <a href="#home" class="bottom-nav-item active" aria-label="Home">
+            <i class='bx bx-home-alt-2'></i>
+            <span>Home</span>
+        </a>
+        <a href="#services" class="bottom-nav-item" aria-label="Services">
+            <i class='bx bx-layer'></i>
+            <span>Services</span>
+        </a>
+        <a href="#academy" class="bottom-nav-item" aria-label="Academy">
+            <i class='bx bxs-graduation'></i>
+            <span>Academy</span>
+        </a>
+        <a href="#projects" class="bottom-nav-item" aria-label="Projects">
+            <i class='bx bx-briefcase-alt-2'></i>
+            <span>Work</span>
+        </a>
+        <a href="#contact" class="bottom-nav-item" aria-label="Contact">
+            <i class='bx bx-envelope'></i>
+            <span>Contact</span>
+        </a>
     </nav>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2206753822" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-content fade-in">
-                <span class="eyebrow">WEB DEVELOPER • MOBILE DEVELOPER • AI CHATBOT DEVELOPER</span>
-                <h1 class="hero-title">I Engineer <br><span class="text-gradient">Digital Ecosystems</span> That Scale Your Vision.</h1>
-                <p class="hero-description">I bridge the gap between complex business challenges and seamless digital
-                    experiences. From high-performance web architectures to intelligent AI-driven automations, I build
-                    the tools that empower brands to dominate the digital landscape.</p>
-                <div class="hero-buttons">
-                    <a href="projects.html" class="btn btn-primary">Explore Portfolio <i
-                            class='bx bx-right-arrow-alt'></i></a>
-                    <a href="#contact" class="btn btn-outline">Start a Project</a>
-                </div>
-            </div>
-            <div class="hero-visual fade-in delay-1">
-                <div class="dashboard-mockup glass">
-                    <div class="dash-header">
-                        <div class="dots"><span></span><span></span><span></span></div>
+        <section id="home" class="section hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-container">
+                <div class="hero-content reveal">
+                    <span class="badge glass-badge">Web • AI • Apps</span>
+                    <h1 class="hero-title">I Engineer <span class="gradient-text gradient-primary">Digital Ecosystems</span> That Scale</h1>
+                    <p class="hero-subtitle">Engineering high-performance web architectures, intelligent AI-driven automations, and intuitive app experiences to scale your vision.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary lg-btn tap-effect">Explore My Work</a>
+                        <a href="#contact" class="btn btn-outline lg-btn tap-effect">Start a Project</a>
                     </div>
-                    <div class="dash-body">
-                        <div class="chart-area">
-                            <svg viewBox="0 0 100 30" class="sparkline" preserveAspectRatio="none">
-                                <path d="M0 25 Q10 15, 20 20 T40 10 T60 15 T80 5 T100 10" fill="none"
-                                    stroke="url(#cyan-grad)" stroke-width="2" />
-                            </svg>
-                            <svg viewBox="0 0 100 30" class="sparkline bg-chart" preserveAspectRatio="none">
-                                <path d="M0 25 Q10 15, 20 20 T40 10 T60 15 T80 5 T100 10 L100 30 L0 30 Z"
-                                    fill="url(#cyan-grad-fade)" stroke="none" />
-                            </svg>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">5+</span>
+                            <span class="stat-label">Years Exp.</span>
                         </div>
-                        <div class="stat-cards">
-                            <div class="scard"><i class='bx bx-line-chart' style="color:var(--primary);"></i></div>
-                            <div class="scard"><i class='bx bx-server' style="color:var(--primary);"></i></div>
-                            <div class="scard"><i class='bx bx-code-block' style="color:var(--primary);"></i></div>
+                        <div class="divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">30+</span>
+                            <span class="stat-label">Projects Deploy.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Path Section -->
-        <section class="path-section" id="path">
-            <div class="section-header fade-in">
-                <h2>Choose Your Growth Path</h2>
-                <p>Tailored solutions for businesses ready to scale, and project-based mentorship for the next
-                    generation of engineers.</p>
-            </div>
-            <div class="path-grid">
-                <div class="path-card glass fade-in">
-                    <div class="card-icon"><i class='bx bx-briefcase-alt-2'></i></div>
-                    <h3>For Forward-Thinking Businesses</h3>
-                    <p>Transform your operations with bespoke digital products designed for high performance, sub-second
-                        load times, and maximum user retention.</p>
-                    <ul class="feature-list">
-                        <li><i class='bx bx-check-double'></i> Scalable Web Infrastructures</li>
-                        <li><i class='bx bx-check-double'></i> Native & Cross-Platform Apps</li>
-                        <li><i class='bx bx-check-double'></i> Intelligent AI Automations</li>
-                    </ul>
-                    <a href="projects.html" class="text-link">Explore Solutions <i
-                            class='bx bx-right-arrow-alt'></i></a>
-                    <i class='bx bx-rocket bg-icon'></i>
+        <!-- Services Section -->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Core <span class="gradient-text gradient-secondary">Capabilities</span></h2>
+                    <p class="section-desc">Specialized expertise tailored for modern digital transformation.</p>
                 </div>
-                <div class="path-card glass fade-in delay-1">
-                    <div class="card-icon"><i class='bx bx-terminal'></i></div>
-                    <h3>For Aspiring Technologists</h3>
-                    <p>Bridge the gap between theory and industry. Master the stacks that power the modern web through
-                        direct mentorship and project-led curricula.</p>
-                    <ul class="feature-list">
-                        <li><i class='bx bx-check-double'></i> Fullstack Logic & Design</li>
-                        <li><i class='bx bx-check-double'></i> Modern UI/UX Implementation</li>
-                        <li><i class='bx bx-check-double'></i> Applied Computational Maths</li>
-                    </ul>
-                    <a href="#learning" class="text-link">Join the Academy <i class='bx bx-right-arrow-alt'></i></a>
-                    <i class='bx bxs-graduation bg-icon'></i>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card glass-card tap-effect reveal">
+                        <div class="service-icon"><i class='bx bx-code-alt'></i></div>
+                        <h3>Web Development</h3>
+                        <p>High-performance, SEO-optimized, and lightning-fast web architectures built for scale.</p>
+                        <div class="tech-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Next.js</span>
+                        </div>
+                        <button class="btn-text learn-more-btn" data-service="web">Learn More <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="service-card glass-card tap-effect reveal" style="transition-delay: 0.1s">
+                        <div class="service-icon"><i class='bx bx-mobile-alt'></i></div>
+                        <h3>App Development</h3>
+                        <p>Fluid, native-grade mobile experiences from conceptual UI to robust backend operations.</p>
+                        <div class="tech-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <button class="btn-text learn-more-btn" data-service="app">Learn More <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="service-card glass-card tap-effect reveal" style="transition-delay: 0.2s">
+                        <div class="service-icon"><i class='bx bx-bot'></i></div>
+                        <h3>AI Chatbots & Automation</h3>
+                        <p>Intelligent workflows and consultative bots that automate operations 24/7 with human-like accuracy.</p>
+                        <div class="tech-tags">
+                            <span class="tag">OpenAI</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <button class="btn-text learn-more-btn" data-service="ai">Learn More <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services -->
-        <section class="expertise" id="expertise">
-            <div class="section-header text-center fade-in">
-                <h2>Specialized Core Competencies</h2>
-                <p>Engineering robust digital assets that automate growth and streamline user interaction.</p>
-                <div class="underline"></div>
-            </div>
-            <div class="expertise-grid">
-                <div class="exp-card glass fade-in">
-                    <div class="icon-wrap"><i class='bx bx-laptop'></i></div>
-                    <h4>Web Engineering</h4>
-                    <p>I architect lightning-fast, SEO-optimized web platforms that serve as the foundation for your
-                        brand's digital presence and growth.</p>
+        <!-- Projects Section -->
+        <section id="projects" class="section projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Selected <span class="gradient-text gradient-primary">Work</span></h2>
+                    <p class="section-desc">A showcase of engineered solutions built for speed, utility, and conversion.</p>
                 </div>
-                <div class="exp-card glass fade-in delay-1">
-                    <div class="icon-wrap"><i class='bx bx-mobile-vibration'></i></div>
-                    <h4>App Ecosystems</h4>
-                    <p>From conceptual UI to robust backends, I build fluid mobile experiences prioritizing native-grade
-                        performance and intuitive UX.</p>
-                </div>
-                <div class="exp-card glass fade-in delay-2">
-                    <div class="icon-wrap"><i class='bx bx-brain'></i></div>
-                    <h4>AI Automations</h4>
-                    <p>I deploy intelligent AI agents and webhook workflows that handle complex inquiries and automate
-                        24/7 business operations.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Learning Platform -->
-        <section class="learning" id="learning">
-            <div class="learning-container">
-                <div class="learning-content fade-in">
-                    <span class="eyebrow">Real Skills. Real Projects. Real Results.</span>
-                    <h2 class="section-title">Learn by Building, <br>Not Just Watching.</h2>
-                    <div class="course-list">
-                        <div class="course-item active">
-                            <div class="icon-box"><i class='bx bx-objects-horizontal-left'></i></div>
-                            <div class="course-info">
-                                <span class="eyebrow">PROGRAMMING LOGIC</span>
-                                <h5>Master PLD Through Direct Q&A</h5>
-                                <p>Interactive problem-solving designed to build structural logic. We focus on a
-                                    comprehensive Question & Answer format to demystify programming concepts from the
-                                    ground up.</p>
-                                <div class="course-features">
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Logic Mastery</span>
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Q&A Focused</span>
-                                </div>
-                                <div style="margin-top: 1rem;">
-                                    <a href="PLD.html" class="btn btn-primary btn-sm">Start Learning PLD</a>
-                                </div>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card glass-card reveal">
+                        <div class="project-image-wrapper">
+                            <img src="./Images/14.png" alt="E-Commerce Website" class="project-img" width="600" height="337" loading="lazy" decoding="async">
+                            <div class="project-overlay">
+                                <a href="https://franciscomanneh.github.io/multipurpose/" target="_blank" class="btn btn-primary sm-btn tap-effect">View Live</a>
                             </div>
                         </div>
-                        <div class="course-item">
-                            <div class="icon-box"><i class='bx bx-code-alt'></i></div>
-                            <div class="course-info">
-                                <span class="eyebrow">WEB ARCHITECTURE</span>
-                                <h5>100% Project-Based HTML & CSS</h5>
-                                <p>No boring theory—just building. Master the frontend stack by creating real-world
-                                    personal portfolios and landing pages from day one.</p>
-                                <div class="course-features">
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Project-Only</span>
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Real Portfolios</span>
-                                </div>
-                                <div style="margin-top: 1rem;">
-                                    <a href="html-css.html" class="btn btn-primary btn-sm">Start Learning Web</a>
-                                </div>
+                        <div class="project-content">
+                            <h3>High-Performance E-Commerce</h3>
+                            <p>A sophisticated retail platform engineered for high-volume transactions, dynamic filtering, and zero-friction checkout.</p>
+                            <div class="tech-tags">
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS3</span>
+                                <span class="tag">JS</span>
                             </div>
                         </div>
-                        <div class="course-item">
-                            <div class="icon-box"><i class='bx bx-infinite'></i></div>
-                            <div class="course-info">
-                                <span class="eyebrow">GRADE 10 MATHEMATICS</span>
-                                <h5>Simplified Maths & Exam Q&A</h5>
-                                <p>Specialized for Grade 10 students. We break down the curriculum into clear Question &
-                                    Answer sessions to ensure exam readiness and logical confidence.</p>
-                                <div class="course-features">
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Grade 10 Focus</span>
-                                    <span class="feature-tag"><i class='bx bx-check-double'></i> Exam Q&A</span>
-                                </div>
-                                <div style="margin-top: 1rem;">
-                                    <a href="math.html" class="btn btn-primary btn-sm">Start Learning Maths</a>
-                                </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card glass-card reveal" style="transition-delay: 0.1s">
+                        <div class="project-image-wrapper">
+                            <img src="./Images/1.png" alt="Snake Game App" class="project-img" width="600" height="337" loading="lazy" decoding="async">
+                            <div class="project-overlay">
+                                <a href="https://snake-game-six-ruby.vercel.app/" target="_blank" class="btn btn-primary sm-btn tap-effect">View Live</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Snake Logic Simulation App</h3>
+                            <p>An interactive execution environment demonstrating advanced state management and real-time coordination at 60FPS.</p>
+                            <div class="tech-tags">
+                                <span class="tag">Canvas API</span>
+                                <span class="tag">JS</span>
+                                <span class="tag">Vercel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card glass-card reveal" style="transition-delay: 0.2s">
+                        <div class="project-image-wrapper">
+                            <img src="./Images/7.png" alt="AI Chatbot" class="project-img" width="600" height="337" loading="lazy" decoding="async">
+                            <div class="project-overlay">
+                                <a href="https://consultation-chat.vercel.app/" target="_blank" class="btn btn-primary sm-btn tap-effect">View Live</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Predictive AI Advisory Bot</h3>
+                            <p>An intelligent consultation ecosystem designed to simulate expert-level interaction with complex state-driven response logic.</p>
+                            <div class="tech-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">AI</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="learning-visual glass fade-in delay-1">
-                    <div class="video-mockup">
-                        <div class="video-header">
-                            <div class="search-bar"></div>
-                            <div class="user-icon"></div>
-                        </div>
-                        <div class="video-body">
-                            <div class="play-btn"><i class='bx bx-play'></i></div>
-                        </div>
-                    </div>
+                <!-- View All Projects Button -->
+                <div class="view-all-projects reveal" style="transition-delay: 0.3s">
+                    <a href="projects.html" class="btn btn-primary lg-btn tap-effect">
+                        View All Projects <i class='bx bx-right-arrow-alt'></i>
+                    </a>
                 </div>
-            </div>
-            <div class="text-center" style="margin-top: 3rem;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform"
-                    class="btn btn-dark">Enroll in the Academy</a>
             </div>
         </section>
 
-        <!-- Selected Projects -->
-        <section class="case-studies" id="projects">
-            <div class="section-header split fade-in">
-                <div>
-                    <h2>Selected Projects</h2>
-                    <p>A selection of engineered solutions built for performance and real-world impact.</p>
+        <!-- Academy Section -->
+        <section id="academy" class="section academy">
+            <div class="academy-bg-glow"></div>
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">The <span class="gradient-text gradient-secondary">Academy</span></h2>
+                    <p class="section-desc">Bridge the gap between theory and industry. Master the stacks that power the modern web.</p>
                 </div>
-                <a href="projects.html" class="text-link">VIEW ALL WORK <i class='bx bx-right-arrow-alt'></i></a>
-            </div>
-            <div class="projects-grid">
-
-                <!-- Project 1 -->
-                <div class="project-card glass fade-in">
-                    <div class="project-img"><img src="./Images/14.png" alt="MultiShop Pro" loading="lazy"></div>
-                    <div class="project-info">
-                        <div class="tech-badges">
-                            <span class="tech-pill">HTML</span>
-                            <span class="tech-pill">CSS</span>
-                            <span class="tech-pill">JavaScript</span>
-                            <span class="tech-pill">GitHub</span>
+                <div class="academy-list">
+                    <!-- Course 1 -->
+                    <div class="academy-item glass-card tap-effect reveal">
+                        <div class="academy-icon"><i class='bx bx-brain'></i></div>
+                        <div class="academy-info">
+                            <h3>Programming Logic (PLD)</h3>
+                            <p>Interactive problem-solving designed to build structural logic through comprehensive Q&A formats.</p>
                         </div>
-                        <div class="project-header">
-                            <h3>High-Performance E-Commerce Engine</h3>
+                        <a href="pld.html" class="btn btn-primary btn-icon tap-effect"><i class='bx bx-chevron-right'></i><span>Start</span></a>
+                    </div>
+                    <!-- Course 2 -->
+                    <div class="academy-item glass-card tap-effect reveal" style="transition-delay: 0.1s">
+                        <div class="academy-icon"><i class='bx bx-laptop'></i></div>
+                        <div class="academy-info">
+                            <h3>HTML & CSS Architecture</h3>
+                            <p>100% project-based approach. Master the frontend stack by building real-world portfolios.</p>
                         </div>
-                        <p>A sophisticated retail platform engineered for high-volume transactions. Features a modular
-                            product grid, dynamic sub-second filtering, and a zero-friction checkout flow.</p>
-                        <div class="metrics">
-                            <div class="metric"><strong><i class='bx bx-rocket'></i> SCALABLE</strong><span>PRODUCTION
-                                    ARCHITECTURE</span></div>
+                        <a href="html-css.html" class="btn btn-primary btn-icon tap-effect"><i class='bx bx-chevron-right'></i><span>Start</span></a>
+                    </div>
+                    <!-- Course 3 -->
+                    <div class="academy-item glass-card tap-effect reveal" style="transition-delay: 0.2s">
+                        <div class="academy-icon"><i class='bx bx-math'></i></div>
+                        <div class="academy-info">
+                            <h3>Grade 10 Mathematics</h3>
+                            <p>Simplified logic & exam prep broken down into clear Q&A sessions ensuring logical confidence.</p>
                         </div>
-                        <div class="btn-group">
-                            <a href="https://franciscomanneh.github.io/multipurpose/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i
-                                            class='bx bx-desktop'></i> Live Demo</a>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="multishop"
-                                data-type="case"><i class='bx bx-file-find'></i> Case Study</button>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="multishop"
-                                data-type="design"><i class='bx bx-palette'></i> Design</button>
-                        </div>
+                        <a href="math.html" class="btn btn-primary btn-icon tap-effect"><i class='bx bx-chevron-right'></i><span>Start</span></a>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="project-card glass fade-in delay-1">
-                    <div class="project-img"><img src="./Images/1.png" alt="Snake Engine" loading="lazy"></div>
-                    <div class="project-info">
-                        <div class="tech-badges">
-                            <span class="tech-pill">HTML5 Canvas</span>
-                            <span class="tech-pill">JavaScript</span>
-                            <span class="tech-pill">Vercel</span>
-                        </div>
-                        <div class="project-header">
-                            <h3>Logic-Driven Simulation Engine</h3>
-                        </div>
-                        <p>An interactive execution environment built to demonstrate advanced state management and
-                            real-time coordination. Engineered with the HTML5 Canvas API with sub-millisecond input
-                            responsiveness.</p>
-                        <div class="metrics">
-                            <div class="metric"><strong><i class='bx bx-joystick'></i> 60FPS</strong><span>STATE-LED
-                                    LOGIC</span></div>
-                        </div>
-                        <div class="btn-group">
-                                <a href="https://snake-game-six-ruby.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i
-                                    class='bx bx-expand-alt'></i> Live Demo</a>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="snake"
-                                data-type="case"><i class='bx bx-file-find'></i> Case Study</button>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="snake"
-                                data-type="design"><i class='bx bx-palette'></i> Design</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card glass fade-in delay-2">
-                    <div class="project-img"><img src="./Images/7.png" alt="AI Chatbot" loading="lazy"></div>
-                    <div class="project-info">
-                        <div class="tech-badges">
-                            <span class="tech-pill">HTML</span>
-                            <span class="tech-pill">CSS</span>
-                            <span class="tech-pill">JavaScript</span>
-                            <span class="tech-pill">React</span>
-                        </div>
-                        <div class="project-header">
-                            <h3>Predictive Advisory Interface</h3>
-                        </div>
-                        <p>An intelligent consultation ecosystem designed to simulate expert-level interaction. Built
-                            with custom conversational pipelines and state-driven response logic for structured advisory
-                            outcomes.</p>
-                        <div class="metrics">
-                            <div class="metric"><strong><i class='bx bx-brain'></i> 98%</strong><span>INTENT
-                                    RESOLUTION</span></div>
-                        </div>
-                        <div class="btn-group">
-                                <a href="https://consultation-chat.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i
-                                    class='bx bx-terminal'></i> Live Demo</a>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="consultai"
-                                data-type="case"><i class='bx bx-file-find'></i> Case Study</button>
-                            <button class="btn btn-outline btn-sm proj-modal-btn" data-project="consultai"
-                                data-type="design"><i class='bx bx-palette'></i> Design</button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-
-        <!-- About -->
-        <section class="about" id="about">
-            <div class="about-container">
-                <div class="about-image glass fade-in">
-                    <img src="./persionalpictures/Screenshot 2026-01-26 074447.png" alt="Francisco Manneh" loading="lazy">
-                </div>
-                <div class="about-content fade-in delay-1">
-                    <h2>Meet the Architect.</h2>
-                    <p>I am <strong>Francisco Manneh</strong>, a Digital Architect dedicated to engineering
-                        high-performance systems and mentoring the next generation of technologists. With over 5 years
-                        of combined experience in software engineering and education, I specialize in bridging the gap
-                        between business vision and technical reality.</p>
-                    <p class="muted">My philosophy is simple: technology should solve problems, not create them. I build
-                        assets that are fast, accessible, and scalable, ensuring your investment drives measurable
-                        results.</p>
-                    <div class="about-badges">
-                        <span class="badge"><i class='bx bx-laptop'></i> Web Developer</span>
-                        <span class="badge"><i class='bx bx-terminal'></i> Mobile Developer</span>
-                        <span class="badge"><i class='bx bx-brain'></i> AI Developer</span>
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-image reveal">
+                        <div class="image-glass-frame">
+                            <img src="./persionalpictures/Screenshot 2026-01-26 074447.png" alt="Francisco Manneh - Digital Architect Portrait" class="img-fluid" width="400" height="400" loading="lazy" decoding="async">
+                        </div>
                     </div>
-                    <div style="margin-top: 2rem;">
-                        <div style="margin-top: 2rem;">
-                            <a href="https://drive.google.com/file/d/19sC7L8RGoXraWNLqYEfU7GQa60aHhxLq/view"
-                                class="btn btn-outline btn-sm">Review My CV</a>
+                    <div class="about-content reveal" style="transition-delay: 0.2s">
+                        <span class="badge glass-badge">Francisco Manneh</span>
+                        <h2 class="section-title">Digital <span class="gradient-text gradient-primary">Architect</span></h2>
+                        <p>I specialize in bridging the gap between business vision and technical reality. With a simple philosophy—technology should solve problems, not create them—I build assets that are fast, accessible, and scalable to ensure your investment drives measurable results.</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-box glass-card">
+                                <h3>5+</h3>
+                                <span>Years Exp.</span>
+                            </div>
+                            <div class="stat-box glass-card">
+                                <h3>30+</h3>
+                                <span>Projects</span>
+                            </div>
+                            <div class="stat-box glass-card">
+                                <h3>100+</h3>
+                                <span>Students</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="testimonials" id="testimonials">
-            <style>
-                /* ── Testimonial Carousel ── */
-                .testi-carousel-wrap {
-                    position: relative;
-                    max-width: 780px;
-                    margin: 3rem auto 0;
-                }
-
-                .testi-track {
-                    overflow: hidden;
-                    border-radius: 20px;
-                }
-
-                .testi-slides {
-                    display: flex;
-                    transition: transform 0.45s cubic-bezier(.4, 0, .2, 1);
-                }
-
-                .testi-slide {
-                    min-width: 100%;
-                    background: rgba(255, 255, 255, 0.03);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
-                    border-radius: 20px;
-                    padding: 2.25rem 2.5rem;
-                    box-sizing: border-box;
-                }
-
-                .testi-stars {
-                    color: #fbbf24;
-                    font-size: 0.9rem;
-                    letter-spacing: 2px;
-                    margin-bottom: 1.1rem;
-                }
-
-                .testi-quote-icon {
-                    font-size: 2rem;
-                    color: var(--primary);
-                    opacity: 0.5;
-                    margin-bottom: 0.75rem;
-                    display: block;
-                }
-
-                .testi-text {
-                    font-size: 1rem;
-                    color: var(--text-muted);
-                    line-height: 1.8;
-                    margin-bottom: 1.5rem;
-                    font-style: italic;
-                }
-
-                /* Clamped preview */
-                .testi-text.clamped {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 4;
-                    line-clamp: 4;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-
-                .read-more-btn {
-                    background: none;
-                    border: none;
-                    color: var(--primary);
-                    font-size: 0.82rem;
-                    font-weight: 700;
-                    cursor: pointer;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.25rem;
-                    padding: 0;
-                    margin-top: -0.75rem;
-                    margin-bottom: 1.25rem;
-                    font-family: 'Outfit', sans-serif;
-                    transition: opacity 0.2s;
-                }
-
-                .read-more-btn:hover {
-                    opacity: 0.75;
-                }
-
-                .testi-user {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                }
-
-                .testi-user img {
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    border: 2px solid rgba(0, 210, 255, 0.25);
-                }
-
-                .testi-user-info h5 {
-                    font-size: 1rem;
-                    margin-bottom: 0.15rem;
-                }
-
-                .testi-user-info span {
-                    font-size: 0.8rem;
-                    color: var(--text-muted);
-                }
-
-                /* Controls */
-                .testi-controls {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 1rem;
-                    margin-top: 1.75rem;
-                }
-
-                .testi-arrow {
-                    width: 42px;
-                    height: 42px;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    color: var(--text);
-                    font-size: 1.3rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    transition: all 0.25s ease;
-                }
-
-                .testi-arrow:hover {
-                    background: rgba(0, 210, 255, 0.12);
-                    border-color: var(--primary);
-                    color: var(--primary);
-                }
-
-                .testi-dots {
-                    display: flex;
-                    gap: 0.5rem;
-                }
-
-                .testi-dot {
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.15);
-                    border: none;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    padding: 0;
-                }
-
-                .testi-dot.active {
-                    background: var(--primary);
-                    width: 24px;
-                    border-radius: 4px;
-                    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
-                }
-
-                /* Badge row */
-                .testi-badge-row {
-                    display: flex;
-                    justify-content: center;
-                    gap: 2.5rem;
-                    flex-wrap: wrap;
-                    margin-top: 2.5rem;
-                    padding-top: 2.5rem;
-                    border-top: 1px solid rgba(255, 255, 255, 0.06);
-                }
-
-                .testi-badge {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 0.3rem;
-                    text-align: center;
-                }
-
-                .testi-badge strong {
-                    font-size: 1.6rem;
-                    font-weight: 800;
-                    font-family: 'Outfit';
-                    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-                    -webkit-background-clip: text;
-                    background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                }
-
-                .testi-badge span {
-                    font-size: 0.72rem;
-                    letter-spacing: 1.5px;
-                    color: var(--text-muted);
-                }
-            </style>
-
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow"><i class='bx bxl-google'></i> GOOGLE REVIEWS</span>
-                <h2>What People Say</h2>
-                <div class="underline"></div>
-                <p style="margin-top:0.75rem; color:var(--text-muted); font-size:0.95rem;">
-                    Real words from real students and clients.
-                </p>
-            </div>
-
-            <div class="testi-carousel-wrap fade-in">
-                <div class="testi-track">
-                    <div class="testi-slides" id="testiSlides">
-
-                        <!-- Slide 1 -->
-                        <div class="testi-slide">
-                            <div class="testi-stars">★★★★★</div>
-                            <i class='bx bxs-quote-left testi-quote-icon'></i>
-                            <p class="testi-text clamped" id="ttext-0">"I had the privilege of attending Francisco's
-                                voluntary web development classes at MDI. His knowledge and teaching style are truly
-                                impressive 🌟 — he explains complex concepts in a simple, relatable way. His passion for
-                                web development is clear, and his willingness to give his time to help others grow is
-                                truly inspiring. I've learned so much in a short period. Highly recommend to anyone
-                                serious about web development!"</p>
-                            <button class="read-more-btn" data-target="ttext-0"><i class='bx bx-chevron-down'></i> Read
-                                full review</button>
-                            <div class="testi-user">
-                                <img src="./persionalpictures/alagi.png" alt="Alagi Saho">
-                                <div class="testi-user-info">
-                                    <h5>Alagi Saho</h5>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section testimonials">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Client <span class="gradient-text gradient-secondary">Feedback</span></h2>
+                    <p class="section-desc">Real words from real students and partners.</p>
+                </div>
+                
+                <div class="testimonial-slider glass-card reveal">
+                    <div class="testimonial-track" id="testimonialTrack">
+                        <!-- Card 1 -->
+                        <div class="testi-card">
+                            <div class="stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                            <p class="quote">"His knowledge and teaching style are truly impressive — he explains complex concepts in a simple, relatable way. Highly recommend!"</p>
+                            <div class="author">
+                                <img src="./persionalpictures/alagi.png" alt="Alagi Saho - Student Testimonial" width="50" height="50" loading="lazy" decoding="async">
+                                <div class="author-info">
+                                    <h4>Alagi Saho</h4>
                                     <span>Student, MDI</span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Slide 2 -->
-                        <div class="testi-slide">
-                            <div class="testi-stars">★★★★★</div>
-                            <i class='bx bxs-quote-left testi-quote-icon'></i>
-                            <p class="testi-text clamped" id="ttext-1">"Attending Francisco's web development classes
-                                had a profound impact on both my personal growth and academic journey. His unique
-                                teaching style, passion for technology, and deep understanding of the field opened my
-                                eyes to new possibilities. I now feel motivated and determined to pursue a career in
-                                tech. His influence has been a turning point in my educational path."</p>
-                            <button class="read-more-btn" data-target="ttext-1"><i class='bx bx-chevron-down'></i> Read
-                                full review</button>
-                            <div class="testi-user">
-                                <img src="./persionalpictures/nata.png" alt="Nathaniel Boima">
-                                <div class="testi-user-info">
-                                    <h5>Nathaniel Boima</h5>
+                        <!-- Card 2 -->
+                        <div class="testi-card">
+                            <div class="stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                            <p class="quote">"His unique teaching style, passion for technology, and deep understanding of the field opened my eyes to new possibilities."</p>
+                            <div class="author">
+                                <img src="./persionalpictures/nata.png" alt="Nathaniel Boima - Student Testimonial" width="50" height="50" loading="lazy" decoding="async">
+                                <div class="author-info">
+                                    <h4>Nathaniel Boima</h4>
                                     <span>Student, MDI</span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Slide 3 -->
-                        <div class="testi-slide">
-                            <div class="testi-stars">★★★★★</div>
-                            <i class='bx bxs-quote-left testi-quote-icon'></i>
-                            <p class="testi-text clamped" id="ttext-2">"Francisco's team delivered a digital solution
-                                that perfectly captured our brand's essence. Their strategic approach to design and
-                                development was exceptional — resulting in a seamless user experience that significantly
-                                boosted our client engagement. Their professionalism and commitment to quality are
-                                second to none. Highly recommended for any business looking to elevate their online
-                                presence."</p>
-                            <button class="read-more-btn" data-target="ttext-2"><i class='bx bx-chevron-down'></i> Read
-                                full review</button>
-                            <div class="testi-user">
-                                <img src="./persionalpictures/konko.png" alt="Modoulamin Fatajo">
-                                <div class="testi-user-info">
-                                    <h5>Modoulamin Fatajo</h5>
-                                    <span>CEO, Konko Group Consultation Agencies</span>
+                        <!-- Card 3 -->
+                        <div class="testi-card">
+                            <div class="stars"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                            <p class="quote">"Francisco delivered a solution that perfectly captured our brand. Their strategic approach boosted our client engagement significantly."</p>
+                            <div class="author">
+                                <img src="./persionalpictures/konko.png" alt="Modoulamin Fatajo - CEO Konko Group" width="50" height="50" loading="lazy" decoding="async">
+                                <div class="author-info">
+                                    <h4>Modoulamin Fatajo</h4>
+                                    <span>CEO, Konko Group</span>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
                     </div>
                 </div>
-
-                <!-- Controls -->
-                <div class="testi-controls">
-                    <button class="testi-arrow" id="testiPrev" aria-label="Previous"><i
-                            class='bx bx-chevron-left'></i></button>
-                    <div class="testi-dots" id="testiDots">
-                        <button class="testi-dot active" data-i="0"></button>
-                        <button class="testi-dot" data-i="1"></button>
-                        <button class="testi-dot" data-i="2"></button>
-                    </div>
-                    <button class="testi-arrow" id="testiNext" aria-label="Next"><i
-                            class='bx bx-chevron-right'></i></button>
-                </div>
-
-                <!-- Summary badges -->
-                <div class="testi-badge-row">
-                    <div class="testi-badge"><strong>5.0</strong><span>GOOGLE RATING</span></div>
-                    <div class="testi-badge"><strong>3+</strong><span>VERIFIED REVIEWS</span></div>
-                    <div class="testi-badge"><strong>100%</strong><span>RECOMMENDED</span></div>
-                </div>
             </div>
-
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="https://share.google/o8vn1YFCwkExvMG5u" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                    See All Google Reviews <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-
-            <script>
-                (function () {
-                    const slides = document.getElementById('testiSlides');
-                    const dots = document.querySelectorAll('.testi-dot');
-                    let cur = 0, total = 3;
-
-                    function goTo(n) {
-                        cur = (n + total) % total;
-                        slides.style.transform = `translateX(-${cur * 100}%)`;
-                        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
-                    }
-
-                    document.getElementById('testiPrev').addEventListener('click', () => goTo(cur - 1));
-                    document.getElementById('testiNext').addEventListener('click', () => goTo(cur + 1));
-                    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
-
-                    // Auto-advance
-                    let timer = setInterval(() => goTo(cur + 1), 6000);
-                    document.querySelector('.testi-carousel-wrap').addEventListener('mouseenter', () => clearInterval(timer));
-                    document.querySelector('.testi-carousel-wrap').addEventListener('mouseleave', () => { timer = setInterval(() => goTo(cur + 1), 6000); });
-
-                    // Read more toggle
-                    document.querySelectorAll('.read-more-btn').forEach(btn => {
-                        btn.addEventListener('click', function () {
-                            const p = document.getElementById(this.dataset.target);
-                            const expanded = !p.classList.contains('clamped');
-                            p.classList.toggle('clamped', expanded);
-                            this.innerHTML = expanded
-                                ? "<i class='bx bx-chevron-down'></i> Read full review"
-                                : "<i class='bx bx-chevron-up'></i> Show less";
-                        });
-                    });
-                })();
-            </script>
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-cta" id="contact">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">CONNECT</span>
-                <h2>Let’s Build the Future</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="contact-cta-wrapper fade-in delay-1">
-                    <a href="https://wa.me/2206753822" target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp-btn"><i
-                        class='bx bxl-whatsapp'></i><span>WhatsApp</span></a>
-                <a href="tel:+2206753822" class="contact-btn"><i class='bx bx-phone'></i><span>Call</span></a>
-                <a href="mailto:[EMAIL_ADDRESS]" class="contact-btn"><i
-                        class='bx bx-envelope'></i><span>Email</span></a>
+        <section id="contact" class="section contact">
+            <div class="container container-sm">
+                <div class="contact-box glass-card reveal">
+                    <h2 class="section-title text-center">Let's <span class="gradient-text gradient-primary">Build Together</span></h2>
+                    <p class="text-center section-desc">Ready to scale your digital presence? Reach out and let's craft an ecosystem tailored to your needs.</p>
+                    
+                    <div class="contact-actions">
+                        <a href="https://wa.me/2206753822" target="_blank" class="btn btn-primary lg-btn tap-effect whatsapp-cta">
+                            <i class='bx bxl-whatsapp'></i> Message on WhatsApp
+                        </a>
+                        <div class="alt-contact">
+                            <a href="tel:+2206753822" class="btn btn-glass tap-effect">
+                                <i class='bx bx-phone'></i> Call
+                            </a>
+                            <a href="mailto:franciscomanneh@gmail.com" class="btn btn-glass tap-effect">
+                                <i class='bx bx-envelope'></i> Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"><a href="index.html" class="logo">F. MANNEH</a></div>
-            <div class="footer-links">
-                <a
-                    href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbmJVdFFneldMalNNMlVRMGg1X3h1aVZNOFVtZ3xBQ3Jtc0tscjg2elliQ3FfRk4xaXd0eUdDNTRreUxNLWllSUJ4Nm9JVWZiU3d1QUFHSXBwYVIxckhTZUZBdEM0U1ltdkVJZnMtaFdmaTBUbEVpbnhMZ0hmN2ZUaHdueW9ucl82VUN6Wk5xZXdIbk9LNE5BLUhXOA&q=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61586861617639">Facebook</a>
-                <a href="https://www.youtube.com/@codewithfrancisco-1">YouTube</a>
-                <a href="https://www.tiktok.com/@fmannehcode?is_from_webapp=1&sender_device=pc">Tiktok</a>
-                <a href="https://github.com/Franciscomanneh">GitHub</a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>F. MANNEH</h2>
+                    <p>Digital Architect</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Franciscomanneh" aria-label="Visit Francisco's GitHub profile"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.youtube.com/@codewithfrancisco-1" aria-label="Visit Francisco's YouTube channel"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://www.tiktok.com/@fmannehcode" aria-label="Visit Francisco's TikTok profile"><i class='bx bxl-tiktok'></i></a>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 F. Manneh. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Francisco Manneh. Engineered for scale.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- FRA Chatbot UI -->
-    <div class="chatbot-container" id="chatbot-container">
-        <div class="chatbot-header">
-            <div><i class='bx bx-bot'></i> Fra - Portfolio Assistant</div>
-            <button id="close-chat"><i class='bx bx-x'></i></button>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="chat-msg bot">Hi! I'm Fra. Ask me about Francisco's skills, courses, or how to contact him.</div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chat-input" placeholder="Type a message...">
-            <button id="send-chat"><i class='bx bx-send'></i></button>
-        </div>
-    </div>
-    <div class="chatbot-toggle" id="chatbot-toggle">
-        <i class='bx bx-message-square-dots'></i>
-    </div>
-
-    <!-- FRA Chatbot Logic -->
-    <script>
-        const chatToggle = document.getElementById('chatbot-toggle');
-        const chatContainer = document.getElementById('chatbot-container');
-        const closeChat = document.getElementById('close-chat');
-        const chatInput = document.getElementById('chat-input');
-        const sendChat = document.getElementById('send-chat');
-        const chatMessages = document.getElementById('chatbot-messages');
-
-        chatToggle.addEventListener('click', () => chatContainer.style.display = 'flex');
-        closeChat.addEventListener('click', () => chatContainer.style.display = 'none');
-
-        function addMessage(msg, sender) {
-            const div = document.createElement('div');
-            div.classList.add('chat-msg', sender);
-            div.innerText = msg;
-            chatMessages.appendChild(div);
-            // Auto scroll down
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        let chatState = 'normal';
-        let bookingData = {};
-
-        function processFraResponse(userMsg) {
-            const text = userMsg.toLowerCase();
-            let reply = "";
-            let isUrgent = false;
-
-            // Handle Urgent Mode
-            if (text.match(/\b(urgent|now|emergency|help|immediately)\b/)) {
-                isUrgent = true;
-                reply = "I understand this is urgent. I have sent an immediate alert to Francisco's dashboard. Meanwhile, please contact him directly on WhatsApp at +2206753822 for the fastest response.";
-                saveAppointment("Urgent Client", "Unknown Number", "ASAP", true);
-            }
-            // Handle Booking State Machine
-            else if (chatState === 'awaiting_name') {
-                bookingData.name = userMsg;
-                reply = `Great to meet you, ${bookingData.name}! What is your WhatsApp or phone number so Francisco can confirm the booking with you?`;
-                chatState = 'awaiting_phone';
-            }
-            else if (chatState === 'awaiting_phone') {
-                bookingData.phone = userMsg;
-                reply = `Got it. When would you like to schedule the appointment? (Example: "Tomorrow at 2pm" or "Friday morning")`;
-                chatState = 'awaiting_time';
-            }
-            else if (chatState === 'awaiting_time') {
-                bookingData.time = userMsg;
-                reply = `Perfect. I have booked your appointment for "${bookingData.time}". Francisco has been notified and will reach out to ${bookingData.phone} to confirm! What else can I help you with?`;
-                chatState = 'normal';
-                saveAppointment(bookingData.name, bookingData.phone, bookingData.time, false);
-            }
-            // Trigger Booking
-            else if (text.includes('book') || text.includes('appointment') || text.includes('schedule') || text.includes('meeting')) {
-                reply = "I can help you book an appointment with Francisco right now! First, what is your name?";
-                chatState = 'awaiting_name';
-            }
-            // Web / Tech Sales Psychology & Interception (The "What is a website?" logic)
-            else if (text.includes('what is a website') || text.includes('why do i need a website') || text.includes('what is an app')) {
-                reply = "A website or app isn't just code; it's a 24/7 digital salesperson for your business. It builds trust, captures clients globally, and generates revenue while you sleep. Francisco specializes in creating high-converting, scalable ecosystems that don't just look beautiful, but actively grow your business. Shall I book an appointment for you to discuss a custom solution?";
-            }
-            // Greetings
-            else if (text.match(/\b(hi|hello|hey|yo|greetings)\b/)) {
-                reply = "Hello! I'm Fra, your AI assistant. I can answer questions about tech, web development, Francisco's courses, or even help you book an appointment with him. How can I help?";
-            }
-            // Identity
-            else if (text.includes('who are you') || text.includes('your name') || text.includes('robot') || text.includes('bot')) {
-                reply = "I'm Fra, an advanced virtual assistant built to guide you through Francisco Manneh's ecosystem and answer your burning tech questions.";
-            }
-            // Contact
-            else if (text.includes('contact') || text.includes('whatsapp') || text.includes('number') || text.includes('phone') || text.includes('email') || text.includes('reach')) {
-                reply = "You can instantly reach Francisco on WhatsApp at +2206753822. If you want, I can also [schedule an appointment] for you right here in the chat!";
-            }
-            // Skills & Tech Stack
-            else if (text.includes('skill') || text.includes('stack') || text.includes('html') || text.includes('css') || text.includes('js') || text.includes('react') || text.includes('tech') || text.includes('can he do')) {
-                reply = "Francisco is an elite digital architect. His stack includes HTML5, CSS3, JavaScript, React, and creating predictive AI interfaces like me. His code is optimized for extreme performance and aesthetics.";
-            }
-            // Experience & Background
-            else if (text.includes('experience') || text.includes('background') || text.includes('years') || text.includes('cv') || text.includes('resume')) {
-                reply = "With over 5 years of experience engineering software and mentoring developers, Francisco bridges the gap between massive business vision and technical reality. He crafts assets that drive measurable results.";
-            }
-            // Courses / Academy
-            else if (text.match(/\b(course|courses|academy|teach|learn|math|maths|pld|student)\b/)) {
-                reply = "Francisco runs an exclusive Academy! He teaches 100% project-based HTML & CSS, Programming Logic (PLD), and Grade 10 Mathematics based on a unique Q&A system. Let me know if you want to enroll.";
-            }
-            // Projects & Work
-            else if (text.match(/\b(project|projects|work|portfolio|studies|multishop|snake)\b/)) {
-                reply = "He has engineered High-Performance E-Commerce platforms (MultiShop Pro), Logic Simulation Engines (Snake), and custom AI Chatbots. You can view these live demos above!";
-            }
-            // Location
-            else if (text.includes('where') || text.includes('location') || text.includes('country')) {
-                reply = "Francisco is based in The Gambia but works with clients globally, deploying highly scalable remote solutions.";
-            }
-            // Fallback - General Tech Question Intelligence (Faking connection to internet)
-            else {
-                reply = `That's an interesting question about "${userMsg}". In the rapidly evolving tech landscape, having a robust digital presence usually solves exactly that. Francisco has expertly navigated challenges like this for years. I highly recommend clicking the WhatsApp button so he can provide a tailored tech solution directly to you. Should we book an appointment?`;
-            }
-
-            setTimeout(() => {
-                addMessage(reply, 'bot');
-                saveChatLog(userMsg, reply);
-            }, 800);
-        }
-
-        function saveAppointment(name, phone, time, isUrgent) {
-            const appts = JSON.parse(localStorage.getItem('fra_appointments') || '[]');
-            appts.push({ name: name, phone: phone, time: time, urgent: isUrgent, date_requested: new Date().toISOString() });
-            localStorage.setItem('fra_appointments', JSON.stringify(appts));
-        }
-
-        function saveChatLog(userMsg, fraMsg) {
-            const logs = JSON.parse(localStorage.getItem('fra_chat_logs') || '[]');
-            logs.push({ user_msg: userMsg, fra_msg: fraMsg, timestamp: new Date().toISOString() });
-            localStorage.setItem('fra_chat_logs', JSON.stringify(logs));
-        }
-
-        sendChat.addEventListener('click', () => {
-            const txt = chatInput.value.trim();
-            if (txt) {
-                addMessage(txt, 'user');
-                chatInput.value = '';
-                processFraResponse(txt);
-            }
-        });
-
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendChat.click();
-        });
-    </script>
-
-    <!-- Project Detail Modal (matches projects.html) -->
-    <div class="proj-modal-overlay" id="proj-modal-overlay">
-        <div class="proj-modal-panel" id="proj-modal-panel">
-            <button class="proj-modal-close" id="proj-modal-close"><i class='bx bx-x'></i></button>
-            <div id="proj-modal-inner"></div>
+    <!-- Modals Container -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content glass-overlay">
+            <button class="close-modal"><i class='bx bx-x'></i></button>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-        (function () {
-            const projects = {
-                multishop: {
-                    title: 'High-Performance E-Commerce Engine',
-                    category: 'Web Development',
-                    img: './Images/14.png',
-                    stack: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
-                    metric: '99% Uptime',
-                    liveUrl: 'https://franciscomanneh.github.io/multipurpose/',
-                    case: {
-                        problem: 'Businesses needed a scalable online store that could handle multiple product categories without sacrificing load speed or user experience.',
-                        solution: 'Engineered a modular e-commerce architecture featuring a dynamic product grid, sub-second client-side filtering, and a zero-friction multi-step checkout flow optimized for conversion.',
-                        results: ['Sub-second page filtering', 'Multi-category inventory system', 'Mobile-first responsive layout', 'Zero-dependency vanilla JS engine']
-                    },
-                    design: { img: './Images/14.png', notes: 'Dark glassmorphic theme with cyan accent colors. Navigation is sticky and collapsible. Cards use depth shadows for product hierarchy.' }
-                },
-                snake: {
-                    title: 'Logic-Driven Simulation Engine',
-                    category: 'App Development',
-                    img: './Images/1.png',
-                    stack: ['HTML5 Canvas', 'JavaScript', 'Vercel'],
-                    metric: '60 FPS State Logic',
-                    liveUrl: 'https://snake-game-six-ruby.vercel.app/',
-                    case: {
-                        problem: 'Needed a browser-based interactive environment to demonstrate advanced state management, coordinate systems, and real-time input synchronization.',
-                        solution: 'Engineered a pure-JS Canvas simulation with a custom entity manager, collision detection system, and sub-15ms input response loop for fluid gameplay.',
-                        results: ['Stable 60FPS render loop', 'Sub-15ms input latency', 'Custom collision engine', 'Dynamic entity scaling']
-                    },
-                    design: { img: './Images/1.png', notes: 'High-contrast minimal UI. Neon green entity on dark canvas. Score overlaid with clean monospace font. No visual noise.' }
-                },
-                consultai: {
-                    title: 'Predictive Advisory Interface',
-                    category: 'AI Chat Development',
-                    img: './Images/7.png',
-                    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
-                    metric: '98% Intent Resolution',
-                    liveUrl: 'https://consultation-chat.vercel.app/',
-                    case: {
-                        problem: 'Businesses needed a front-line AI consultation layer that could handle structured advisory queries without requiring human intervention.',
-                        solution: 'Deployed a custom conversational pipeline with state-driven response logic, dynamic intent detection, and a smooth reactive chat UI built in React.',
-                        results: ['State-driven response engine', 'Structured advisory workflows', 'Real-time intent detection', '24/7 autonomous operation']
-                    },
-                    design: { img: './Images/7.png', notes: 'Clean chat-bubble interface. User and AI messages visually separated. Typing indicator micro-animation. Mobile-first layout.' }
-                }
-            };
-
-            const overlay = document.getElementById('proj-modal-overlay');
-            const panel = document.getElementById('proj-modal-panel');
-            const inner = document.getElementById('proj-modal-inner');
-            const closeBtn = document.getElementById('proj-modal-close');
-
-            function openModal(key, type) {
-                const p = projects[key];
-                if (!p) return;
-
-                if (type === 'case') {
-                    inner.innerHTML = `
-                    <div class="pmo-header">
-                        <span class="eyebrow"><i class='bx bx-file-find'></i> CASE STUDY</span>
-                        <h2>${p.title}</h2>
-                        <span class="pmo-category">${p.category}</span>
-                    </div>
-                    <div class="pmo-hero-img">
-                        <img src="${p.img}" alt="${p.title}">
-                        <div class="pmo-metric-badge">${p.metric}</div>
-                    </div>
-                    <div class="pmo-stack">${p.stack.map(s => `<span class="tech-pill">${s}</span>`).join('')}</div>
-                    <div class="pmo-section">
-                        <div class="pmo-sec-label"><i class='bx bx-error-circle'></i> The Problem</div>
-                        <p>${p.case.problem}</p>
-                    </div>
-                    <div class="pmo-section">
-                        <div class="pmo-sec-label"><i class='bx bx-bulb'></i> The Solution</div>
-                        <p>${p.case.solution}</p>
-                    </div>
-                    <div class="pmo-section">
-                        <div class="pmo-sec-label"><i class='bx bx-check-shield'></i> Outcomes &amp; Results</div>
-                        <ul class="pmo-results">${p.case.results.map(r => `<li><i class='bx bx-check-double'></i>${r}</li>`).join('')}</ul>
-                    </div>
-                    <div class="pmo-actions">
-                        <a href="${p.liveUrl}" target="_blank" class="btn btn-primary"><i class='bx bx-link-external'></i> View Live Project</a>
-                    </div>`;
-                } else {
-                    inner.innerHTML = `
-                    <div class="pmo-header">
-                        <span class="eyebrow"><i class='bx bx-palette'></i> DESIGN BOARD</span>
-                        <h2>${p.title}</h2>
-                        <span class="pmo-category">${p.category}</span>
-                    </div>
-                    <div class="pmo-design-canvas">
-                        <div class="pmo-canvas-img">
-                            <img src="${p.img}" alt="${p.title} Design">
-                        </div>
-                        <div class="pmo-design-notes">
-                            <div class="pmo-sec-label"><i class='bx bx-comment-detail'></i> Design Notes</div>
-                            <p>${p.design.notes}</p>
-                            <div class="pmo-stack" style="margin-top:1.5rem;">${p.stack.map(s => `<span class="tech-pill">${s}</span>`).join('')}</div>
-                        </div>
-                    </div>
-                    <div class="pmo-actions">
-                        <a href="${p.liveUrl}" target="_blank" class="btn btn-primary"><i class='bx bx-link-external'></i> View Live Project</a>
-                    </div>`;
-                }
-
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                setTimeout(() => panel.classList.add('in'), 10);
-            }
-
-            function closeModal() {
-                panel.classList.remove('in');
-                setTimeout(() => { overlay.classList.remove('active'); document.body.style.overflow = ''; }, 350);
-            }
-
-            document.querySelectorAll('.proj-modal-btn').forEach(btn => {
-                btn.addEventListener('click', () => openModal(btn.dataset.project, btn.dataset.type));
-            });
-            closeBtn.addEventListener('click', closeModal);
-            overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-        })();
-    </script>
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if(mobileMenuBtn && navLinks) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                if(navLinks.classList.contains('active')) {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-x'></i>";
-                } else {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                }
-            });
-
-            // Close menu when clicking a link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                });
-            });
-        }
-    </script>
-
-    <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
-        <linearGradient id="cyan-grad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#00D2FF" />
-            <stop offset="100%" stop-color="#3A7BD5" />
-        </linearGradient>
-        <linearGradient id="cyan-grad-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(0,210,255,0.4)" />
-            <stop offset="100%" stop-color="rgba(58,123,213,0)" />
-        </linearGradient>
-    </svg>
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
 </body>
-
 </html>

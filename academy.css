@@ -1,0 +1,312 @@
+/**
+ * ACADEMY SPECIFIC STYLES
+ * Extends the main style.css with course-specific layouts.
+ */
+
+ /* =========================================
+    LAYOUT & SIDEBAR (DESKTOP)
+ ========================================= */
+ .academy-layout {
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: 2rem;
+     padding-top: calc(var(--top-nav-height) + 2rem);
+     padding-bottom: calc(var(--bottom-nav-height) + 2rem);
+ }
+ 
+ @media (min-width: 1024px) {
+     .academy-layout {
+         grid-template-columns: 300px 1fr;
+         align-items: start;
+     }
+     
+     .course-sidebar {
+         position: sticky;
+         top: calc(var(--top-nav-height) + 2rem);
+     }
+ }
+ 
+ /* =========================================
+    BREADCRUMBS
+ ========================================= */
+ .breadcrumb {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     font-size: 0.9rem;
+     color: var(--text-muted);
+     margin-bottom: 2rem;
+ }
+ 
+ .breadcrumb a {
+     color: var(--primary);
+     transition: color 0.3s;
+ }
+ 
+ .breadcrumb a:hover {
+     color: white;
+ }
+ 
+ .breadcrumb i {
+     font-size: 0.8rem;
+ }
+ 
+ /* =========================================
+    SIDEBAR & PROGRESS
+ ========================================= */
+ .progress-card {
+     margin-bottom: 2rem;
+     padding: 1.5rem;
+ }
+ 
+ .progress-header {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 1rem;
+     font-weight: 600;
+ }
+ 
+ .progress-track {
+     width: 100%;
+     height: 8px;
+     background: rgba(255, 255, 255, 0.1);
+     border-radius: 4px;
+     overflow: hidden;
+     margin-bottom: 1rem;
+ }
+ 
+ .progress-fill {
+     height: 100%;
+     background: linear-gradient(90deg, var(--secondary), #34d399);
+     border-radius: 4px;
+     transition: width 0.5s ease;
+ }
+ 
+ .lesson-list {
+     display: flex;
+     flex-direction: column;
+     gap: 0.5rem;
+ }
+ 
+ .lesson-item {
+     display: flex;
+     align-items: center;
+     gap: 1rem;
+     padding: 0.75rem 1rem;
+     background: rgba(255, 255, 255, 0.02);
+     border-radius: 10px;
+     transition: background 0.3s;
+     cursor: pointer;
+ }
+ 
+ .lesson-item:hover {
+     background: rgba(255, 255, 255, 0.05);
+ }
+ 
+ .lesson-item.completed .lesson-icon {
+     color: var(--secondary);
+ }
+ 
+ .lesson-item.active {
+     border: 1px solid var(--border-glass);
+     background: rgba(255, 255, 255, 0.08);
+ }
+ 
+ .lesson-icon {
+     font-size: 1.2rem;
+     color: var(--text-muted);
+ }
+ 
+ /* =========================================
+    COURSE CONTENT & ACCORDIONS
+ ========================================= */
+ .course-header {
+     margin-bottom: 3rem;
+ }
+ 
+ .course-title {
+     font-size: clamp(2rem, 5vw, 3.5rem);
+     margin-bottom: 1rem;
+ }
+ 
+ .module {
+     margin-bottom: 1.5rem;
+ }
+ 
+ .module-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 1.5rem;
+     cursor: pointer;
+     transition: background 0.3s;
+ }
+ 
+ .module-header:hover {
+     background: rgba(255, 255, 255, 0.05);
+ }
+ 
+ .module-title {
+     font-size: 1.2rem;
+     font-family: var(--font-heading);
+ }
+ 
+ .module-icon {
+     font-size: 1.5rem;
+     transition: transform 0.3s;
+ }
+ 
+ .module.active .module-icon {
+     transform: rotate(180deg);
+ }
+ 
+ .module-content {
+     padding: 0 1.5rem;
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.4s ease, padding 0.4s ease;
+ }
+ 
+ .module.active .module-content {
+     padding: 0 1.5rem 1.5rem 1.5rem;
+ }
+ 
+ /* =========================================
+    INTERACTIVE ELEMENTS & CODE
+ ========================================= */
+ .qna-card {
+     background: rgba(0, 0, 0, 0.2);
+     border-radius: 12px;
+     padding: 1.5rem;
+     margin-top: 1rem;
+     border-left: 4px solid var(--primary);
+ }
+ 
+ .qna-q {
+     font-weight: 600;
+     margin-bottom: 1rem;
+     color: white;
+ }
+ 
+ .qna-a {
+     color: var(--text-muted);
+ }
+ 
+ .code-block {
+     position: relative;
+     background: #111116;
+     border-radius: 10px;
+     margin: 1.5rem 0;
+     overflow: hidden;
+ }
+ 
+ .code-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0.5rem 1rem;
+     background: rgba(255, 255, 255, 0.05);
+     font-size: 0.85rem;
+     color: var(--text-muted);
+ }
+ 
+ .copy-btn {
+     background: none;
+     border: none;
+     color: var(--primary);
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     gap: 0.25rem;
+     font-family: var(--font-body);
+     font-size: 0.85rem;
+     transition: color 0.3s;
+ }
+ 
+ .copy-btn:hover {
+     color: white;
+ }
+ 
+ .code-block pre {
+     padding: 1rem;
+     overflow-x: auto;
+     color: #e2e8f0;
+     font-family: Consolas, Monaco, monospace;
+     font-size: 0.9rem;
+     line-height: 1.5;
+ }
+ 
+ /* =========================================
+    MATHS & EQUATIONS
+ ========================================= */
+ .math-step {
+     display: flex;
+     gap: 1rem;
+     margin-bottom: 1rem;
+     align-items: center;
+     background: rgba(255, 255, 255, 0.02);
+     padding: 1rem;
+     border-radius: 10px;
+ }
+ 
+ .math-num {
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     background: var(--primary);
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 700;
+     flex-shrink: 0;
+ }
+ 
+ .answer-highlight {
+     color: var(--secondary);
+     font-weight: 700;
+     padding: 0.25rem 0.5rem;
+     background: rgba(5, 150, 105, 0.1);
+     border-radius: 4px;
+ }
+ 
+ /* =========================================
+    PRACTICE SECTION
+ ========================================= */
+ .practice-box {
+     border: 1px dashed var(--border-glass);
+     border-radius: 15px;
+     padding: 2rem;
+     text-align: center;
+     margin-top: 3rem;
+ }
+ 
+ .answer-toggle-content {
+     display: none;
+     margin-top: 1.5rem;
+     padding-top: 1.5rem;
+     border-top: 1px solid var(--border-glass);
+     text-align: left;
+ }
+ 
+ .answer-toggle-content.show {
+     display: block;
+ }
+ 
+ /* =========================================
+    STICKY CONTINUE MOB
+ ========================================= */
+ .sticky-continue {
+     position: fixed;
+     bottom: calc(var(--bottom-nav-height) + 1.5rem);
+     left: 50%;
+     transform: translateX(-50%);
+     z-index: 990;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+ }
+ 
+ @media (min-width: 768px) {
+     .sticky-continue {
+         display: none; /* Hide on desktop assuming sidebar handles progress */
+     }
+ }

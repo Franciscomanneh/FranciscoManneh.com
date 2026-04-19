@@ -2,536 +2,294 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HTML & CSS Architecture | F. Manneh Academy</title>
+    <meta name="description" content="Master front-end web architecture by building real-world projects.">
     <link rel="icon" type="image/png" href="Favicon/3-removebg-preview.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & CSS Course | F. Manneh Academy</title>
-    <meta name="description" content="Build real-world websites from scratch. A 100% project-based HTML & CSS course by F. Manneh.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0a0a0f">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Consolas&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        :root { --accent: #00D2FF; --accent2: #3A7BD5; }
-
-        /* Course Page Overrides */
-        .course-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 10rem 2rem 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 4rem;
-        }
-        .course-hero-text { flex: 1; }
-        .course-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-        .course-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-        .course-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            max-width: 540px;
-        }
-        .course-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        .course-stats {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .c-stat { display: flex; flex-direction: column; }
-        .c-stat strong { font-family: 'Outfit'; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
-        .c-stat span { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; }
-
-        /* Hero Visual */
-        .course-hero-visual { flex: 1; display: flex; justify-content: center; }
-        .hero-code-card {
-            background: rgba(17, 26, 38, 0.8);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 460px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-        }
-        .code-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-r { background: #ff5f57; }
-        .dot-y { background: #febc2e; }
-        .dot-g { background: #28c840; }
-        .code-tab {
-            margin-left: auto;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.05);
-            padding: 0.2rem 0.75rem;
-            border-radius: 50px;
-        }
-        .code-line { font-family: 'Courier New', monospace; font-size: 0.88rem; line-height: 1.8; }
-        .c-tag { color: #ff79c6; }
-        .c-attr { color: #50fa7b; }
-        .c-val { color: #f1fa8c; }
-        .c-text { color: #f8f8f2; }
-        .c-comment { color: #6272a4; }
-        .c-prop { color: var(--accent); }
-        .code-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background: var(--accent);
-            animation: blink 1s step-end infinite;
-            vertical-align: text-bottom;
-            margin-left: 2px;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Modules Section */
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-        }
-        .module-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .module-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0,210,255,0.06), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .module-card:hover { border-color: var(--accent); transform: translateY(-6px); }
-        .module-card:hover::before { opacity: 1; }
-        .module-num {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        .module-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
-        .module-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
-        .module-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .m-tag {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            background: rgba(0,210,255,0.1);
-            color: var(--accent);
-            border-radius: 50px;
-            border: 1px solid rgba(0,210,255,0.2);
-        }
-
-        /* Projects Showcase */
-        .projects-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-        }
-        .proj-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 16px;
-            padding: 1.75rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: all 0.3s ease;
-        }
-        .proj-item:hover { border-color: var(--accent); background: rgba(0,210,255,0.04); }
-        .proj-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(0,210,255,0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-        .proj-item h4 { font-size: 1rem; margin-bottom: 0.35rem; }
-        .proj-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-
-        /* FAQ / Q&A */
-        .faq-list {
-            max-width: 800px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .faq-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .faq-item.open { border-color: var(--accent); }
-        .faq-q {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 1.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            gap: 1rem;
-        }
-        .faq-q i { font-size: 1.25rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
-        .faq-item.open .faq-q i { transform: rotate(45deg); }
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s;
-            padding: 0 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            line-height: 1.75;
-        }
-        .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: linear-gradient(135deg, rgba(0,210,255,0.12), rgba(58,123,213,0.12));
-            border: 1px solid rgba(0,210,255,0.2);
-            border-radius: 28px;
-            padding: 4rem 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .cta-banner p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 560px; margin-left: auto; margin-right: auto; }
-        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-        @media (max-width: 900px) {
-            .course-hero { flex-direction: column; padding-top: 8rem; text-align: center; }
-            .course-subtitle { margin: 0 auto 2.5rem; }
-            .course-ctas { justify-content: center; }
-            .course-stats { justify-content: center; }
-            .hero-code-card { max-width: 100%; }
-        }
-    </style>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="academy.css">
 </head>
 <body>
-    <nav class="navbar glass" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">F. MANNEH</a>
-            <ul class="nav-links">
-                <li><a href="#modules">Modules</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="index.html">← Home</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn btn-primary btn-sm">Enroll Now</a>
-            </div>
-            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu"><i class='bx bx-menu'></i></button>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-container">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading Workspace...</div>
+    </div>
+
+    <!-- Top Navigation (Desktop) -->
+    <header class="top-nav glass-nav">
+        <a href="index.html" class="logo">F. MANNEH <span style="font-weight:400; font-size:1rem;">| Academy</span></a>
+        <nav class="desktop-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#academy" class="nav-link active">Courses</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="desktop-actions">
+            <!-- Hamburger Menu Trigger (Mobile/Tablet) -->
+            <button class="hamburger-btn" aria-label="Toggle Menu">
+                <i class='bx bx-menu'></i>
+            </button>
+            <a href="https://docs.google.com/forms/" target="_blank" class="btn btn-primary compact-btn">Enroll Now</a>
         </div>
+    </header>
+
+    <!-- Overlay Navigation (Hamburger Menu) -->
+    <div class="overlay-nav glass-overlay">
+        <div class="overlay-header">
+            <a href="index.html" class="logo">Academy</a>
+            <button class="close-overlay-btn"><i class='bx bx-x'></i></button>
+        </div>
+        <nav class="overlay-links">
+            <a href="index.html" class="overlay-link"><i class='bx bx-home-alt-2'></i> Home</a>
+            <a href="index.html#academy" class="overlay-link"><i class='bx bx-book-open'></i> All Courses</a>
+            <a href="#" class="overlay-link active"><i class='bx bx-code-alt'></i> HTML & CSS</a>
+            <a href="pld.html" class="overlay-link"><i class='bx bx-brain'></i> PLD Logic</a>
+            <a href="math.html" class="overlay-link"><i class='bx bx-math'></i> Maths</a>
+            <a href="index.html#contact" class="overlay-link"><i class='bx bx-envelope'></i> Contact</a>
+        </nav>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav glass-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class='bx bx-home-alt-2'></i>
+            <span>Home</span>
+        </a>
+        <a href="index.html#academy" class="bottom-nav-item active">
+            <i class='bx bx-book-open'></i>
+            <span>Courses</span>
+        </a>
+        <a href="#progress" class="bottom-nav-item">
+            <i class='bx bx-chart'></i>
+            <span>Progress</span>
+        </a>
+        <a href="index.html#contact" class="bottom-nav-item">
+            <i class='bx bx-envelope'></i>
+            <span>Contact</span>
+        </a>
     </nav>
 
-    <main>
-        <!-- Hero -->
-        <section id="home" style="background: radial-gradient(ellipse at 60% 0%, rgba(0,210,255,0.08) 0%, transparent 60%);">
-            <div class="course-hero">
-                <div class="course-hero-text fade-in">
-                    <div class="course-badge"><i class='bx bx-code-block'></i> PROJECT-BASED LEARNING</div>
-                    <h1 class="course-title">Build Real Websites<br><span class="text-gradient">with HTML & CSS</span></h1>
-                    <p class="course-subtitle">No boring theory. From day one, you build real projects — landing pages, portfolios, and full websites — and ship them to the world.</p>
-                    <div class="course-ctas">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn btn-primary"><i class='bx bx-rocket'></i> Enroll Now — It's Free</a>
-                        <a href="#modules" class="btn btn-outline">Explore Curriculum</a>
-                    </div>
-                    <div class="course-stats">
-                        <div class="c-stat"><strong>4</strong><span>Real Projects</span></div>
-                        <div class="c-stat"><strong>0</strong><span>Experience Needed</span></div>
-                        <div class="c-stat"><strong>100%</strong><span>Project-Based</span></div>
-                    </div>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2206753822" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <main class="container academy-layout">
+        
+        <!-- SIDEBAR (Desktop) -->
+        <aside class="course-sidebar reveal">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <i class='bx bx-chevron-right'></i> 
+                <a href="index.html#academy">Academy</a> <i class='bx bx-chevron-right'></i> 
+                <span>HTML & CSS</span>
+            </div>
+
+            <div class="progress-card glass-card" id="progress">
+                <div class="progress-header">
+                    <span>Course Progress</span>
+                    <span id="progressText">0% Completed</span>
                 </div>
-                <div class="course-hero-visual fade-in delay-1">
-                    <div class="hero-code-card">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Expand modules to mark them as completed.</p>
+            </div>
+
+            <div class="lesson-list glass-card">
+                <h4 style="margin-bottom: 1rem;">Course Modules</h4>
+                <div class="lesson-item active">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>1. HTML Foundations</span>
+                </div>
+                <div class="lesson-item">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>2. Semantic Structure</span>
+                </div>
+                <div class="lesson-item">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>3. CSS Styling</span>
+                </div>
+                <div class="lesson-item">
+                    <i class='bx bx-circle lesson-icon'></i>
+                    <span>4. Flex & Grid Layouts</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <article class="course-content">
+            
+            <!-- Hero Section -->
+            <section class="course-header reveal">
+                <span class="badge glass-badge" style="border-color: #38bdf8; color: #38bdf8;">Project-Based Learning</span>
+                <h1 class="course-title">HTML & CSS <span class="gradient-text gradient-primary">Architecture</span></h1>
+                <p class="section-desc" style="margin: 0; text-align: left; max-width: 800px;">
+                    Dive deep into the core building blocks of the web. This module focuses exclusively on writing clean, semantic structure, styling with modern rules, and constructing responsive UI from scratch without relying on frameworks.
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <span class="tag"><i class='bx bx-time'></i> 4 Weeks</span>
+                    <span class="tag"><i class='bx bx-user'></i> Beginners Welcome</span>
+                </div>
+            </section>
+
+            <!-- Module 1: HTML Box Model -->
+            <section class="module glass-card reveal delay-1">
+                <div class="module-header tap-effect">
+                    <div>
+                        <span style="color: var(--primary); font-family: var(--font-heading); font-weight: 700; margin-right: 0.5rem;">01</span>
+                        <span class="module-title">The Foundation: HTML Tags & Elements</span>
+                    </div>
+                    <i class='bx bx-chevron-down module-icon'></i>
+                </div>
+                <div class="module-content">
+                    <p style="margin-top: 1rem; color: var(--text-muted);">Every great bridge requires a solid structure. In web development, HTML is the steel frame holding everything together. Let's look at how elements are nested.</p>
+                    
+                    <div class="code-block">
                         <div class="code-header">
-                            <span class="dot dot-r"></span>
-                            <span class="dot dot-y"></span>
-                            <span class="dot dot-g"></span>
-                            <span class="code-tab">portfolio.html</span>
+                            <span>index.html</span>
+                            <button class="copy-btn"><i class='bx bx-copy'></i> Copy</button>
                         </div>
-                        <div class="code-line"><span class="c-comment">&lt;!-- Your first project --&gt;</span></div>
-                        <div class="code-line"><span class="c-tag">&lt;section</span> <span class="c-attr">class=</span><span class="c-val">"hero"</span><span class="c-tag">&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="c-tag">&lt;h1&gt;</span><span class="c-text">Hi, I'm Francisco</span><span class="c-tag">&lt;/h1&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="c-tag">&lt;p&gt;</span><span class="c-text">Web Developer</span><span class="c-tag">&lt;/p&gt;</span></div>
-                        <div class="code-line"><span class="c-tag">&lt;/section&gt;</span></div>
-                        <br>
-                        <div class="code-line"><span class="c-comment">/* styles.css */</span></div>
-                        <div class="code-line"><span class="c-tag">.hero</span> {</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="c-prop">background:</span> <span class="c-val">#0a0f1a</span>;</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="c-prop">color:</span> <span class="c-val">#00D2FF</span>;</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="c-prop">font-family:</span> <span class="c-val">'Outfit'</span>;<span class="code-cursor"></span></div>
-                        <div class="code-line">}</div>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Structural Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main class="container"&gt;
+        &lt;h1&gt;Architecting The Web&lt;/h1&gt;
+        &lt;p&gt;Paragraph elements encapsulate text blocks.&lt;/p&gt;
+        &lt;a href="#" class="btn"&gt;Click Action&lt;/a&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- What You'll Learn -->
-        <section class="expertise" id="learn">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">SKILLS</span>
-                <h2>What You Will Master</h2>
-                <div class="underline"></div>
-                <p style="margin-top: 1rem;">Every skill is taught by building, not memorizing.</p>
-            </div>
-            <div class="expertise-grid">
-                <div class="exp-card glass fade-in">
-                    <div class="icon-wrap"><i class='bx bx-code-block'></i></div>
-                    <h4>HTML Structure</h4>
-                    <p>Semantic tags, forms, links, images — the skeleton of every website on the internet.</p>
-                </div>
-                <div class="exp-card glass fade-in delay-1">
-                    <div class="icon-wrap"><i class='bx bx-palette'></i></div>
-                    <h4>CSS Styling</h4>
-                    <p>Colors, typography, gradients, animations — turn raw HTML into beautiful visual designs.</p>
-                </div>
-                <div class="exp-card glass fade-in delay-2">
-                    <div class="icon-wrap"><i class='bx bx-layout'></i></div>
-                    <h4>Flexbox & Grid</h4>
-                    <p>Build modern, robust layouts that work exactly how you design them on every screen.</p>
-                </div>
-                <div class="exp-card glass fade-in">
-                    <div class="icon-wrap"><i class='bx bx-mobile-alt'></i></div>
-                    <h4>Responsive Design</h4>
-                    <p>Make every project look perfect on phones, tablets, and desktops using media queries.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Course Modules -->
-        <section id="modules" style="padding: 6rem 2rem;">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">CURRICULUM</span>
-                <h2>Course Modules</h2>
-                <div class="underline"></div>
-                <p style="margin-top: 1rem;">4 progressive modules that build on each other.</p>
-            </div>
-            <div class="modules-grid">
-                <div class="module-card fade-in">
-                    <div class="module-num">MODULE 01</div>
-                    <h3>Introduction to HTML</h3>
-                    <p>Set up your code editor, understand document structure, text formatting, links, images, and semantic HTML elements.</p>
-                    <div class="module-tags">
-                        <span class="m-tag">Tags</span>
-                        <span class="m-tag">Semantics</span>
-                        <span class="m-tag">Forms</span>
-                        <span class="m-tag">Links</span>
-                    </div>
-                </div>
-                <div class="module-card fade-in delay-1">
-                    <div class="module-num">MODULE 02</div>
-                    <h3>Styling with CSS</h3>
-                    <p>Explore the cascade, the box model, custom fonts, color systems, borders, and shadows for visual impact.</p>
-                    <div class="module-tags">
-                        <span class="m-tag">Box Model</span>
-                        <span class="m-tag">Colors</span>
-                        <span class="m-tag">Typography</span>
-                    </div>
-                </div>
-                <div class="module-card fade-in delay-2">
-                    <div class="module-num">MODULE 03</div>
-                    <h3>Layouts & Flexbox</h3>
-                    <p>Master Flexbox for single-axis alignment and CSS Grid for full-page two-dimensional layout control.</p>
-                    <div class="module-tags">
-                        <span class="m-tag">Flexbox</span>
-                        <span class="m-tag">CSS Grid</span>
-                        <span class="m-tag">Alignment</span>
-                    </div>
-                </div>
-                <div class="module-card fade-in">
-                    <div class="module-num">MODULE 04</div>
-                    <h3>Build Full Websites</h3>
-                    <p>Combine all skills to build a responsive landing page, a business site, and your own personal portfolio.</p>
-                    <div class="module-tags">
-                        <span class="m-tag">Portfolio</span>
-                        <span class="m-tag">Responsive</span>
-                        <span class="m-tag">Deploy</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects You'll Build -->
-        <section id="projects" style="padding: 6rem 2rem;">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">WHAT YOU BUILD</span>
-                <h2>Real Projects You'll Ship</h2>
-                <div class="underline"></div>
-                <p style="margin-top: 1rem;">Every module ends with a project you deploy live and add to your portfolio.</p>
-            </div>
-            <div class="projects-showcase">
-                <div class="proj-item fade-in">
-                    <div class="proj-icon"><i class='bx bx-window-alt'></i></div>
+            <!-- Module 2: CSS Basics -->
+            <section class="module glass-card reveal delay-2">
+                <div class="module-header tap-effect">
                     <div>
-                        <h4>Simple Landing Page</h4>
-                        <p>Your first complete page with a hero section, content, and footer — all styled from scratch.</p>
+                        <span style="color: var(--primary); font-family: var(--font-heading); font-weight: 700; margin-right: 0.5rem;">02</span>
+                        <span class="module-title">Visual Engineering: Intro to CSS</span>
                     </div>
+                    <i class='bx bx-chevron-down module-icon'></i>
                 </div>
-                <div class="proj-item fade-in delay-1">
-                    <div class="proj-icon"><i class='bx bx-briefcase-alt-2'></i></div>
-                    <div>
-                        <h4>Business Website</h4>
-                        <p>A multi-section professional site with navigation, services, and a contact form.</p>
+                <div class="module-content">
+                    <p style="margin-top: 1rem; color: var(--text-muted);">If HTML is the steel frame, CSS is the interior design, paint, and lighting. We target elements using selectors to build a cohesive visual aesthetic.</p>
+                    
+                    <div class="qna-card">
+                        <div class="qna-q">How do I correctly reset browser defaults?</div>
+                        <div class="qna-a">Most professional developers start with a "Reset" block. The * selector targets every element on the page ensuring sizing calculation is predictable.</div>
                     </div>
-                </div>
-                <div class="proj-item fade-in delay-2">
-                    <div class="proj-icon"><i class='bx bx-layout'></i></div>
-                    <div>
-                        <h4>Responsive Clone</h4>
-                        <p>Recreate a real-world website design to sharpen your pixel-perfect CSS precision skills.</p>
-                    </div>
-                </div>
-                <div class="proj-item fade-in">
-                    <div class="proj-icon"><i class='bx bx-user-circle'></i></div>
-                    <div>
-                        <h4>Personal Portfolio</h4>
-                        <p>Your own client-ready portfolio website — live on the internet and ready to impress.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- FAQ -->
-        <section id="faq" style="padding: 6rem 2rem;">
-            <div class="section-header text-center fade-in">
-                <span class="eyebrow">FAQ</span>
-                <h2>Common Questions</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-q">Do I need any experience to join? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">No experience needed at all. We start from the absolute basics — even setting up your code editor — and build from there step by step.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">What tools will I need? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">Just a laptop and a free code editor like VS Code. Everything else is provided. No paid software or subscriptions required.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">How is this different from online tutorials? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">Unlike passive video watching, this is a live, guided program where you build complete projects from day one. You get direct feedback on your work and can ask questions in real-time.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">Will I have a real portfolio at the end? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">Yes! By the end of the course you will have built and deployed 4 real projects including your own personal portfolio website that you can share with clients and employers immediately.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">How do I enroll? <i class='bx bx-plus'></i></div>
-                    <div class="faq-a">Click the "Enroll Now" button and fill out the Google Form. You'll receive a WhatsApp message with all the details within 24 hours.</div>
-                </div>
-            </div>
-        </section>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>style.css</span>
+                            <button class="copy-btn"><i class='bx bx-copy'></i> Copy</button>
+                        </div>
+                        <pre><code>/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    /* Ensures padding doesn't inflate element width */
+}
 
-        <!-- CTA -->
-        <section style="padding: 6rem 2rem;">
-            <div class="cta-banner fade-in">
-                <span class="eyebrow" style="display:block; text-align:center; margin-bottom:1rem;"><i class='bx bx-rocket'></i> START TODAY</span>
-                <h2>Ready to Build Your First Website?</h2>
-                <p>Enroll now and join students who are already building real projects and landing opportunities in tech.</p>
-                <div class="cta-row">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjBHvEZn9DTBdthhI_Tet2vP2SDm-ANiMXz8SiI7rb_QhVkw/viewform" class="btn btn-primary"><i class='bx bx-rocket'></i> Enroll Now — Free</a>
-                    <a href="https://wa.me/2206753822" class="btn btn-outline"><i class='bxl-whatsapp bx'></i> WhatsApp Us</a>
+/* Targeting a Class */
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the container */
+    background-color: #0a0a0f;
+    color: #ffffff;
+}</code></pre>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Module 3: Modern Layouts with Flexbox -->
+            <section class="module glass-card reveal delay-3">
+                <div class="module-header tap-effect">
+                    <div>
+                        <span style="color: var(--primary); font-family: var(--font-heading); font-weight: 700; margin-right: 0.5rem;">03</span>
+                        <span class="module-title">Modern Alignments: Flexbox & Grid</span>
+                    </div>
+                    <i class='bx bx-chevron-down module-icon'></i>
+                </div>
+                <div class="module-content">
+                    <p style="margin-top: 1rem; color: var(--text-muted);">Long gone are the days of floats and table layouts. Learn to leverage Flexbox for 1-dimensional layouts (navbars, cards) and CSS Grid for complex 2D architectures.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Flexbox Center Snippet</span>
+                            <button class="copy-btn"><i class='bx bx-copy'></i> Copy</button>
+                        </div>
+                        <pre><code>.hero-section {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    min-height: 100vh;       /* Full viewport height */
+    flex-direction: column;  /* Stack items vertically */
+    gap: 1.5rem;             /* Space between items */
+}</code></pre>
+                    </div>
+                    
+                    <div class="qna-card" style="border-left-color: var(--secondary);">
+                        <div class="qna-q">When should I use Flexbox vs Grid?</div>
+                        <div class="qna-a">Use <strong>Flexbox</strong> when aligning elements in a single row or column (like a nav menu or a single row of buttons). Use <strong>CSS Grid</strong> when you need precise control over multiple rows and columns simultaneously (like a photo gallery or page skeleton).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Section -->
+            <section class="practice-box glass-card reveal">
+                <h3>Try It Yourself</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Test your logic: How would you create a button that changes background color when the user hovers over it?</p>
+                <button class="btn btn-primary tap-effect answer-toggle-btn" data-target="practiceAnswer1">Reveal Answer <i class='bx bx-chevron-down'></i></button>
+                
+                <div class="answer-toggle-content" id="practiceAnswer1">
+                    <p>You use the <code>:hover</code> pseudo-class in CSS!</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Hover State</span>
+                            <button class="copy-btn"><i class='bx bx-copy'></i> Copy</button>
+                        </div>
+                        <pre><code>.btn {
+    background-color: #2563eb;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="glass-card reveal" style="text-align: center; margin-top: 3rem; background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(15, 23, 42, 0.5)); border-color: rgba(37, 99, 235, 0.2);">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Ready to build real projects?</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Stop watching tutorials. Join the academy to build fully responsive websites from day one.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://docs.google.com/forms/" target="_blank" class="btn btn-primary tap-effect">Join the Class</a>
+                    <a href="https://chat.whatsapp.com/" target="_blank" class="btn btn-outline tap-effect"><i class='bx bxl-whatsapp'></i> Class Group</a>
+                </div>
+            </section>
+
+        </article>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"><a href="index.html" class="logo">F. MANNEH</a></div>
-            <div class="footer-links">
-                <a href="PLD.html">PLD Course</a>
-                <a href="math.html">Maths Course</a>
-                <a href="projects.html">Portfolio</a>
-                <a href="index.html">Home</a>
-            </div>
-        </div>
-        <div class="footer-bottom"><p>&copy; 2026 F. Manneh Academy. All rights reserved.</p></div>
-    </footer>
-
+    <!-- Scripts -->
     <script src="script.js"></script>
-    <script>
-        // FAQ Accordion
-        document.querySelectorAll('.faq-q').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                if (!isOpen) item.classList.add('open');
-            });
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if(mobileMenuBtn && navLinks) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                if(navLinks.classList.contains('active')) {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-x'></i>";
-                } else {
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                }
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = "<i class='bx bx-menu'></i>";
-                });
-            });
-        }
-    </script>
+    <script src="academy.js"></script>
 </body>
 </html>
