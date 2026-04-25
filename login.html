@@ -120,6 +120,26 @@
             font-size: 0.85rem;
             margin-top: 1rem;
             display: none;
+            word-wrap: break-word;
+        }
+
+        #success-msg {
+            color: #34d399;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .auth-toggle {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .auth-toggle a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
 
         @media (max-width: 480px) {
@@ -132,33 +152,129 @@
 
     <div class="login-glass">
         <i class='bx bx-lock-alt login-icon'></i>
-        <h1 class="login-title">Admin Portal</h1>
-        <p class="login-subtitle">Authenticate to view site analytics.</p>
+        <h1 class="login-title" id="form-title">Admin Portal</h1>
+        <p class="login-subtitle" id="form-subtitle">Authenticate to view site analytics.</p>
 
+        <!-- Login Form -->
         <form id="loginForm">
             <div class="input-group">
-                <i class='bx bx-key'></i>
-                <input type="password" id="passcode" class="login-input" placeholder="Enter strictly private passcode..." required>
+                <i class='bx bx-envelope'></i>
+                <input type="email" id="login-email" class="login-input" placeholder="Email Address" required>
             </div>
-            
-            <button type="submit" class="login-btn">Secure Login</button>
-            <p id="error-msg">Incorrect passcode. Access rejected.</p>
+            <div class="input-group">
+                <i class='bx bx-key'></i>
+                <input type="password" id="login-password" class="login-input" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-btn" id="login-submit-btn">Secure Login</button>
+            <p class="auth-toggle">Need an account? <a href="#" id="show-signup">Sign Up</a></p>
         </form>
+
+        <!-- Signup Form (Hidden by default) -->
+        <form id="signupForm" style="display: none;">
+            <div class="input-group">
+                <i class='bx bx-envelope'></i>
+                <input type="email" id="signup-email" class="login-input" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <i class='bx bx-key'></i>
+                <input type="password" id="signup-password" class="login-input" placeholder="Create Password" required>
+            </div>
+            <button type="submit" class="login-btn">Create Account</button>
+            <p class="auth-toggle">Already have an account? <a href="#" id="show-login">Login</a></p>
+        </form>
+
+        <p id="error-msg"></p>
+        <p id="success-msg" style="color: #34d399; font-size: 0.85rem; margin-top: 1rem; display: none;"></p>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        
+        // Load config from our separate file
+        // Since it's a static site and we're using modules, we'll just define it here or fetch it.
+        // For simplicity, we'll redefine the placeholders here, but the user should ideally 
+        // update firebase-config.js and we could import it if we were in a build environment.
+        // But here we'll use a direct config for the module script.
+        
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const errorMsg = document.getElementById('error-msg');
+        const successMsg = document.getElementById('success-msg');
+        const formTitle = document.getElementById('form-title');
+        const formSubtitle = document.getElementById('form-subtitle');
+
+        // Toggle Views
+        document.getElementById('show-signup').addEventListener('click', (e) => {
             e.preventDefault();
-            const passcode = document.getElementById('passcode').value;
-            
-            // NOTE: This is a front-end check for demonstration purposes.
-            // Ideally, this should talk to a real backend (like Firebase).
-            if(passcode === "francisco2026") {
-                // Store a simple auth token in local storage
-                localStorage.setItem("admin_auth", "true");
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            formTitle.innerText = "Create Account";
+            formSubtitle.innerText = "Join the Francisco Manneh portal.";
+            errorMsg.style.display = 'none';
+        });
+
+        document.getElementById('show-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            formTitle.innerText = "Admin Portal";
+            formSubtitle.innerText = "Authenticate to view site analytics.";
+            errorMsg.style.display = 'none';
+        });
+
+        // Login Logic
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            errorMsg.style.display = 'none';
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // Auth observer will handle redirect
+            } catch (error) {
+                errorMsg.innerText = "Login failed: " + error.message;
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Signup Logic
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            errorMsg.style.display = 'none';
+
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                successMsg.innerText = "Account created successfully! Logging you in...";
+                successMsg.style.display = 'block';
+            } catch (error) {
+                errorMsg.innerText = "Signup failed: " + error.message;
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Check Auth State
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
                 window.location.href = "dashboard.html";
-            } else {
-                document.getElementById('error-msg').style.display = "block";
             }
         });
     </script>
